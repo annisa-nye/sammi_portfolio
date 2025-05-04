@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 39, "column": 0}, "map": {"version":3,"sources":["file:///Users/modica_annisa/Desktop/sammi_portfolio/src/components/Nav.tsx"],"sourcesContent":["'use client';\n\nimport Link from 'next/link';\n\nconst navItems = [\n\t{ href: '/', label: 'Home' },\n\t{ href: '/about', label: 'About' },\n\t{ href: '/cv', label: 'CV' },\n\t{ href: '/gallery', label: 'Gallery' },\n\t{ href: '/art-residencies', label: 'Art Residencies' },\n\t{ href: '/contact', label: 'Contact' },\n];\n\nexport default function Nav() {\n\treturn (\n\t\t<nav className='flex flex-wrap gap-6 p-6 border-b border-gray-300'>\n\t\t\t{navItems.map(({ href, label }) => (\n\t\t\t\t<Link\n\t\t\t\t\tkey={href}\n\t\t\t\t\thref={href}\n\t\t\t\t\tclassName='text-blue-700 hover:underline text-lg font-medium'\n\t\t\t\t>\n\t\t\t\t\t{label}\n\t\t\t\t</Link>\n\t\t\t))}\n\t\t</nav>\n\t);\n}\n"],"names":[],"mappings":";;;;AAEA;AAFA;;;AAIA,MAAM,WAAW;IAChB;QAAE,MAAM;QAAK,OAAO;IAAO;IAC3B;QAAE,MAAM;QAAU,OAAO;IAAQ;IACjC;QAAE,MAAM;QAAO,OAAO;IAAK;IAC3B;QAAE,MAAM;QAAY,OAAO;IAAU;IACrC;QAAE,MAAM;QAAoB,OAAO;IAAkB;IACrD;QAAE,MAAM;QAAY,OAAO;IAAU;CACrC;AAEc,SAAS;IACvB,qBACC,8OAAC;QAAI,WAAU;kBACb,SAAS,GAAG,CAAC,CAAC,EAAE,IAAI,EAAE,KAAK,EAAE,iBAC7B,8OAAC,4JAAA,CAAA,UAAI;gBAEJ,MAAM;gBACN,WAAU;0BAET;eAJI;;;;;;;;;;AASV","debugId":null}}]
+}
