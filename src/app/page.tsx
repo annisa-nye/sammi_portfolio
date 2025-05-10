@@ -1,8 +1,11 @@
 export default function HomePage() {
 	return (
-		<main className='p-8'>
-			<h1 className='text-3xl font-bold'>Welcome to Sammi Carr's Portfolio</h1>
-			<p className='mt-4 text-lg'>Explore my art and creative journey.</p>
+		<main className='flex flex-col items-center justify-center text-center p-10'>
+			<h1 className='text-4xl font-bold mb-4'>Sammi Carr</h1>
+			<p className='text-lg max-w-xl text-gray-600'>
+				An exploration of form, satire, and emotional urgency through painting,
+				collage, and illustration.
+			</p>
 		</main>
 	);
 }
