@@ -47,8 +47,8 @@ const gallerySections = [
         href: '/gallery/graphic-design'
     },
     {
-        title: 'Animations',
-        href: '/gallery/animations'
+        title: 'Animation',
+        href: '/gallery/animation'
     }
 ];
 function GalleryPage() {

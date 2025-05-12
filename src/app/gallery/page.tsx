@@ -5,7 +5,7 @@ const gallerySections = [
 	{ title: 'Painting', href: '/gallery/painting' },
 	{ title: 'Collage', href: '/gallery/collage' },
 	{ title: 'Graphic Design', href: '/gallery/graphic-design' },
-	{ title: 'Animations', href: '/gallery/animations' },
+	{ title: 'Animation', href: '/gallery/animation' },
 ];
 
 export default function GalleryPage() {
