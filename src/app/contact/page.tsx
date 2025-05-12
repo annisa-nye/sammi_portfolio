@@ -66,13 +66,14 @@ export default function ContactPage() {
 			</form>
 			<section className='mt-12'>
 				<h2 className='text-2xl font-bold mb-4 text-center'>Instagram Feed</h2>
-				<div className='aspect-[3/2] overflow-hidden rounded shadow'>
+
+				<div className='w-full aspect-[3/2] overflow-hidden rounded shadow'>
 					<iframe
-						src='https://snapwidget.com/embed/YOUR_WIDGET_ID'
-						className='w-full h-[350px] border-none'
+						src='https://snapwidget.com/embed/1096005'
+						className='w-full h-full border-none'
 						allowTransparency={true}
 						scrolling='no'
-						title='Instagram Grid'
+						title='Posts from Instagram'
 					></iframe>
 				</div>
 			</section>

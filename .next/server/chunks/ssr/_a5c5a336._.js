@@ -161,21 +161,21 @@ function ContactPage() {
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "aspect-[3/2] overflow-hidden rounded shadow",
+                        className: "w-full aspect-[3/2] overflow-hidden rounded shadow",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
-                            src: "https://snapwidget.com/embed/YOUR_WIDGET_ID",
-                            className: "w-full h-[350px] border-none",
+                            src: "https://snapwidget.com/embed/1096005",
+                            className: "w-full h-full border-none",
                             allowTransparency: true,
                             scrolling: "no",
-                            title: "Instagram Grid"
+                            title: "Posts from Instagram"
                         }, void 0, false, {
                             fileName: "[project]/src/app/contact/page.tsx",
-                            lineNumber: 70,
+                            lineNumber: 71,
                             columnNumber: 6
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/contact/page.tsx",
-                        lineNumber: 69,
+                        lineNumber: 70,
                         columnNumber: 5
                     }, this)
                 ]
