@@ -68,13 +68,18 @@ export default function ContactPage() {
 				<h2 className='text-2xl font-bold mb-4 text-center'>Instagram Feed</h2>
 
 				<div className='w-full aspect-[3/2] overflow-hidden rounded shadow'>
-					<iframe
-						src='https://snapwidget.com/embed/1096005'
-						className='w-full h-full border-none'
-						allowtransparency="true"
-						scrolling='no'
-						title='Posts from Instagram'
-					></iframe>
+					<div
+						className='w-full h-[350px] rounded shadow overflow-hidden'
+						dangerouslySetInnerHTML={{
+							__html: `<iframe 
+								src="https://snapwidget.com/embed/1096005" 
+								class="w-full h-full border-none"
+								allowtransparency="true"
+								scrolling="no"
+								title="Instagram Grid"
+							></iframe>`,
+						}}
+					/>
 				</div>
 			</section>
 		</main>

@@ -551,6 +551,10 @@
     height: calc(var(--spacing) * 32);
   }
 
+  .h-\[350px\] {
+    height: 350px;
+  }
+
   .h-auto {
     height: auto;
   }
