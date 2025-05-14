@@ -109,10 +109,10 @@ const cv = {
 };
 function CVPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-        className: "max-w-4xl mx-auto px-6 py-10",
+        className: "max-w-4xl mx-auto px-6 py-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                className: "text-4xl font-bold mb-10 text-center",
+                className: "text-4xl font-bold tracking-tight sticky top-0 bg-white dark:bg-black z-10 py-6 text-center border-b border-gray-200 dark:border-gray-700",
                 children: "Curriculum Vitae"
             }, void 0, false, {
                 fileName: "[project]/src/app/cv/page.tsx",
@@ -121,10 +121,11 @@ function CVPage() {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(CVSection, {
                 title: "Selected Group Exhibitions",
-                data: cv.exhibitions
+                data: cv.exhibitions,
+                extraMargin: true
             }, void 0, false, {
                 fileName: "[project]/src/app/cv/page.tsx",
-                lineNumber: 84,
+                lineNumber: 87,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(CVSection, {
@@ -132,7 +133,7 @@ function CVPage() {
                 data: cv.residencies
             }, void 0, false, {
                 fileName: "[project]/src/app/cv/page.tsx",
-                lineNumber: 85,
+                lineNumber: 92,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(CVSection, {
@@ -140,7 +141,7 @@ function CVPage() {
                 data: cv.collaborations
             }, void 0, false, {
                 fileName: "[project]/src/app/cv/page.tsx",
-                lineNumber: 86,
+                lineNumber: 93,
                 columnNumber: 4
             }, this)
         ]
@@ -150,59 +151,59 @@ function CVPage() {
         columnNumber: 3
     }, this);
 }
-function CVSection({ title, data }) {
+function CVSection({ title, data, extraMargin }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "mb-12",
+        className: `${extraMargin ? 'mt-4' : ''} mb-12`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-2xl font-semibold mb-4",
+                className: "text-2xl font-semibold mb-6 border-b border-gray-300 dark:border-gray-700 pb-2",
                 children: title
             }, void 0, false, {
                 fileName: "[project]/src/app/cv/page.tsx",
-                lineNumber: 100,
+                lineNumber: 110,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                className: "space-y-6",
+                className: "space-y-8",
                 children: data.map(({ year, items })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-lg font-bold mb-1 text-gray-800",
+                                className: "text-lg font-bold text-gray-800 dark:text-gray-100 mb-2",
                                 children: year
                             }, void 0, false, {
                                 fileName: "[project]/src/app/cv/page.tsx",
-                                lineNumber: 104,
+                                lineNumber: 116,
                                 columnNumber: 7
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                className: "list-disc pl-6 text-gray-700 space-y-1",
+                                className: "list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-1",
                                 children: items.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: item
                                     }, i, false, {
                                         fileName: "[project]/src/app/cv/page.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 121,
                                         columnNumber: 9
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/cv/page.tsx",
-                                lineNumber: 105,
+                                lineNumber: 119,
                                 columnNumber: 7
                             }, this)
                         ]
                     }, year, true, {
                         fileName: "[project]/src/app/cv/page.tsx",
-                        lineNumber: 103,
+                        lineNumber: 115,
                         columnNumber: 6
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/app/cv/page.tsx",
-                lineNumber: 101,
+                lineNumber: 113,
                 columnNumber: 4
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/cv/page.tsx",
-        lineNumber: 99,
+        lineNumber: 109,
         columnNumber: 3
     }, this);
 }

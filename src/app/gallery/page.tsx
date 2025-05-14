@@ -5,25 +5,24 @@ const gallerySections = [
 	{ title: 'Painting', href: '/gallery/painting' },
 	{ title: 'Collage', href: '/gallery/collage' },
 	{ title: 'Graphic Design', href: '/gallery/graphic-design' },
-	{ title: 'Animation', href: '/gallery/animation' },
+	{ title: 'Animations', href: '/gallery/animation' },
 ];
 
 export default function GalleryPage() {
 	return (
-		<main className='max-w-4xl mx-auto p-6'>
-			<h1 className='text-3xl font-bold mb-6 text-center'>Gallery</h1>
-			<ul className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+		<main className='max-w-4xl mx-auto px-6 py-10'>
+			<h1 className='text-4xl font-bold mb-10 text-center'>Gallery</h1>
+			<div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 				{gallerySections.map(({ title, href }) => (
-					<li key={href}>
-						<Link
-							href={href}
-							className='block border border-gray-300 rounded-lg p-6 text-center hover:bg-gray-100 transition'
-						>
-							{title}
-						</Link>
-					</li>
+					<Link
+						key={href}
+						href={href}
+						className='block border border-gray-300 dark:border-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition-all duration-200 text-center text-lg font-medium text-gray-800 dark:text-gray-100 bg-white dark:bg-zinc-900'
+					>
+						{title}
+					</Link>
 				))}
-			</ul>
+			</div>
 		</main>
 	);
 }
