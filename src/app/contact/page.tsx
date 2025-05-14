@@ -71,7 +71,7 @@ export default function ContactPage() {
 					<iframe
 						src='https://snapwidget.com/embed/1096005'
 						className='w-full h-full border-none'
-						allowTransparency="true"
+						allowtransparency="true"
 						scrolling='no'
 						title='Posts from Instagram'
 					></iframe>
