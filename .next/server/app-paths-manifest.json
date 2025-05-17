@@ -1,8 +1,12 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
   "/contact/page": "app/contact/page.js",
   "/cv/page": "app/cv/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/gallery/animation/page": "app/gallery/animation/page.js",
+  "/gallery/collage/page": "app/gallery/collage/page.js",
+  "/gallery/graphic-design/page": "app/gallery/graphic-design/page.js",
   "/gallery/illustration/page": "app/gallery/illustration/page.js",
   "/gallery/page": "app/gallery/page.js",
   "/gallery/painting/page": "app/gallery/painting/page.js",

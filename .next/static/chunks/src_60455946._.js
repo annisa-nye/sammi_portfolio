@@ -150,14 +150,41 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Gallery
 ;
 ;
 ;
+const illustrationImages = [
+    'charcoal/01.jpg',
+    'charcoal/02.jpg',
+    'charcoal/03.jpg',
+    'charcoal/04.jpg',
+    'charcoal/05.jpg',
+    'ink/01.jpg',
+    'ink/02.jpg',
+    'ink/03.jpg',
+    'ink/04.jpg',
+    'ink/05.jpg',
+    'ink/06.jpg',
+    'ink/07.jpg',
+    'ink/08.jpg',
+    'ink/09.jpg',
+    'ink/10.jpg',
+    'oil-pastel/01.jpg',
+    'oil-pastel/02.jpg',
+    'oil-pastel/03.jpg',
+    'oil-pastel/04.jpg',
+    'sketch/01.jpg',
+    'sketch/02.jpg',
+    'sketch/03.jpg',
+    'sketch/04.jpg',
+    'sketch/05.jpg',
+    'sketch/06.jpg'
+];
 function IllustrationGallery() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$PageWrapper$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-            className: "pt-32 px-6",
+            className: "pt-24 px-6",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$GallerySubnav$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                    lineNumber: 10,
+                    lineNumber: 38,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -165,82 +192,62 @@ function IllustrationGallery() {
                     children: "Illustrations"
                 }, void 0, false, {
                     fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                    lineNumber: 11,
+                    lineNumber: 39,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "overflow-x-auto whitespace-nowrap flex gap-8 pb-6",
-                    children: illustrations.map(({ title, filename, medium, year }, i)=>{
-                        const imageUrl = `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/gallery/illustration/${medium}/${filename}`;
+                    children: illustrationImages.map((path, i)=>{
+                        const [medium, filename] = path.split('/');
+                        const formattedMedium = medium.split('-').map((word)=>word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("figure", {
                             className: "inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: imageUrl,
-                                    alt: title,
+                                    src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/gallery/illustration/${medium}/${filename}`,
+                                    alt: `Illustration ${i + 1}`,
                                     className: "w-full h-auto object-cover rounded"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                                    lineNumber: 21,
+                                    lineNumber: 54,
                                     columnNumber: 9
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("figcaption", {
                                     className: "mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "font-medium",
-                                                    children: title
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                                                    lineNumber: 28,
-                                                    columnNumber: 11
-                                                }, this),
-                                                " (",
-                                                year,
-                                                ")"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                                            lineNumber: 27,
-                                            columnNumber: 10
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "italic text-gray-500",
-                                            children: medium.split('-').map((word)=>word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                                            lineNumber: 30,
-                                            columnNumber: 10
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "italic text-gray-500",
+                                        children: formattedMedium
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/gallery/illustration/page.tsx",
+                                        lineNumber: 60,
+                                        columnNumber: 10
+                                    }, this)
+                                }, void 0, false, {
                                     fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                                    lineNumber: 26,
+                                    lineNumber: 59,
                                     columnNumber: 9
                                 }, this)
                             ]
                         }, i, true, {
                             fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                            lineNumber: 17,
+                            lineNumber: 50,
                             columnNumber: 8
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/src/app/gallery/illustration/page.tsx",
-                    lineNumber: 13,
+                    lineNumber: 41,
                     columnNumber: 5
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/gallery/illustration/page.tsx",
-            lineNumber: 9,
+            lineNumber: 37,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/gallery/illustration/page.tsx",
-        lineNumber: 8,
+        lineNumber: 36,
         columnNumber: 3
     }, this);
 }

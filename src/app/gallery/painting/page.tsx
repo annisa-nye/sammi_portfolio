@@ -1,12 +1,12 @@
 'use client';
 
-import PageWrapper from '@/components/PageWrapper';
+import GalleryWrapper from '@/components/GalleryWrapper';
 import GallerySubnav from '@/components/GallerySubnav';
 import paintings from '@/data/paintings.json';
 
 export default function PaintingGallery() {
 	return (
-		<PageWrapper>
+		<GalleryWrapper>
 			<main className='pt-24 px-6'>
 				<GallerySubnav />
 				<h2 className='text-3xl font-bold mb-6 text-center'>Paintings</h2>
@@ -42,6 +42,6 @@ export default function PaintingGallery() {
 					})}
 				</div>
 			</main>
-		</PageWrapper>
+		</GalleryWrapper>
 	);
 }
