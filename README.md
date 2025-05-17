@@ -1,75 +1,90 @@
-# Sammi Carr Portfolio – One-Page Website
+# Sammi Carr Portfolio – Horizontally-Scrolling Art Gallery Website
 
-This project is a bold, playful, and modern one-page portfolio for **Sammi Carr**, serving as a professional and artistic showcase for grant and residency applications.
+This project is a bold, playful, and immersive portfolio for **Sammi Carr**, a multidisciplinary visual artist based on Dharawal land (NSW). The website mimics the experience of walking through a physical art gallery — using horizontal transitions and thoughtful layout spacing to showcase Sammi’s work with elegance and impact.
 
-The site is designed to emphasize high-impact visual storytelling, scrollable galleries, and a uniquely personal brand identity, inspired by [fbi.radio](https://www.fbi.radio/). It will eventually replace Instagram as a more curated and professional submission tool.
+It is designed for professional submissions (grants/residencies) while offering a rich, curated alternative to Instagram.
 
 ---
 
 ## 🎯 Goals
-- Showcase Sammi’s art and animations in a clean, organized, and **visually impactful** format
-- Present an **all-in-one homepage** with anchored navigation across sections
-- Provide a professional alternative to Instagram for submissions and outreach
-- Ensure the site is fully **responsive and performant across devices**
-- Create scrollable galleries, especially for mobile and tablet
-- Prepare for future additions like an **online shop**, **blog**, and **exhibition archive**
+
+- Showcase Sammi’s artwork and animations in a highly visual, immersive layout
+- Mimic the experience of a real-life art gallery through horizontal movement and visual pacing
+- Replace Instagram as the primary point of reference for Sammi’s practice
+- Make the site mobile-responsive, intuitive, and memorable
+- Prepare the site for future features like an online shop, blog, and exhibition archive
 
 ---
 
-## 🎨 Design Summary
+## 🎨 Design Philosophy
 
-### 🎨 Colour Palette (Playful + Bold)
-- Blue `#0200bf`
-- Cadmium Yellow `#fff325`
-- Red `#c91900`
-- Purple `#c000c9`
-- Green `#9fb831`
-- Dark Green `#00700d`
-- Soft Blue `#4988b3`
+Inspired by [fbi.radio](https://fbi.radio), the website focuses on:
 
-### ✨ Visual Style
-- Inspired by: [fbi.radio](https://www.fbi.radio/)
-- All sections on a **single homepage**
-- Logo replaces "Sammi Carr" heading
-- Caption: _“Multidisciplinary visual artist, based on Dharawal land, NSW.”_
-- Italicized, centered bio
-- 4x4 headshot in About section
+- A **white background** and clean typography
+- **Center-aligned, floating top menu** that shows the current section
+- **Horizontal scroll transitions** between each full-screen section (simulated using Framer Motion)
+- Individual artworks displayed with generous spacing, like walking through a gallery
+- Title cards, subtle animations, and gallery labels under artworks
 
 ---
 
-## 🔑 Key Features
-- Horizontally scrollable galleries (paintings, illustrations, digital, collage)
-- Vertical GIF-based animation section with YouTube embed (Thunderfox)
-- CV and Residencies in timeline format, centered and styled without bullet points
-- Contact section with email, form, and live Instagram feed
-- Dark/light mode toggle (optional)
-- Future support for shop, blog, and archive
+## 🧭 Navigation Behavior
+
+- Navigation bar sits centered at the top
+- Displays: Home, About, CV, Gallery, Residencies, Contact
+- When the user is on the **Gallery** page, a **secondary sub-menu** appears:
+  - Paintings, Illustrations, Collages, Digital, Animations
 
 ---
 
-## 🗂 Sections (All in One Page)
-- **Home**
-- **About**
-- **Gallery**
-   - Painting  
-   - Illustration  
-   - Collage  
-   - Digital  
-   - Animations  
-- **Residencies**
-- **CV**
-- **Contact**
+## 🖼 Gallery Behavior
 
-✅ _Future Additions:_  
-- Shop (external redirect or embedded)  
-- Blog (Substack-style)  
-- Exhibition Archive
+- Sections scroll **left to right**
+- Each artwork is framed, centered, and spaced apart like a museum wall
+- **Animations** are vertical and may be embedded as GIFs or videos
+- Thunderfox video is embedded within the Animations section
 
 ---
 
-## ⚙️ Tech Stack
-- Framework: Next.js (App Router)
-- Styling: Tailwind CSS
-- Image Hosting: AWS S3
-- Deployment: Vercel
-- Forms: Formspree / Netlify
+## 📋 Implementation Plan
+
+### ✅ Phase 1 – Base Layout & Navigation
+- [ ] Create full-screen routes for each section
+- [ ] Implement horizontal transitions using **Framer Motion**
+- [ ] Add top-centered nav bar with active section highlight
+
+### ✅ Phase 2 – Section Styling
+- [ ] Home: Logo, caption, optional GIF
+- [ ] About: Italic bio, centered text, 4x4 headshot
+- [ ] CV: Remove heading and bullet points, center-align
+- [ ] Gallery: Horizontal scroll galleries for Paintings, Illustration, Collage, Digital
+- [ ] Animations: Vertical display with looping GIFs and YouTube embed
+- [ ] Residencies: Scrollable section with residency images
+
+### ✅ Phase 3 – Gallery Aesthetic
+- [ ] Add spacing between artworks like gallery walls
+- [ ] Add title cards under artworks
+- [ ] Optional: modal view for enlarged artworks
+
+---
+
+## 🧪 Tech Stack
+
+- **Framework**: Next.js (App Router)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Hosting**: Vercel
+- **Image Storage**: AWS S3
+- **Forms**: Netlify Forms or Formspree
+
+---
+
+## 🔮 Future Enhancements
+
+- Online shop with external checkout or Shopify
+- Blog and exhibition archive
+- Dark mode toggle
+
+---
+
+Created with love for Sammi Carr’s art practice.

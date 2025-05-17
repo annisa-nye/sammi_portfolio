@@ -107,6 +107,7 @@
     --color-white: #fff;
     --spacing: .25rem;
     --container-xl: 36rem;
+    --container-2xl: 42rem;
     --container-3xl: 48rem;
     --container-4xl: 56rem;
     --text-xs: .75rem;
@@ -367,6 +368,10 @@
     z-index: 10;
   }
 
+  .z-50 {
+    z-index: 50;
+  }
+
   .row-start-2 {
     grid-row-start: 2;
   }
@@ -571,8 +576,16 @@
     min-height: 100vh;
   }
 
+  .w-32 {
+    width: calc(var(--spacing) * 32);
+  }
+
   .w-full {
     width: 100%;
+  }
+
+  .max-w-2xl {
+    max-width: var(--container-2xl);
   }
 
   .max-w-3xl {
@@ -791,6 +804,10 @@
     padding: calc(var(--spacing) * 2);
   }
 
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
@@ -841,6 +858,10 @@
 
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
+  }
+
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20);
   }
 
   .pb-2 {
