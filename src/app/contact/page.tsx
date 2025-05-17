@@ -1,6 +1,6 @@
 export default function ContactPage() {
 	return (
-		<main className='max-w-xl mx-auto p-6'>
+		<main className='max-w-xl mx-auto p-6 pt-28'>
 			<h1 className='text-3xl font-bold mb-4'>Contact</h1>
 
 			<p className='text-lg text-gray-700 mb-4'>

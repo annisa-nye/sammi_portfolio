@@ -79,7 +79,7 @@ const cv = {
 
 export default function CVPage() {
 	return (
-		<main className='max-w-4xl mx-auto px-6 py-4'>
+		<main className='max-w-4xl mx-auto px-6 py-4 pt-28'>
 			<h1 className='text-4xl font-bold tracking-tight sticky top-0 bg-white dark:bg-black z-10 py-6 text-center border-b border-gray-200 dark:border-gray-700'>
 				Curriculum Vitae
 			</h1>

@@ -1,26 +1,35 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
 
 const navItems = [
-	{ href: '/', label: 'Home' },
-	{ href: '/about', label: 'About' },
-	{ href: '/cv', label: 'CV' },
-	{ href: '/gallery', label: 'Gallery' },
-	{ href: '/art-residencies', label: 'Art Residencies' },
-	{ href: '/contact', label: 'Contact' },
+	{ name: 'Home', href: '/' },
+	{ name: 'About', href: '/about' },
+	{ name: 'CV', href: '/cv' },
+	{ name: 'Gallery', href: '/gallery' },
+	{ name: 'Residencies', href: '/residencies' },
+	{ name: 'Contact', href: '/contact' },
 ];
 
 export default function Nav() {
+	const pathname = usePathname();
+
 	return (
-		<nav className='flex flex-wrap gap-6 p-6 border-b border-gray-300'>
-			{navItems.map(({ href, label }) => (
+		<nav className='fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md shadow-md px-6 py-2 rounded-full flex gap-6'>
+			{navItems.map((item) => (
 				<Link
-					key={href}
-					href={href}
-					className='text-blue-700 hover:underline text-lg font-medium'
+					key={item.name}
+					href={item.href}
+					className={clsx(
+						'transition-colors text-sm font-medium',
+						pathname === item.href
+							? 'bg-black text-white rounded-full px-3 py-1'
+							: 'opacity-60 hover:opacity-100'
+					)}
 				>
-					{label}
+					{item.name}
 				</Link>
 			))}
 		</nav>
