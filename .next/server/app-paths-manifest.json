@@ -3,7 +3,9 @@
   "/contact/page": "app/contact/page.js",
   "/cv/page": "app/cv/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/gallery/illustration/page": "app/gallery/illustration/page.js",
   "/gallery/page": "app/gallery/page.js",
+  "/gallery/painting/page": "app/gallery/painting/page.js",
   "/page": "app/page.js",
   "/residencies/page": "app/residencies/page.js"
 }

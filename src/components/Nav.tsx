@@ -17,21 +17,25 @@ export default function Nav() {
 	const pathname = usePathname();
 
 	return (
-		<nav className='fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md shadow-md px-6 py-2 rounded-full flex gap-6'>
-			{navItems.map((item) => (
-				<Link
-					key={item.name}
-					href={item.href}
-					className={clsx(
-						'transition-colors text-sm font-medium',
-						pathname === item.href
-							? 'bg-black text-white rounded-full px-3 py-1'
-							: 'opacity-60 hover:opacity-100'
-					)}
-				>
-					{item.name}
-				</Link>
-			))}
+		<nav className='fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white text-black rounded-full shadow-md px-6 py-2 flex gap-6 text-sm font-medium'>
+			{navItems.map(({ name, href }) => {
+				const isActive =
+					pathname === href ||
+					(href === '/gallery' && pathname?.startsWith('/gallery/'));
+
+				return (
+					<Link
+						key={href}
+						href={href}
+						className={clsx(
+							'transition-colors text-sm font-medium px-3 py-1 rounded-full',
+							isActive ? 'bg-black text-white' : 'opacity-60 hover:opacity-100'
+						)}
+					>
+						{name}
+					</Link>
+				);
+			})}
 		</nav>
 	);
 }
