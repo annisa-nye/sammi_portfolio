@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 const navItems = [
@@ -14,7 +12,6 @@ const navItems = [
 ];
 
 export default function Nav() {
-	const pathname = usePathname();
 	const [activeSection, setActiveSection] = useState('home');
 
 	// Memoize the scroll handler to prevent unnecessary re-renders

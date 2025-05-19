@@ -1,5 +1,6 @@
 'use client';
 
+import PageWrapper from '@/components/PageWrapper';
 
 export default function AboutPage() {
 	return (
