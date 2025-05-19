@@ -80,28 +80,7 @@ export default function HomePage() {
 	const [activeGallerySection, setActiveGallerySection] = useState<
 		string | null
 	>(null);
-	const [gallerySections, setGallerySections] = useState<GallerySection[]>(
-		initialGallerySections
-	);
-
-	useEffect(() => {
-		// Load paintings data
-		fetch('/data/paintings.json')
-			.then((res) => res.json())
-			.then((data: Painting[]) => {
-				// Update the paintings in the gallery sections
-				const updatedSections = gallerySections.map(
-					(section: GallerySection) => {
-						if (section.title === 'Painting') {
-							return { ...section, paintings: data };
-						}
-						return section;
-					}
-				);
-				setGallerySections(updatedSections);
-			})
-			.catch((error) => console.error('Error loading paintings:', error));
-	}, [gallerySections]);
+	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
 
 	const handleGalleryToggle = (title: string) => {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
@@ -177,39 +156,42 @@ export default function HomePage() {
 										<div className='animate-fadeIn'>
 											{section.title === 'Painting' && section.paintings ? (
 												<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
-													{section.paintings.map((painting) => (
-														<figure
-															key={painting.filename}
-															className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
-														>
-															<Image
-																src={`${S3_BASE_URL}/gallery/painting/${painting.medium}/${painting.filename}`}
-																alt={painting.title}
-																width={400}
-																height={400}
-																className='w-full h-auto object-cover rounded'
-																unoptimized
-															/>
-															<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1'>
-																<div>
-																	<span className='font-medium'>
-																		{painting.title}
-																	</span>{' '}
-																	({painting.year})
-																</div>
-																<div className='italic text-gray-500'>
-																	{painting.medium
-																		.split('-')
-																		.map(
-																			(word) =>
-																				word.charAt(0).toUpperCase() +
-																				word.slice(1)
-																		)
-																		.join(' ')}
-																</div>
-															</figcaption>
-														</figure>
-													))}
+													{section.paintings.map((painting) => {
+														const uniqueKey = `${painting.medium}-${painting.filename}`;
+														return (
+															<figure
+																key={uniqueKey}
+																className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
+															>
+																<Image
+																	src={`${S3_BASE_URL}/gallery/painting/${painting.medium}/${painting.filename}`}
+																	alt={painting.title}
+																	width={400}
+																	height={400}
+																	className='w-full h-auto object-cover rounded'
+																	unoptimized
+																/>
+																<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1'>
+																	<div>
+																		<span className='font-medium'>
+																			{painting.title}
+																		</span>{' '}
+																		({painting.year})
+																	</div>
+																	<div className='italic text-gray-500'>
+																		{painting.medium
+																			.split('-')
+																			.map(
+																				(word) =>
+																					word.charAt(0).toUpperCase() +
+																					word.slice(1)
+																			)
+																			.join(' ')}
+																	</div>
+																</figcaption>
+															</figure>
+														);
+													})}
 												</div>
 											) : (
 												<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
