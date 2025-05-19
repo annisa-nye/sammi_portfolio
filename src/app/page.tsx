@@ -1,23 +1,22 @@
 'use client';
 
 import { cv } from '@/data/cv';
-import CVSection from '@/components/CVSection';
-import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
-import GalleryCard from '@/components/GalleryCard';
 import Image from 'next/image';
+import CVSection from '@/components/CVSection';
+import { GallerySection } from '@/types/gallery';
+import paintingsData from '@/data/paintings.json';
+import Footer from '@/components/Footer';
+import GalleryCard from '@/components/GalleryCard';
+
+const S3_BASE_URL =
+	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
 
 interface Painting {
 	title: string;
 	year: number;
 	medium: string;
 	filename: string;
-}
-
-interface GallerySection {
-	title: string;
-	images: string[];
-	paintings?: Painting[];
 }
 
 interface CVItem {
@@ -29,6 +28,7 @@ const initialGallerySections: GallerySection[] = [
 	{
 		title: 'Painting',
 		images: [],
+		paintings: paintingsData,
 	},
 	{
 		title: 'Illustration',
@@ -159,22 +159,104 @@ export default function HomePage() {
 					<div className='max-w-7xl mx-auto w-full'>
 						<h1 className='text-4xl font-bold mb-10 text-center'>Gallery</h1>
 
-						{/* Gallery Cards */}
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-12'>
+						{/* Gallery Subsections */}
+						<div className='space-y-8'>
 							{gallerySections.map((section: GallerySection) => (
-								<GalleryCard
-									key={section.title}
-									title={section.title}
-									images={section.images}
-									paintings={section.paintings}
-									isExpanded={activeGallerySection === section.title}
-									onToggle={() => handleGalleryToggle(section.title)}
-								/>
+								<div key={section.title} className='space-y-4'>
+									<button
+										onClick={() => handleGalleryToggle(section.title)}
+										className='w-full text-left flex items-center justify-between p-4 bg-white dark:bg-zinc-900 rounded-lg shadow hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
+									>
+										<h2 className='text-2xl font-bold'>{section.title}</h2>
+										<span className='text-2xl'>
+											{activeGallerySection === section.title ? '−' : '+'}
+										</span>
+									</button>
+
+									{activeGallerySection === section.title && (
+										<div className='animate-fadeIn'>
+											{section.title === 'Painting' && section.paintings ? (
+												<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
+													{section.paintings.map((painting) => (
+														<figure
+															key={painting.filename}
+															className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
+														>
+															<Image
+																src={`${S3_BASE_URL}/gallery/painting/${painting.medium}/${painting.filename}`}
+																alt={painting.title}
+																width={400}
+																height={400}
+																className='w-full h-auto object-cover rounded'
+																unoptimized
+															/>
+															<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1'>
+																<div>
+																	<span className='font-medium'>
+																		{painting.title}
+																	</span>{' '}
+																	({painting.year})
+																</div>
+																<div className='italic text-gray-500'>
+																	{painting.medium
+																		.split('-')
+																		.map(
+																			(word) =>
+																				word.charAt(0).toUpperCase() +
+																				word.slice(1)
+																		)
+																		.join(' ')}
+																</div>
+															</figcaption>
+														</figure>
+													))}
+												</div>
+											) : (
+												<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
+													{section.images.map((image, i) => {
+														const [medium, filename] = image.split('/');
+														const formattedMedium =
+															medium
+																?.split('-')
+																.map(
+																	(word) =>
+																		word.charAt(0).toUpperCase() + word.slice(1)
+																)
+																.join(' ') || '';
+
+														return (
+															<figure
+																key={i}
+																className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
+															>
+																<Image
+																	src={`${S3_BASE_URL}/gallery/${section.title.toLowerCase()}/${image}`}
+																	alt={`${section.title} ${i + 1}`}
+																	width={400}
+																	height={400}
+																	className='w-full h-auto object-cover rounded'
+																	unoptimized
+																/>
+																<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300'>
+																	{formattedMedium && (
+																		<div className='italic text-gray-500'>
+																			{formattedMedium}
+																		</div>
+																	)}
+																</figcaption>
+															</figure>
+														);
+													})}
+												</div>
+											)}
+										</div>
+									)}
+								</div>
 							))}
 						</div>
 
 						{/* Animation Section */}
-						<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6'>
+						<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 mt-8'>
 							<h2 className='text-2xl font-bold mb-6 text-center'>Animation</h2>
 							<div className='w-full aspect-video rounded overflow-hidden shadow'>
 								<video
