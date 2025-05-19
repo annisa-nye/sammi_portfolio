@@ -212,107 +212,24 @@ export default function HomePage() {
 							Curriculum Vitae
 						</h1>
 
-						{/* Exhibitions */}
-						<div className='mb-8'>
-							<button
-								onClick={() => toggleSection('exhibitions')}
-								className='w-full text-2xl font-bold mb-6 border-b border-gray-300 dark:border-gray-700 pb-2 text-center flex items-center justify-center gap-2 hover:opacity-80 transition-opacity'
-							>
-								Exhibitions
-								<span className='text-lg'>
-									{openSections.exhibitions ? '−' : '+'}
-								</span>
-							</button>
-							{openSections.exhibitions && (
-								<div className='space-y-8 animate-fadeIn'>
-									{cv.exhibitions
-										.sort((a: CVItem, b: CVItem) => b.year - a.year)
-										.map(({ year, items }: CVItem) => (
-											<div key={year} className='space-y-2 text-center'>
-												<h3 className='text-lg font-bold text-gray-800 dark:text-gray-100'>
-													{year}
-												</h3>
-												{items.map((item: string, i: number) => (
-													<p
-														key={i}
-														className='text-gray-700 dark:text-gray-300'
-													>
-														{item}
-													</p>
-												))}
-											</div>
-										))}
-								</div>
+						<CVSection
+							title='Exhibitions'
+							data={cv.exhibitions.sort(
+								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
-						</div>
-
-						{/* Residencies */}
-						<div className='mb-8'>
-							<button
-								onClick={() => toggleSection('residencies')}
-								className='w-full text-2xl font-bold mb-6 border-b border-gray-300 dark:border-gray-700 pb-2 text-center flex items-center justify-center gap-2 hover:opacity-80 transition-opacity'
-							>
-								Residencies
-								<span className='text-lg'>
-									{openSections.residencies ? '−' : '+'}
-								</span>
-							</button>
-							{openSections.residencies && (
-								<div className='space-y-8 animate-fadeIn'>
-									{cv.residencies
-										.sort((a: CVItem, b: CVItem) => b.year - a.year)
-										.map(({ year, items }: CVItem) => (
-											<div key={year} className='space-y-2 text-center'>
-												<h3 className='text-lg font-bold text-gray-800 dark:text-gray-100'>
-													{year}
-												</h3>
-												{items.map((item: string, i: number) => (
-													<p
-														key={i}
-														className='text-gray-700 dark:text-gray-300'
-													>
-														{item}
-													</p>
-												))}
-											</div>
-										))}
-								</div>
+						/>
+						<CVSection
+							title='Residencies'
+							data={cv.residencies.sort(
+								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
-						</div>
-
-						{/* Collaborations */}
-						<div className='mb-8'>
-							<button
-								onClick={() => toggleSection('collaborations')}
-								className='w-full text-2xl font-bold mb-6 border-b border-gray-300 dark:border-gray-700 pb-2 text-center flex items-center justify-center gap-2 hover:opacity-80 transition-opacity'
-							>
-								Collaborations
-								<span className='text-lg'>
-									{openSections.collaborations ? '−' : '+'}
-								</span>
-							</button>
-							{openSections.collaborations && (
-								<div className='space-y-8 animate-fadeIn'>
-									{cv.collaborations
-										.sort((a: CVItem, b: CVItem) => b.year - a.year)
-										.map(({ year, items }: CVItem) => (
-											<div key={year} className='space-y-2 text-center'>
-												<h3 className='text-lg font-bold text-gray-800 dark:text-gray-100'>
-													{year}
-												</h3>
-												{items.map((item: string, i: number) => (
-													<p
-														key={i}
-														className='text-gray-700 dark:text-gray-300'
-													>
-														{item}
-													</p>
-												))}
-											</div>
-										))}
-								</div>
+						/>
+						<CVSection
+							title='Collaborations'
+							data={cv.collaborations.sort(
+								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
-						</div>
+						/>
 					</div>
 				</section>
 
