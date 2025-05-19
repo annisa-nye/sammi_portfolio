@@ -18,6 +18,9 @@ interface GalleryCardProps {
 	onToggle: () => void;
 }
 
+const S3_BASE_URL =
+	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
+
 export default function GalleryCard({
 	title,
 	images,
@@ -35,6 +38,13 @@ export default function GalleryCard({
 		setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 	};
 
+	const getImageUrl = (section: string, filename: string, medium?: string) => {
+		if (section.toLowerCase() === 'painting' && medium) {
+			return `${S3_BASE_URL}/gallery/painting/${medium}/${filename}`;
+		}
+		return `${S3_BASE_URL}/gallery/${section.toLowerCase()}/${filename}`;
+	};
+
 	return (
 		<div className='bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden gallery-card'>
 			<button
@@ -48,16 +58,17 @@ export default function GalleryCard({
 			{isExpanded && (
 				<div className='p-6 animate-fadeIn'>
 					{/* Image Gallery */}
-					<div className='relative aspect-square mb-4 rounded-lg overflow-hidden'>
-						<Image
-							src={`/gallery/${title.toLowerCase()}/${
-								images[currentImageIndex]
-							}`}
-							alt={`${title} artwork ${currentImageIndex + 1}`}
-							fill
-							className='object-cover'
-						/>
-					</div>
+					{images.length > 0 && (
+						<div className='relative aspect-square mb-4 rounded-lg overflow-hidden'>
+							<Image
+								src={getImageUrl(title, images[currentImageIndex])}
+								alt={`${title} artwork ${currentImageIndex + 1}`}
+								fill
+								className='object-cover'
+								unoptimized // Since we're using external URLs
+							/>
+						</div>
+					)}
 
 					{/* Navigation Buttons */}
 					{images.length > 1 && (
@@ -88,10 +99,15 @@ export default function GalleryCard({
 										className='relative aspect-square rounded-lg overflow-hidden'
 									>
 										<Image
-											src={`/gallery/painting/${painting.filename}`}
+											src={getImageUrl(
+												'painting',
+												painting.filename,
+												painting.medium
+											)}
 											alt={`${painting.title} (${painting.year})`}
 											fill
 											className='object-cover'
+											unoptimized // Since we're using external URLs
 										/>
 									</div>
 								))}
