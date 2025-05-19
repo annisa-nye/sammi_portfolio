@@ -1,10 +1,8 @@
 'use client';
 
-import PageWrapper from '@/components/PageWrapper';
 
 export default function ContactPage() {
 	return (
-		<PageWrapper>
 			<main className='max-w-3xl mx-auto px-6 pt-28'>
 				<h1 className='text-4xl font-bold mb-10 text-center'>Contact</h1>
 
@@ -57,6 +55,5 @@ export default function ContactPage() {
 					</div>
 				</section>
 			</main>
-		</PageWrapper>
 	);
 }
