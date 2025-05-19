@@ -5,6 +5,7 @@ import CVSection from '@/components/CVSection';
 import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 import GalleryCard from '@/components/GalleryCard';
+import Image from 'next/image';
 
 interface Painting {
 	title: string;
@@ -79,22 +80,15 @@ export default function HomePage() {
 	const [activeGallerySection, setActiveGallerySection] = useState<
 		string | null
 	>(null);
-	const [paintings, setPaintings] = useState<Painting[]>([]);
 	const [gallerySections, setGallerySections] = useState<GallerySection[]>(
 		initialGallerySections
 	);
-	const [openSections, setOpenSections] = useState({
-		exhibitions: true,
-		residencies: false,
-		collaborations: false,
-	});
 
 	useEffect(() => {
 		// Load paintings data
 		fetch('/data/paintings.json')
 			.then((res) => res.json())
 			.then((data: Painting[]) => {
-				setPaintings(data);
 				// Update the paintings in the gallery sections
 				const updatedSections = gallerySections.map(
 					(section: GallerySection) => {
@@ -107,14 +101,7 @@ export default function HomePage() {
 				setGallerySections(updatedSections);
 			})
 			.catch((error) => console.error('Error loading paintings:', error));
-	}, []);
-
-	const toggleSection = (section: keyof typeof openSections) => {
-		setOpenSections((prev) => ({
-			...prev,
-			[section]: !prev[section],
-		}));
-	};
+	}, [gallerySections]);
 
 	const handleGalleryToggle = (title: string) => {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
@@ -142,11 +129,13 @@ export default function HomePage() {
 				>
 					<div className='max-w-2xl mx-auto text-center'>
 						<h1 className='text-3xl font-bold mb-8'>About</h1>
-						<div className='mb-8'>
-							<img
+						<div className='mb-8 relative w-48 h-48 mx-auto'>
+							<Image
 								src='/headshot.jpg'
 								alt='Sammi Carr headshot'
-								className='w-48 h-48 object-cover rounded mx-auto border border-gray-300 shadow-sm'
+								fill
+								className='object-cover rounded border border-gray-300 shadow-sm'
+								priority
 							/>
 						</div>
 						<p className='italic text-lg text-gray-800 dark:text-gray-200 leading-relaxed'>
@@ -266,12 +255,13 @@ export default function HomePage() {
 											href='https://www.instagram.com/scarrjam/'
 											target='_blank'
 											rel='noopener noreferrer'
-											className='block aspect-square overflow-hidden rounded shadow hover:opacity-80 transition'
+											className='block aspect-square overflow-hidden rounded shadow hover:opacity-80 transition relative'
 										>
-											<img
+											<Image
 												src={`/instagram/${file}`}
-												alt={`Instagram placeholder ${i + 1}`}
-												className='w-full h-full object-cover'
+												alt={`Instagram highlight ${i + 1}`}
+												fill
+												className='object-cover'
 											/>
 										</a>
 									</div>
