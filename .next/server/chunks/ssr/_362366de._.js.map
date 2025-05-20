@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 12, "column": 0}, "map": {"version":3,"sources":["file:///Users/modica_annisa/Desktop/sammi_portfolio/src/app/layout.tsx"],"sourcesContent":["import './globals.css';\nimport type { Metadata } from 'next';\nimport Nav from '@/components/Nav';\n\nexport const metadata: Metadata = {\n\ttitle: 'Sammi Carr Portfolio',\n\tdescription: 'Explore the art and creative work of Sammi Carr.',\n};\n\nexport default function RootLayout({\n\tchildren,\n}: {\n\tchildren: React.ReactNode;\n}) {\n\treturn (\n\t\t<html lang='en'>\n\t\t\t<body className='font-sans bg-white text-black'>\n\t\t\t\t<Nav />\n\t\t\t\t<main>{children}</main>\n\t\t\t</body>\n\t\t</html>\n\t);\n}\n"],"names":[],"mappings":";;;;;AAEA;;;;AAEO,MAAM,WAAqB;IACjC,OAAO;IACP,aAAa;AACd;AAEe,SAAS,WAAW,EAClC,QAAQ,EAGR;IACA,qBACC,8OAAC;QAAK,MAAK;kBACV,cAAA,8OAAC;YAAK,WAAU;;8BACf,8OAAC,yHAAA,CAAA,UAAG;;;;;8BACJ,8OAAC;8BAAM;;;;;;;;;;;;;;;;;AAIX","debugId":null}},
-    {"offset": {"line": 60, "column": 0}, "map": {"version":3,"sources":["file:///Users/modica_annisa/Desktop/sammi_portfolio/node_modules/next/src/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.ts"],"sourcesContent":["module.exports = require('../../module.compiled').vendored[\n  'react-rsc'\n].ReactJsxDevRuntime\n"],"names":["module","exports","require","vendored","ReactJsxDevRuntime"],"mappings":";AAAAA,OAAOC,OAAO,GAAGC,QAAQ,4HAAyBC,QAAQ,CACxD,YACD,CAACC,kBAAkB","ignoreList":[0],"debugId":null}}]
-}
