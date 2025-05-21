@@ -78,17 +78,20 @@ export default function HomePage() {
 		string | null
 	>(null);
 	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
-
-	const [openCVSection, setOpenCVSection] = useState<string | null>(
-		'Exhibitions'
-	);
+	const [expandedCVSections, setExpandedCVSections] = useState<string[]>([
+		'Exhibitions',
+	]);
 
 	const handleGalleryToggle = (title: string) => {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
 	};
 
 	const handleCVToggle = (title: string) => {
-		setOpenCVSection(openCVSection === title ? null : title);
+		setExpandedCVSections((prev) =>
+			prev.includes(title)
+				? prev.filter((section) => section !== title)
+				: [...prev, title]
+		);
 	};
 
 	return (
@@ -333,7 +336,7 @@ export default function HomePage() {
 							data={cv.exhibitions.sort(
 								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
-							isExpanded={openCVSection === 'Exhibitions'}
+							isExpanded={expandedCVSections.includes('Exhibitions')}
 							onToggle={() => handleCVToggle('Exhibitions')}
 						/>
 						<CVSection
@@ -341,7 +344,7 @@ export default function HomePage() {
 							data={cv.residencies.sort(
 								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
-							isExpanded={openCVSection === 'Residencies'}
+							isExpanded={expandedCVSections.includes('Residencies')}
 							onToggle={() => handleCVToggle('Residencies')}
 						/>
 						<CVSection
@@ -349,7 +352,7 @@ export default function HomePage() {
 							data={cv.collaborations.sort(
 								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
-							isExpanded={openCVSection === 'Collaborations'}
+							isExpanded={expandedCVSections.includes('Collaborations')}
 							onToggle={() => handleCVToggle('Collaborations')}
 						/>
 					</div>
