@@ -8,5 +8,3 @@ export interface CV {
 	residencies: CVItem[];
 	collaborations: CVItem[];
 }
-
-export const cv: CV;
