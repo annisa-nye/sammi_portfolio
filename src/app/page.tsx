@@ -1,7 +1,7 @@
 'use client';
 
 import { cv } from '@/data/cv';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import CVSection from '@/components/CVSection';
 import type {
@@ -254,7 +254,7 @@ export default function HomePage() {
 											) : (
 												<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
 													{section.images.map((image, i) => {
-														const [medium, filename] = image.split('/');
+														const [medium] = image.split('/');
 														const formattedMedium =
 															medium
 																?.split('-')

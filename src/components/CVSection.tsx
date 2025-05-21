@@ -1,15 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
-interface CVSectionProps {
-	title: string;
-	data: { year: number; items: string[] }[];
-	extraMargin?: boolean;
-	isExpanded: boolean;
-	onToggle: () => void;
-}
-
 export default function CVSection({
 	title,
 	data,
