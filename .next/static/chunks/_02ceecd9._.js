@@ -179,9 +179,9 @@ function Nav() {
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-        className: "fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md px-4 sm:px-6 py-3 sm:py-4 flex justify-center items-center border-b border-gray-100",
+        className: "fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md sm:top-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto sm:w-auto sm:rounded-full px-4 sm:px-6 py-3 sm:py-2 flex justify-center items-center border-b sm:border-b-0 border-gray-100",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm mx-auto w-full justify-between sm:justify-center",
+            className: "flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm sm:max-w-none mx-auto w-full justify-between sm:justify-center",
             children: navItems.map(({ name, href })=>{
                 const sectionId = href.replace('#', '');
                 const isActive = activeSection === sectionId;

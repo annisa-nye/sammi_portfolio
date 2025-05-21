@@ -149,8 +149,8 @@ export default function Nav() {
 	};
 
 	return (
-		<nav className='fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md px-4 sm:px-6 py-3 sm:py-4 flex justify-center items-center border-b border-gray-100'>
-			<div className='flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm mx-auto w-full justify-between sm:justify-center'>
+		<nav className='fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md sm:top-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto sm:w-auto sm:rounded-full px-4 sm:px-6 py-3 sm:py-2 flex justify-center items-center border-b sm:border-b-0 border-gray-100'>
+			<div className='flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm sm:max-w-none mx-auto w-full justify-between sm:justify-center'>
 				{navItems.map(({ name, href }) => {
 					const sectionId = href.replace('#', '');
 					const isActive = activeSection === sectionId;

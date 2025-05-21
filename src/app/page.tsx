@@ -135,7 +135,7 @@ export default function HomePage() {
 								priority
 							/>
 						</div>
-						<p className='italic text-lg text-gray-800 dark:text-gray-200 leading-relaxed'>
+						<p className='italic text-base sm:text-lg text-gray-800 dark:text-gray-200 leading-relaxed'>
 							Born and raised in Western Australia, Sammi Carr currently lives
 							and practices from the Illawarra/Dharawal land in New South Wales.
 							Her working process prioritises open-ended exploration and
