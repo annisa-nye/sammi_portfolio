@@ -187,21 +187,28 @@ function Nav() {
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-        className: "fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white text-black rounded-full shadow-md px-6 py-2 flex gap-6 text-sm font-medium",
-        children: navItems.map(({ name, href })=>{
-            const sectionId = href.replace('#', '');
-            const isActive = activeSection === sectionId;
-            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                href: href,
-                onClick: (e)=>handleClick(e, href),
-                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])('transition-colors text-sm font-medium px-3 py-1 rounded-full cursor-pointer', isActive ? 'bg-black text-white' : 'opacity-60 hover:opacity-100'),
-                children: name
-            }, href, false, {
-                fileName: "[project]/src/components/Nav.tsx",
-                lineNumber: 158,
-                columnNumber: 6
-            }, this);
-        })
+        className: "fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md px-4 sm:px-6 py-3 sm:py-4 flex justify-center items-center border-b border-gray-100",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm mx-auto w-full justify-between sm:justify-center",
+            children: navItems.map(({ name, href })=>{
+                const sectionId = href.replace('#', '');
+                const isActive = activeSection === sectionId;
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                    href: href,
+                    onClick: (e)=>handleClick(e, href),
+                    className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])('transition-colors text-sm font-medium px-2 sm:px-3 py-1 rounded-full cursor-pointer whitespace-nowrap', isActive ? 'bg-black text-white' : 'opacity-60 hover:opacity-100'),
+                    children: name
+                }, href, false, {
+                    fileName: "[project]/src/components/Nav.tsx",
+                    lineNumber: 159,
+                    columnNumber: 7
+                }, this);
+            })
+        }, void 0, false, {
+            fileName: "[project]/src/components/Nav.tsx",
+            lineNumber: 153,
+            columnNumber: 4
+        }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Nav.tsx",
         lineNumber: 152,

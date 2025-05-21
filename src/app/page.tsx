@@ -97,7 +97,7 @@ export default function HomePage() {
 				{/* Home Section */}
 				<section
 					id='home'
-					className='min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20'
+					className='min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<Image
 						src='/logo/logo.png'
@@ -115,7 +115,7 @@ export default function HomePage() {
 				{/* About Section */}
 				<section
 					id='about'
-					className='min-h-screen flex flex-col items-center justify-center px-6 pt-20'
+					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-2xl mx-auto w-full text-center'>
 						<Image
@@ -151,7 +151,7 @@ export default function HomePage() {
 				{/* Gallery Section */}
 				<section
 					id='gallery'
-					className='min-h-screen flex flex-col items-center px-6 pt-20'
+					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-7xl mx-auto w-full'>
 						<Image
@@ -316,7 +316,7 @@ export default function HomePage() {
 				{/* CV Section */}
 				<section
 					id='cv'
-					className='min-h-screen flex flex-col items-center px-6 pt-20'
+					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
 						<Image
@@ -358,7 +358,7 @@ export default function HomePage() {
 				{/* Contact Section */}
 				<section
 					id='contact'
-					className='min-h-screen flex flex-col items-center px-6 pt-20'
+					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
 						<Image
