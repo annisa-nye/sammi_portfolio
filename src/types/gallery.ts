@@ -18,7 +18,3 @@ export interface GallerySection {
 	images: string[];
 	paintings?: PaintingsData;
 }
-
-// Export all types
-export type { Painting, PaintingMedium, PaintingsData, GallerySection };
- 
