@@ -78,23 +78,10 @@ export default function HomePage() {
 		string | null
 	>(null);
 	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
-	const [headingScales, setHeadingScales] = useState<{ [key: string]: number }>(
-		{
-			about: 1,
-			gallery: 1,
-			cv: 1,
-			contact: 1,
-		}
-	);
 
 	const [openCVSection, setOpenCVSection] = useState<string | null>(
 		'Exhibitions'
 	);
-
-	useEffect(() => {
-		console.log('Paintings Data:', paintingsData);
-		console.log('Gallery Sections:', gallerySections);
-	}, [gallerySections]);
 
 	const handleGalleryToggle = (title: string) => {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
@@ -130,7 +117,7 @@ export default function HomePage() {
 					id='about'
 					className='min-h-screen flex flex-col items-center justify-center px-6 pt-20'
 				>
-					<div className='max-w-2xl mx-auto text-center'>
+					<div className='max-w-2xl mx-auto w-full text-center'>
 						<Image
 							src='/headings/about.png'
 							alt='About'
@@ -139,9 +126,9 @@ export default function HomePage() {
 							className='mx-auto mb-8'
 							priority
 						/>
-						<div className='mb-8 relative w-48 h-48 mx-auto'>
+						<div className='mb-8 relative w-64 h-64 mx-auto mt-8'>
 							<Image
-								src='/headshot.jpg'
+								src='/headshot/headshot-1.jpg'
 								alt='Sammi Carr headshot'
 								fill
 								className='object-cover rounded border border-gray-300 shadow-sm'
