@@ -2,13 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 const navItems = [
 	{ name: 'Home', href: '#home' },
 	{ name: 'About', href: '#about' },
 	{ name: 'Gallery', href: '#gallery' },
 	{ name: 'CV', href: '#cv' },
-	{ name: 'Socials', href: '#socials' },
+	{ name: 'Contact', href: '#contact' },
 ];
 
 export default function Nav() {
@@ -154,7 +155,7 @@ export default function Nav() {
 				const isActive = activeSection === sectionId;
 
 				return (
-					<a
+					<Link
 						key={href}
 						href={href}
 						onClick={(e) => handleClick(e, href)}
@@ -164,7 +165,7 @@ export default function Nav() {
 						)}
 					>
 						{name}
-					</a>
+					</Link>
 				);
 			})}
 		</nav>

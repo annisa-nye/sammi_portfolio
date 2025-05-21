@@ -113,7 +113,14 @@ export default function HomePage() {
 					className='min-h-screen flex flex-col items-center justify-center px-6 pt-20'
 				>
 					<div className='max-w-2xl mx-auto text-center'>
-						<h1 className='text-3xl font-bold mb-8'>About</h1>
+						<Image
+							src='/headings/about.png'
+							alt='About'
+							width={500}
+							height={150}
+							className='mx-auto mb-8'
+							priority
+						/>
 						<div className='mb-8 relative w-48 h-48 mx-auto'>
 							<Image
 								src='/headshot.jpg'
@@ -142,7 +149,14 @@ export default function HomePage() {
 					className='min-h-screen flex flex-col items-center px-6 pt-20'
 				>
 					<div className='max-w-7xl mx-auto w-full'>
-						<h1 className='text-4xl font-bold mb-10 text-center'>Gallery</h1>
+						<Image
+							src='/headings/gallery.png'
+							alt='Gallery'
+							width={500}
+							height={150}
+							className='mx-auto mb-10'
+							priority
+						/>
 
 						{/* Gallery Subsections */}
 						<div className='space-y-8'>
@@ -163,16 +177,8 @@ export default function HomePage() {
 											{section.title === 'Painting' &&
 											section.paintings?.paintings ? (
 												<div className='space-y-12'>
-													{console.log(
-														'Rendering paintings:',
-														section.paintings.paintings
-													)}
 													{(section.paintings as PaintingsData).paintings.map(
 														(mediumGroup: PaintingMedium) => {
-															console.log(
-																'Rendering medium group:',
-																mediumGroup
-															);
 															return (
 																<div
 																	key={mediumGroup.medium}
@@ -308,9 +314,14 @@ export default function HomePage() {
 					className='min-h-screen flex flex-col items-center px-6 pt-20'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
-						<h1 className='text-4xl font-bold mb-10 text-center'>
-							Curriculum Vitae
-						</h1>
+						<Image
+							src='/headings/cv.png'
+							alt='Curriculum Vitae'
+							width={500}
+							height={150}
+							className='mx-auto mb-10'
+							priority
+						/>
 
 						<CVSection
 							title='Exhibitions'
@@ -333,13 +344,20 @@ export default function HomePage() {
 					</div>
 				</section>
 
-				{/* Socials Section */}
+				{/* Contact Section */}
 				<section
-					id='socials'
+					id='contact'
 					className='min-h-screen flex flex-col items-center px-6 pt-20'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
-						<h1 className='text-4xl font-bold mb-10 text-center'>Socials</h1>
+						<Image
+							src='/headings/contact.png'
+							alt='Contact'
+							width={500}
+							height={150}
+							className='mx-auto mb-10'
+							priority
+						/>
 						<p className='text-lg text-center mb-6'>
 							Email:{' '}
 							<a href='mailto:scarrjam@gmail.com' className='underline'>
