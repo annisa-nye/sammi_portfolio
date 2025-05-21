@@ -7,15 +7,15 @@ export default function Footer() {
 		<section id='contact' className='bg-white dark:bg-zinc-900 py-12'>
 			<footer className='max-w-3xl mx-auto px-6'>
 				{/* Business Card */}
-				<div className='bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8 mb-8'>
-					<div className='flex flex-col md:flex-row items-center gap-8'>
-						{/* Profile Image */}
-						<div className='relative w-32 h-32 rounded-full overflow-hidden'>
+				<div className='bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-6 md:p-8 mb-8'>
+					<div className='flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-8'>
+						{/* Logo Image */}
+						<div className='relative w-64 h-64 rounded-full overflow-hidden'>
 							<Image
-								src='/headshot.jpg'
-								alt='Sammi Carr'
+								src='/logo/logo.png'
+								alt='Sammi Carr Logo'
 								fill
-								className='object-cover'
+								className='object-contain'
 								priority
 							/>
 						</div>
@@ -23,10 +23,10 @@ export default function Footer() {
 						{/* Contact Info */}
 						<div className='flex-1 text-center md:text-left'>
 							<h2 className='text-2xl font-bold mb-2'>Sammi Carr</h2>
-							<p className='text-gray-600 dark:text-gray-300 mb-4'>
-								Visual Artist & Illustrator
+							<p className='text-gray-600 dark:text-gray-300 mb-4 italic'>
+								Multimedia visual artist
 							</p>
-							<div className='space-y-2'>
+							<div className='space-y-2 mt-4'>
 								<p className='flex items-center justify-center md:justify-start gap-2'>
 									<svg
 										className='w-5 h-5'
@@ -96,12 +96,6 @@ export default function Footer() {
 							</div>
 						</div>
 					</div>
-
-					{/* Tagline */}
-					<p className='text-center mt-8 text-gray-600 dark:text-gray-300 italic'>
-						An exploration of form, satire, and emotional urgency through
-						painting, collage, and illustration.
-					</p>
 				</div>
 
 				{/* Copyright */}

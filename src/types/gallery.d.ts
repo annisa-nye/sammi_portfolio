@@ -10,3 +10,4 @@ export interface GallerySection {
 	images: string[];
 	paintings?: Painting[];
 }
+ 

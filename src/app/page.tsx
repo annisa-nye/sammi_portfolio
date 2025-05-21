@@ -12,7 +12,6 @@ import type {
 } from '@/types/gallery';
 import { paintingsData } from '@/data/paintings';
 import Footer from '@/components/Footer';
-import GalleryCard from '@/components/GalleryCard';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -21,9 +20,6 @@ interface CVItem {
 	year: number;
 	items: string[];
 }
-
-// Create a type-safe version of the paintings data
-const typedPaintingsData: PaintingsData = paintingsData as PaintingsData;
 
 const initialGallerySections: GallerySection[] = [
 	{
@@ -82,6 +78,18 @@ export default function HomePage() {
 		string | null
 	>(null);
 	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
+	const [headingScales, setHeadingScales] = useState<{ [key: string]: number }>(
+		{
+			about: 1,
+			gallery: 1,
+			cv: 1,
+			contact: 1,
+		}
+	);
+
+	const [openCVSection, setOpenCVSection] = useState<string | null>(
+		'Exhibitions'
+	);
 
 	useEffect(() => {
 		console.log('Paintings Data:', paintingsData);
@@ -92,6 +100,10 @@ export default function HomePage() {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
 	};
 
+	const handleCVToggle = (title: string) => {
+		setOpenCVSection(openCVSection === title ? null : title);
+	};
+
 	return (
 		<>
 			<main className='relative'>
@@ -100,10 +112,16 @@ export default function HomePage() {
 					id='home'
 					className='min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20'
 				>
-					<h1 className='text-5xl md:text-6xl font-bold mb-6'>Sammi Carr</h1>
+					<Image
+						src='/logo/logo.png'
+						alt='Sammi Carr Logo'
+						width={800}
+						height={400}
+						className='mx-auto mb-6 object-contain'
+						priority
+					/>
 					<p className='text-lg md:text-xl max-w-xl text-gray-600 dark:text-gray-300'>
-						An exploration of form, satire, and emotional urgency through
-						painting, collage, and illustration.
+						Multimedia visual artist
 					</p>
 				</section>
 
@@ -328,18 +346,24 @@ export default function HomePage() {
 							data={cv.exhibitions.sort(
 								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
+							isExpanded={openCVSection === 'Exhibitions'}
+							onToggle={() => handleCVToggle('Exhibitions')}
 						/>
 						<CVSection
 							title='Residencies'
 							data={cv.residencies.sort(
 								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
+							isExpanded={openCVSection === 'Residencies'}
+							onToggle={() => handleCVToggle('Residencies')}
 						/>
 						<CVSection
 							title='Collaborations'
 							data={cv.collaborations.sort(
 								(a: CVItem, b: CVItem) => b.year - a.year
 							)}
+							isExpanded={openCVSection === 'Collaborations'}
+							onToggle={() => handleCVToggle('Collaborations')}
 						/>
 					</div>
 				</section>

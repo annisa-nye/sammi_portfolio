@@ -21,3 +21,4 @@ export interface GallerySection {
 
 // Export all types
 export type { Painting, PaintingMedium, PaintingsData, GallerySection };
+ 

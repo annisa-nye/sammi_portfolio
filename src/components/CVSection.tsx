@@ -6,19 +6,25 @@ interface CVSectionProps {
 	title: string;
 	data: { year: number; items: string[] }[];
 	extraMargin?: boolean;
+	isExpanded: boolean;
+	onToggle: () => void;
 }
 
 export default function CVSection({
 	title,
 	data,
 	extraMargin,
+	isExpanded,
+	onToggle,
 }: CVSectionProps) {
-	const [isExpanded, setIsExpanded] = useState(true);
-
 	return (
-		<section className={`${extraMargin ? 'mt-4' : ''} mb-12`}>
+		<section
+			className={`${extraMargin ? 'mt-4' : ''} ${
+				isExpanded ? 'mb-12' : 'mb-4'
+			}`}
+		>
 			<button
-				onClick={() => setIsExpanded(!isExpanded)}
+				onClick={onToggle}
 				className='w-full text-left flex items-center justify-between mb-6 border-b border-gray-300 dark:border-gray-700 pb-2'
 			>
 				<h2 className='text-xl font-semibold'>{title}</h2>
