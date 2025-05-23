@@ -329,7 +329,7 @@ export default function HomePage() {
 				{/* CV Section */}
 				<section
 					id='cv'
-					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
+					className='flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
 						<Image
