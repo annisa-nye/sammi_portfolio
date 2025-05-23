@@ -110,9 +110,6 @@ export default function HomePage() {
 						className='mx-auto mb-6 object-contain'
 						priority
 					/>
-					<p className='text-lg md:text-xl max-w-xl text-gray-600 dark:text-gray-300'>
-						Multimedia visual artist
-					</p>
 				</section>
 
 				{/* About Section */}
@@ -129,12 +126,13 @@ export default function HomePage() {
 							className='mx-auto mb-8'
 							priority
 						/>
-						<div className='mb-8 relative w-64 h-64 mx-auto mt-8'>
+						<div className='mb-8 mx-auto mt-8 w-full max-w-md'>
 							<Image
 								src='/headshot/headshot-1.jpg'
 								alt='Sammi Carr headshot'
-								fill
-								className='object-cover rounded border border-gray-300 shadow-sm'
+								width={600}
+								height={400}
+								className='w-full h-auto object-cover rounded border border-gray-300 shadow-sm'
 								priority
 							/>
 						</div>
@@ -299,19 +297,34 @@ export default function HomePage() {
 						</div>
 
 						{/* Animation Section */}
-						<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 mt-8'>
-							<h2 className='text-2xl font-bold mb-6 text-center'>Animation</h2>
-							<div className='w-full aspect-video rounded overflow-hidden shadow'>
-								<video
-									src='https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/gallery/animation/01.MOV'
-									autoPlay
-									loop
-									muted
-									playsInline
-									controls
-									className='w-full h-full object-cover'
-								/>
-							</div>
+						<div className='space-y-4 mt-8'>
+							<button
+								onClick={() => handleGalleryToggle('Animation')}
+								className='w-full text-left flex items-center justify-between p-4 bg-white dark:bg-zinc-900 rounded-lg shadow hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
+							>
+								<h2 className='text-2xl font-bold'>Animation</h2>
+								<span className='text-2xl'>
+									{activeGallerySection === 'Animation' ? '−' : '+'}
+								</span>
+							</button>
+
+							{activeGallerySection === 'Animation' && (
+								<div className='animate-fadeIn'>
+									<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6'>
+										<div className='w-full aspect-video rounded overflow-hidden shadow'>
+											<video
+												src='https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/gallery/animation/01.MOV'
+												autoPlay
+												loop
+												muted
+												playsInline
+												controls
+												className='w-full h-full object-cover'
+											/>
+										</div>
+									</div>
+								</div>
+							)}
 						</div>
 					</div>
 				</section>
@@ -355,73 +368,6 @@ export default function HomePage() {
 							isExpanded={expandedCVSections.includes('Collaborations')}
 							onToggle={() => handleCVToggle('Collaborations')}
 						/>
-					</div>
-				</section>
-
-				{/* Contact Section */}
-				<section
-					id='contact'
-					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
-				>
-					<div className='max-w-3xl mx-auto w-full'>
-						<Image
-							src='/headings/contact.png'
-							alt='Contact'
-							width={500}
-							height={150}
-							className='mx-auto mb-10'
-							priority
-						/>
-						<p className='text-lg text-center mb-6'>
-							Email:{' '}
-							<a href='mailto:scarrjam@gmail.com' className='underline'>
-								scarrjam@gmail.com
-							</a>
-						</p>
-
-						<section className='mt-12 mb-12'>
-							<h2 className='text-2xl font-bold mb-6 text-center'>
-								Instagram Highlights
-							</h2>
-
-							<div className='grid grid-cols-2 sm:grid-cols-3 gap-4'>
-								{[
-									'01.jpg',
-									'02.jpg',
-									'03.jpg',
-									'04.jpg',
-									'05.jpg',
-									'06.jpg',
-								].map((file, i) => (
-									<div key={i} className='flex flex-col gap-2'>
-										<a
-											href='https://www.instagram.com/scarrjam/'
-											target='_blank'
-											rel='noopener noreferrer'
-											className='block aspect-square overflow-hidden rounded shadow hover:opacity-80 transition relative'
-										>
-											<Image
-												src={`/instagram/${file}`}
-												alt={`Instagram highlight ${i + 1}`}
-												fill
-												className='object-cover'
-											/>
-										</a>
-									</div>
-								))}
-							</div>
-
-							<div className='text-center mt-6'>
-								<a
-									href='https://www.instagram.com/scarrjam/'
-									target='_blank'
-									rel='noopener noreferrer'
-									className='inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition'
-								>
-									View More on Instagram
-								</a>
-							</div>
-						</section>
 					</div>
 				</section>
 			</main>

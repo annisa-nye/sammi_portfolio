@@ -114,6 +114,7 @@
     --spacing: .25rem;
     --breakpoint-sm: 40rem;
     --container-md: 28rem;
+    --container-lg: 32rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
     --container-3xl: 48rem;
@@ -615,10 +616,6 @@
     max-height: calc(var(--spacing) * 0);
   }
 
-  .max-h-\[2000px\] {
-    max-height: 2000px;
-  }
-
   .min-h-screen {
     min-height: 100vh;
   }
@@ -651,10 +648,6 @@
     width: 80vw;
   }
 
-  .w-\[85vw\] {
-    width: 85vw;
-  }
-
   .w-full {
     width: 100%;
   }
@@ -673,6 +666,10 @@
 
   .max-w-7xl {
     max-width: var(--container-7xl);
+  }
+
+  .max-w-lg {
+    max-width: var(--container-lg);
   }
 
   .max-w-md {
@@ -1209,20 +1206,6 @@
     transition-timing-function: var(--ease-out);
   }
 
-  .first\:ml-4:first-child {
-    margin-left: calc(var(--spacing) * 4);
-  }
-
-  .last\:mr-4:last-child {
-    margin-right: calc(var(--spacing) * 4);
-  }
-
-  @media (hover: hover) {
-    .hover\:border-gray-400:hover {
-      border-color: var(--color-gray-400);
-    }
-  }
-
   @media (hover: hover) {
     .hover\:bg-gray-50:hover {
       background-color: var(--color-gray-50);
@@ -1285,38 +1268,8 @@
   }
 
   @media (width >= 40rem) {
-    .sm\:mx-0 {
-      margin-inline: calc(var(--spacing) * 0);
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:block {
-      display: block;
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:hidden {
-      display: none;
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:w-\[80vw\] {
-      width: 80vw;
-    }
-  }
-
-  @media (width >= 40rem) {
     .sm\:w-auto {
       width: auto;
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:max-w-7xl {
-      max-width: var(--container-7xl);
     }
   }
 
@@ -1358,12 +1311,6 @@
   }
 
   @media (width >= 40rem) {
-    .sm\:gap-8 {
-      gap: calc(var(--spacing) * 8);
-    }
-  }
-
-  @media (width >= 40rem) {
     .sm\:rounded-full {
       border-radius: 3.40282e38px;
     }
@@ -1373,18 +1320,6 @@
     .sm\:border-b-0 {
       border-bottom-style: var(--tw-border-style);
       border-bottom-width: 0;
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:p-6 {
-      padding: calc(var(--spacing) * 6);
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:px-0 {
-      padding-inline: calc(var(--spacing) * 0);
     }
   }
 
@@ -1407,18 +1342,6 @@
   }
 
   @media (width >= 40rem) {
-    .sm\:py-4 {
-      padding-block: calc(var(--spacing) * 4);
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:pt-12 {
-      padding-top: calc(var(--spacing) * 12);
-    }
-  }
-
-  @media (width >= 40rem) {
     .sm\:pt-24 {
       padding-top: calc(var(--spacing) * 24);
     }
@@ -1431,24 +1354,6 @@
     }
   }
 
-  @media (width >= 40rem) {
-    .sm\:first\:ml-0:first-child {
-      margin-left: calc(var(--spacing) * 0);
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:last\:mr-0:last-child {
-      margin-right: calc(var(--spacing) * 0);
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:grid-cols-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
   @media (width >= 48rem) {
     .md\:flex-row {
       flex-direction: row;
@@ -1458,12 +1363,6 @@
   @media (width >= 48rem) {
     .md\:items-center {
       align-items: center;
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:items-start {
-      align-items: flex-start;
     }
   }
 
@@ -1505,21 +1404,9 @@
     }
   }
 
-  @media (width >= 64rem) {
-    .lg\:grid-cols-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
   @media (prefers-color-scheme: dark) {
     .dark\:border-gray-700 {
       border-color: var(--color-gray-700);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-zinc-700 {
-      background-color: var(--color-zinc-700);
     }
   }
 
@@ -1556,20 +1443,6 @@
   @media (prefers-color-scheme: dark) {
     .dark\:text-gray-400 {
       color: var(--color-gray-400);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:text-gray-500 {
-      color: var(--color-gray-500);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @media (hover: hover) {
-      .dark\:hover\:border-gray-600:hover {
-        border-color: var(--color-gray-600);
-      }
     }
   }
 

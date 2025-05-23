@@ -6,6 +6,16 @@ export default function Footer() {
 	return (
 		<section id='contact' className='bg-white dark:bg-zinc-900 py-12'>
 			<footer className='max-w-3xl mx-auto px-6'>
+				{/* Contact Heading */}
+				<Image
+					src='/headings/contact.png'
+					alt='Contact'
+					width={500}
+					height={150}
+					className='mx-auto mb-10'
+					priority
+				/>
+
 				{/* Business Card */}
 				<div className='bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-6 md:p-8 mb-8'>
 					<div className='flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-8'>

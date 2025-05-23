@@ -82,7 +82,7 @@ export const cv: CV = {
 		{
 			year: 2025,
 			items: [
-				"Donated painting for Claud Bailey's top surgery fundraiser, Jazz '88.",
+				'Animated projections for Short Notice festival, Sassafras, NSW.',
 			],
 		},
 	],
