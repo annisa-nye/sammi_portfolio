@@ -102,13 +102,10 @@ export default function HomePage() {
 					id='home'
 					className='min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
-					<Image
-						src='/logo/logo.png'
-						alt='Sammi Carr Logo'
-						width={800}
-						height={400}
-						className='mx-auto mb-6 object-contain'
-						priority
+					<img
+						src='/logo/logo.gif'
+						alt='Sammi Carr Logo Animated'
+						className='mx-auto mb-6 object-contain w-[800px] h-auto'
 					/>
 				</section>
 

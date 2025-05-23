@@ -648,6 +648,10 @@
     width: 80vw;
   }
 
+  .w-\[800px\] {
+    width: 800px;
+  }
+
   .w-full {
     width: 100%;
   }
