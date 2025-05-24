@@ -87,7 +87,44 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Nav$2e$
 ;
 const metadata = {
     title: 'Sammi Carr Portfolio',
-    description: 'Explore the art and creative work of Sammi Carr.'
+    description: 'Explore the art and creative work of Sammi Carr.',
+    icons: {
+        icon: [
+            {
+                url: '/logo/logo_favicon/favicon.ico'
+            },
+            {
+                url: '/logo/logo_favicon/favicon-16x16.png',
+                sizes: '16x16',
+                type: 'image/png'
+            },
+            {
+                url: '/logo/logo_favicon/favicon-32x32.png',
+                sizes: '32x32',
+                type: 'image/png'
+            }
+        ],
+        apple: [
+            {
+                url: '/logo/logo_favicon/apple-touch-icon.png',
+                sizes: '180x180',
+                type: 'image/png'
+            }
+        ],
+        other: [
+            {
+                url: '/logo/logo_favicon/android-chrome-192x192.png',
+                sizes: '192x192',
+                type: 'image/png'
+            },
+            {
+                url: '/logo/logo_favicon/android-chrome-512x512.png',
+                sizes: '512x512',
+                type: 'image/png'
+            }
+        ]
+    },
+    manifest: '/logo/logo_favicon/site.webmanifest'
 };
 function RootLayout({ children }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("html", {
@@ -98,19 +135,19 @@ function RootLayout({ children }) {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Nav$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/layout.tsx",
-                    lineNumber: 24,
+                    lineNumber: 59,
                     columnNumber: 5
                 }, this),
                 children
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/layout.tsx",
-            lineNumber: 23,
+            lineNumber: 58,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/layout.tsx",
-        lineNumber: 22,
+        lineNumber: 57,
         columnNumber: 3
     }, this);
 }

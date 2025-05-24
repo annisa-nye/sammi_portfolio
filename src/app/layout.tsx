@@ -11,6 +11,41 @@ const inter = Inter({
 export const metadata: Metadata = {
 	title: 'Sammi Carr Portfolio',
 	description: 'Explore the art and creative work of Sammi Carr.',
+	icons: {
+		icon: [
+			{ url: '/logo/logo_favicon/favicon.ico' },
+			{
+				url: '/logo/logo_favicon/favicon-16x16.png',
+				sizes: '16x16',
+				type: 'image/png',
+			},
+			{
+				url: '/logo/logo_favicon/favicon-32x32.png',
+				sizes: '32x32',
+				type: 'image/png',
+			},
+		],
+		apple: [
+			{
+				url: '/logo/logo_favicon/apple-touch-icon.png',
+				sizes: '180x180',
+				type: 'image/png',
+			},
+		],
+		other: [
+			{
+				url: '/logo/logo_favicon/android-chrome-192x192.png',
+				sizes: '192x192',
+				type: 'image/png',
+			},
+			{
+				url: '/logo/logo_favicon/android-chrome-512x512.png',
+				sizes: '512x512',
+				type: 'image/png',
+			},
+		],
+	},
+	manifest: '/logo/logo_favicon/site.webmanifest',
 };
 
 export default function RootLayout({

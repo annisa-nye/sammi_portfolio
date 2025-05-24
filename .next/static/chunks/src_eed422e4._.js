@@ -628,7 +628,7 @@ const initialGallerySections = [
         }, (_, i)=>`${String(i + 1).padStart(2, '0')}.jpg`)
     },
     {
-        title: 'Graphic Design',
+        title: 'Digital',
         images: Array.from({
             length: 5
         }, (_, i)=>`${String(i + 1).padStart(2, '0')}.jpg`)
