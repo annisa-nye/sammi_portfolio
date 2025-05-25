@@ -13,6 +13,7 @@ import type {
 import { paintingsData } from '@/data/paintings';
 import Footer from '@/components/Footer';
 import SystemThemeHeading from '@/components/SystemThemeHeading';
+import SystemThemeLogo from '@/components/SystemThemeLogo';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -103,11 +104,7 @@ export default function HomePage() {
 					id='home'
 					className='min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
-					<img
-						src='/logo/logo.gif'
-						alt='Sammi Carr Logo Animated'
-						className='mx-auto mb-6 object-contain w-[800px] h-auto'
-					/>
+					<SystemThemeLogo />
 				</section>
 
 				{/* About Section */}
