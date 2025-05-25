@@ -1,15 +1,15 @@
 'use client';
 
 import Image from 'next/image';
+import SystemThemeHeading from './SystemThemeHeading';
 
 export default function Footer() {
 	return (
 		<section id='contact' className='bg-white dark:bg-zinc-900 py-12'>
 			<footer className='max-w-3xl mx-auto px-6'>
 				{/* Contact Heading */}
-				<Image
-					src='/headings/contact.png'
-					alt='Contact'
+				<SystemThemeHeading
+					name='contact'
 					width={500}
 					height={150}
 					className='mx-auto mb-10'

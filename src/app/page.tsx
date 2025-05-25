@@ -12,6 +12,7 @@ import type {
 } from '@/types/gallery';
 import { paintingsData } from '@/data/paintings';
 import Footer from '@/components/Footer';
+import SystemThemeHeading from '@/components/SystemThemeHeading';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -115,9 +116,8 @@ export default function HomePage() {
 					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-2xl mx-auto w-full text-center'>
-						<Image
-							src='/headings/about.png'
-							alt='About'
+						<SystemThemeHeading
+							name='about'
 							width={500}
 							height={150}
 							className='mx-auto mb-8'
@@ -152,9 +152,8 @@ export default function HomePage() {
 					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-7xl mx-auto w-full'>
-						<Image
-							src='/headings/gallery.png'
-							alt='Gallery'
+						<SystemThemeHeading
+							name='gallery'
 							width={500}
 							height={150}
 							className='mx-auto mb-10'
@@ -332,9 +331,8 @@ export default function HomePage() {
 					className='flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
-						<Image
-							src='/headings/cv.png'
-							alt='Curriculum Vitae'
+						<SystemThemeHeading
+							name='cv'
 							width={500}
 							height={150}
 							className='mx-auto mb-10'
