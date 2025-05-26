@@ -170,7 +170,7 @@ export default function HomePage() {
 								priority
 							/>
 						</div>
-						<p className='italic text-base sm:text-lg text-gray-800 dark:text-gray-200 leading-relaxed'>
+						<p className='italic text-base sm:text-lg text-gray-800 dark:text-gray-200 leading-relaxed text-center'>
 							Born and raised in Western Australia, Sammi Carr currently lives
 							and practices from the Illawarra/Dharawal land in New South Wales.
 							Her working process prioritises open-ended exploration and
@@ -197,152 +197,161 @@ export default function HomePage() {
 							priority
 						/>
 
-						{/* Gallery Subsections */}
-						<div className='space-y-8'>
+						{/* Gallery Cards Grid */}
+						<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12'>
 							{gallerySections.map((section: GallerySection) => (
-								<div key={section.title} className='space-y-4'>
-									<button
-										onClick={() => handleGalleryToggle(section.title)}
-										className='w-full text-left flex items-center justify-between p-4 bg-white dark:bg-zinc-900 rounded-lg shadow hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
-									>
-										<h2 className='text-2xl font-bold'>{section.title}</h2>
-										<span className='text-2xl'>
-											{activeGallerySection === section.title ? '−' : '+'}
-										</span>
-									</button>
-
-									{activeGallerySection === section.title && (
-										<div className='animate-fadeIn'>
-											{section.title === 'Painting' &&
-											section.paintings?.paintings ? (
-												<div className='space-y-12'>
-													{(section.paintings as PaintingsData).paintings.map(
-														(mediumGroup: PaintingMedium) => {
-															return (
-																<div
-																	key={mediumGroup.medium}
-																	className='space-y-4'
-																>
-																	<h3 className='text-xl font-semibold capitalize'>
-																		{mediumGroup.medium
-																			.split('-')
-																			.map(
-																				(word: string) =>
-																					word.charAt(0).toUpperCase() +
-																					word.slice(1)
-																			)
-																			.join(' ')}
-																	</h3>
-																	<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
-																		{mediumGroup.images.map(
-																			(painting: Painting) => {
-																				const uniqueKey = `${mediumGroup.medium}-${painting.filename}`;
-																				return (
-																					<figure
-																						key={uniqueKey}
-																						className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
-																					>
-																						<Image
-																							src={`${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`}
-																							alt={
-																								painting.title ||
-																								`${mediumGroup.medium} painting`
-																							}
-																							width={400}
-																							height={400}
-																							className='w-full h-auto object-cover rounded'
-																							unoptimized
-																						/>
-																						<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1'>
-																							{painting.title && (
-																								<div>
-																									<span className='font-medium'>
-																										{painting.title}
-																									</span>{' '}
-																									({painting.year})
-																								</div>
-																							)}
-																							<div className='italic text-gray-500'>
-																								{mediumGroup.medium
-																									.split('-')
-																									.map(
-																										(word: string) =>
-																											word
-																												.charAt(0)
-																												.toUpperCase() +
-																											word.slice(1)
-																									)
-																									.join(' ')}
-																							</div>
-																						</figcaption>
-																					</figure>
-																				);
-																			}
-																		)}
-																	</div>
-																</div>
-															);
-														}
-													)}
-												</div>
-											) : (
-												<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
-													{section.images.map((image, i) => {
-														const [medium] = image.split('/');
-														const formattedMedium =
-															medium
-																?.split('-')
-																.map(
-																	(word) =>
-																		word.charAt(0).toUpperCase() + word.slice(1)
-																)
-																.join(' ') || '';
-
-														return (
-															<figure
-																key={i}
-																className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
-															>
-																<Image
-																	src={`${S3_BASE_URL}/gallery/${section.title.toLowerCase()}/${image}`}
-																	alt={`${section.title} ${i + 1}`}
-																	width={400}
-																	height={400}
-																	className='w-full h-auto object-cover rounded'
-																	unoptimized
-																/>
-																<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300'>
-																	{formattedMedium && (
-																		<div className='italic text-gray-500'>
-																			{formattedMedium}
-																		</div>
-																	)}
-																</figcaption>
-															</figure>
-														);
-													})}
-												</div>
-											)}
-										</div>
-									)}
-								</div>
+								<button
+									key={section.title}
+									onClick={() => handleGalleryToggle(section.title)}
+									className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left ${
+										activeGallerySection === section.title
+											? 'ring-2 ring-black dark:ring-white'
+											: ''
+									}`}
+								>
+									<h2 className='text-2xl font-bold mb-2'>{section.title}</h2>
+									<p className='text-gray-600 dark:text-gray-400'>
+										{section.title === 'Painting'
+											? 'View paintings in various mediums'
+											: section.title === 'Illustration'
+											? 'Explore charcoal, ink, and sketch works'
+											: section.title === 'Collage'
+											? 'Browse mixed media collages'
+											: 'Discover digital artworks'}
+									</p>
+								</button>
 							))}
-						</div>
-
-						{/* Animation Section */}
-						<div className='space-y-4 mt-8'>
+							{/* Animation Card */}
 							<button
 								onClick={() => handleGalleryToggle('Animation')}
-								className='w-full text-left flex items-center justify-between p-4 bg-white dark:bg-zinc-900 rounded-lg shadow hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
+								className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left ${
+									activeGallerySection === 'Animation'
+										? 'ring-2 ring-black dark:ring-white'
+										: ''
+								}`}
 							>
-								<h2 className='text-2xl font-bold'>Animation</h2>
-								<span className='text-2xl'>
-									{activeGallerySection === 'Animation' ? '−' : '+'}
-								</span>
+								<h2 className='text-2xl font-bold mb-2'>Animation</h2>
+								<p className='text-gray-600 dark:text-gray-400'>
+									Watch animated works and motion pieces
+								</p>
 							</button>
+						</div>
 
-							{activeGallerySection === 'Animation' && (
-								<div className='animate-fadeIn'>
+						{/* Gallery Content */}
+						{activeGallerySection && (
+							<div className='animate-fadeIn mt-8'>
+								{gallerySections.find(
+									(section) => section.title === activeGallerySection
+								) ? (
+									activeGallerySection === 'Painting' &&
+									gallerySections.find(
+										(section) => section.title === 'Painting'
+									)?.paintings?.paintings ? (
+										<div className='space-y-12'>
+											{(
+												gallerySections.find(
+													(section) => section.title === 'Painting'
+												)?.paintings as PaintingsData
+											).paintings.map((mediumGroup: PaintingMedium) => (
+												<div key={mediumGroup.medium} className='space-y-4'>
+													<h3 className='text-xl font-semibold capitalize'>
+														{mediumGroup.medium
+															.split('-')
+															.map(
+																(word: string) =>
+																	word.charAt(0).toUpperCase() + word.slice(1)
+															)
+															.join(' ')}
+													</h3>
+													<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
+														{mediumGroup.images.map((painting: Painting) => {
+															const uniqueKey = `${mediumGroup.medium}-${painting.filename}`;
+															return (
+																<figure
+																	key={uniqueKey}
+																	className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
+																>
+																	<Image
+																		src={`${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`}
+																		alt={
+																			painting.title ||
+																			`${mediumGroup.medium} painting`
+																		}
+																		width={400}
+																		height={400}
+																		className='w-full h-auto object-cover rounded'
+																		unoptimized
+																	/>
+																	<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1'>
+																		{painting.title && (
+																			<div>
+																				<span className='font-medium'>
+																					{painting.title}
+																				</span>{' '}
+																				({painting.year})
+																			</div>
+																		)}
+																		<div className='italic text-gray-500'>
+																			{mediumGroup.medium
+																				.split('-')
+																				.map(
+																					(word: string) =>
+																						word.charAt(0).toUpperCase() +
+																						word.slice(1)
+																				)
+																				.join(' ')}
+																		</div>
+																	</figcaption>
+																</figure>
+															);
+														})}
+													</div>
+												</div>
+											))}
+										</div>
+									) : (
+										<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
+											{gallerySections
+												.find(
+													(section) => section.title === activeGallerySection
+												)
+												?.images.map((image, i) => {
+													const [medium] = image.split('/');
+													const formattedMedium =
+														medium
+															?.split('-')
+															.map(
+																(word) =>
+																	word.charAt(0).toUpperCase() + word.slice(1)
+															)
+															.join(' ') || '';
+
+													return (
+														<figure
+															key={i}
+															className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
+														>
+															<Image
+																src={`${S3_BASE_URL}/gallery/${activeGallerySection.toLowerCase()}/${image}`}
+																alt={`${activeGallerySection} ${i + 1}`}
+																width={400}
+																height={400}
+																className='w-full h-auto object-cover rounded'
+																unoptimized
+															/>
+															<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300'>
+																{formattedMedium && (
+																	<div className='italic text-gray-500'>
+																		{formattedMedium}
+																	</div>
+																)}
+															</figcaption>
+														</figure>
+													);
+												})}
+										</div>
+									)
+								) : activeGallerySection === 'Animation' ? (
 									<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6'>
 										<div className='w-full aspect-video rounded overflow-hidden shadow'>
 											<video
@@ -356,9 +365,9 @@ export default function HomePage() {
 											/>
 										</div>
 									</div>
-								</div>
-							)}
-						</div>
+								) : null}
+							</div>
+						)}
 					</div>
 				</section>
 
