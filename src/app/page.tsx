@@ -14,6 +14,7 @@ import { paintingsData } from '@/data/paintings';
 import Footer from '@/components/Footer';
 import SystemThemeHeading from '@/components/SystemThemeHeading';
 import SystemThemeLogo from '@/components/SystemThemeLogo';
+import InstagramSection from '@/components/InstagramSection';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -72,6 +73,45 @@ const initialGallerySections: GallerySection[] = [
 			{ length: 5 },
 			(_, i) => `${String(i + 1).padStart(2, '0')}.jpg`
 		),
+	},
+];
+
+const instagramPosts = [
+	{
+		id: '1',
+		imageUrl: '/instagram/01.jpg',
+		caption: 'Recent work in progress 🎨',
+		date: 'March 2024',
+	},
+	{
+		id: '2',
+		imageUrl: '/instagram/02.jpg',
+		caption: 'New exhibition opening at @gallery_name',
+		date: 'February 2024',
+	},
+	{
+		id: '3',
+		imageUrl: '/instagram/03.jpg',
+		caption: 'Studio day ✨',
+		date: 'February 2024',
+	},
+	{
+		id: '4',
+		imageUrl: '/instagram/04.jpg',
+		caption: 'Detail from my latest series',
+		date: 'January 2024',
+	},
+	{
+		id: '5',
+		imageUrl: '/instagram/05.jpg',
+		caption: 'Behind the scenes of my creative process',
+		date: 'January 2024',
+	},
+	{
+		id: '6',
+		imageUrl: '/instagram/06.jpg',
+		caption: 'Opening night at @exhibition_space',
+		date: 'December 2023',
 	},
 ];
 
@@ -362,10 +402,13 @@ export default function HomePage() {
 						/>
 					</div>
 				</section>
-			</main>
 
-			{/* Footer with Business Card */}
-			<Footer />
+				{/* Instagram Section */}
+				<InstagramSection posts={instagramPosts} />
+
+				{/* Footer with Business Card */}
+				<Footer />
+			</main>
 		</>
 	);
 }

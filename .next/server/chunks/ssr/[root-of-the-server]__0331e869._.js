@@ -67,6 +67,10 @@ const navItems = [
         href: '#cv'
     },
     {
+        name: 'Instagram',
+        href: '#instagram'
+    },
+    {
         name: 'Contact',
         href: '#contact'
     }
@@ -200,18 +204,18 @@ function Nav() {
                     children: name
                 }, href, false, {
                     fileName: "[project]/src/components/Nav.tsx",
-                    lineNumber: 159,
+                    lineNumber: 160,
                     columnNumber: 7
                 }, this);
             })
         }, void 0, false, {
             fileName: "[project]/src/components/Nav.tsx",
-            lineNumber: 153,
+            lineNumber: 154,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Nav.tsx",
-        lineNumber: 152,
+        lineNumber: 153,
         columnNumber: 3
     }, this);
 }

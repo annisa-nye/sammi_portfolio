@@ -9,6 +9,7 @@ const navItems = [
 	{ name: 'About', href: '#about' },
 	{ name: 'Gallery', href: '#gallery' },
 	{ name: 'CV', href: '#cv' },
+	{ name: 'Instagram', href: '#instagram' },
 	{ name: 'Contact', href: '#contact' },
 ];
 
