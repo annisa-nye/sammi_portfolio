@@ -198,12 +198,12 @@ export default function HomePage() {
 						/>
 
 						{/* Gallery Cards Grid */}
-						<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12'>
+						<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12'>
 							{gallerySections.map((section: GallerySection) => (
 								<button
 									key={section.title}
 									onClick={() => handleGalleryToggle(section.title)}
-									className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left ${
+									className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
 										activeGallerySection === section.title
 											? 'ring-2 ring-black dark:ring-white'
 											: ''
@@ -221,10 +221,13 @@ export default function HomePage() {
 									</p>
 								</button>
 							))}
-							{/* Animation Card */}
+						</div>
+
+						{/* Animation Card - Full Width */}
+						<div className='mb-12'>
 							<button
 								onClick={() => handleGalleryToggle('Animation')}
-								className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left ${
+								className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
 									activeGallerySection === 'Animation'
 										? 'ring-2 ring-black dark:ring-white'
 										: ''
