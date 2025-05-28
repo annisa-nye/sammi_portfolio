@@ -15,6 +15,7 @@ import Footer from '@/components/Footer';
 import SystemThemeHeading from '@/components/SystemThemeHeading';
 import SystemThemeLogo from '@/components/SystemThemeLogo';
 import InstagramSection from '@/components/InstagramSection';
+import ImageModal from '@/components/ImageModal';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -131,6 +132,13 @@ export default function HomePage() {
 		'Exhibitions',
 	]);
 	const [currentSet, setCurrentSet] = useState(1);
+	const [selectedImage, setSelectedImage] = useState<{
+		src: string;
+		alt: string;
+		title?: string;
+		year?: number;
+		medium?: string;
+	} | null>(null);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -273,79 +281,59 @@ export default function HomePage() {
 								{gallerySections.find(
 									(section) => section.title === activeGallerySection
 								) ? (
-									activeGallerySection === 'Painting' &&
-									gallerySections.find(
-										(section) => section.title === 'Painting'
-									)?.paintings?.paintings ? (
-										<div className='space-y-12'>
-											{(
-												gallerySections.find(
-													(section) => section.title === 'Painting'
-												)?.paintings as PaintingsData
-											).paintings.map((mediumGroup: PaintingMedium) => (
-												<div key={mediumGroup.medium} className='space-y-4'>
-													<h3 className='text-xl font-semibold capitalize'>
-														{mediumGroup.medium
-															.split('-')
-															.map(
-																(word: string) =>
-																	word.charAt(0).toUpperCase() + word.slice(1)
-															)
-															.join(' ')}
-													</h3>
-													<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
-														{mediumGroup.images.map((painting: Painting) => {
-															const uniqueKey = `${mediumGroup.medium}-${painting.filename}`;
-															return (
-																<figure
-																	key={uniqueKey}
-																	className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
-																>
-																	<Image
-																		src={`${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`}
-																		alt={
+									activeGallerySection === 'Painting' ? (
+										<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+											{gallerySections
+												.find((section) => section.title === 'Painting')
+												?.paintings?.paintings.flatMap((mediumGroup) =>
+													mediumGroup.images.map((painting) => {
+														const uniqueKey = `${mediumGroup.medium}-${painting.filename}`;
+														return (
+															<button
+																key={uniqueKey}
+																onClick={() =>
+																	setSelectedImage({
+																		src: `${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
+																		alt:
 																			painting.title ||
-																			`${mediumGroup.medium} painting`
-																		}
-																		width={400}
-																		height={400}
-																		className='w-full h-auto object-cover rounded'
-																		unoptimized
-																	/>
-																	<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300 space-y-1'>
-																		{painting.title && (
-																			<div>
-																				<span className='font-medium'>
-																					{painting.title}
-																				</span>{' '}
-																				({painting.year})
-																			</div>
-																		)}
-																		<div className='italic text-gray-500'>
-																			{mediumGroup.medium
-																				.split('-')
-																				.map(
-																					(word: string) =>
-																						word.charAt(0).toUpperCase() +
-																						word.slice(1)
-																				)
-																				.join(' ')}
-																		</div>
-																	</figcaption>
-																</figure>
-															);
-														})}
-													</div>
-												</div>
-											))}
+																			`${mediumGroup.medium} painting`,
+																		title: painting.title,
+																		year: painting.year,
+																		medium: mediumGroup.medium
+																			.split('-')
+																			.map(
+																				(word) =>
+																					word.charAt(0).toUpperCase() +
+																					word.slice(1)
+																			)
+																			.join(' '),
+																	})
+																}
+																className='group aspect-square relative bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden'
+															>
+																<Image
+																	src={`${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`}
+																	alt={
+																		painting.title ||
+																		`${mediumGroup.medium} painting`
+																	}
+																	fill
+																	className='object-cover transition-transform duration-300 group-hover:scale-105'
+																	unoptimized
+																/>
+																<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
+															</button>
+														);
+													})
+												)}
 										</div>
 									) : (
-										<div className='overflow-x-auto whitespace-nowrap flex gap-8 pb-6 -mx-6 px-6'>
+										<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
 											{gallerySections
 												.find(
 													(section) => section.title === activeGallerySection
 												)
-												?.images.map((image, i) => {
+												?.images.map((image, index) => {
 													const [medium] = image.split('/');
 													const formattedMedium =
 														medium
@@ -357,26 +345,26 @@ export default function HomePage() {
 															.join(' ') || '';
 
 													return (
-														<figure
-															key={i}
-															className='inline-block w-[80vw] max-w-md flex-shrink-0 bg-white dark:bg-zinc-900 rounded shadow p-3'
+														<button
+															key={index}
+															onClick={() =>
+																setSelectedImage({
+																	src: `${S3_BASE_URL}/gallery/${activeGallerySection.toLowerCase()}/${image}`,
+																	alt: `${activeGallerySection} ${image}`,
+																	medium: formattedMedium,
+																})
+															}
+															className='group aspect-square relative bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden'
 														>
 															<Image
 																src={`${S3_BASE_URL}/gallery/${activeGallerySection.toLowerCase()}/${image}`}
-																alt={`${activeGallerySection} ${i + 1}`}
-																width={400}
-																height={400}
-																className='w-full h-auto object-cover rounded'
+																alt={`${activeGallerySection} ${index + 1}`}
+																fill
+																className='object-cover transition-transform duration-300 group-hover:scale-105'
 																unoptimized
 															/>
-															<figcaption className='mt-2 text-sm text-center text-gray-700 dark:text-gray-300'>
-																{formattedMedium && (
-																	<div className='italic text-gray-500'>
-																		{formattedMedium}
-																	</div>
-																)}
-															</figcaption>
-														</figure>
+															<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
+														</button>
 													);
 												})}
 										</div>
@@ -396,6 +384,13 @@ export default function HomePage() {
 										</div>
 									</div>
 								) : null}
+
+								{/* Image Modal */}
+								<ImageModal
+									isOpen={!!selectedImage}
+									onClose={() => setSelectedImage(null)}
+									image={selectedImage || { src: '', alt: '' }}
+								/>
 							</div>
 						)}
 					</div>
