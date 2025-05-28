@@ -122,13 +122,6 @@ const GALLERY_PREVIEW_CATEGORIES = [
 	{ title: 'Digital', key: 'digital' },
 ];
 
-const ACCENT_COLORS = {
-	1: '#FF0000', // Red
-	2: '#0033CC', // Blue
-	3: '#000000', // Black
-	4: '#FFD700', // Gold
-};
-
 export default function HomePage() {
 	const [activeGallerySection, setActiveGallerySection] = useState<
 		string | null
