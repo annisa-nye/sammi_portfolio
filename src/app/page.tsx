@@ -1,7 +1,7 @@
 'use client';
 
 import { cv } from '@/data/cv';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import CVSection from '@/components/CVSection';
 import type {
@@ -115,6 +115,20 @@ const instagramPosts = [
 	},
 ];
 
+const GALLERY_PREVIEW_CATEGORIES = [
+	{ title: 'Painting', key: 'painting' },
+	{ title: 'Illustration', key: 'illustration' },
+	{ title: 'Collage', key: 'collage' },
+	{ title: 'Digital', key: 'digital' },
+];
+
+const ACCENT_COLORS = {
+	1: '#FF0000', // Red
+	2: '#0033CC', // Blue
+	3: '#000000', // Black
+	4: '#FFD700', // Gold
+};
+
 export default function HomePage() {
 	const [activeGallerySection, setActiveGallerySection] = useState<
 		string | null
@@ -123,6 +137,14 @@ export default function HomePage() {
 	const [expandedCVSections, setExpandedCVSections] = useState<string[]>([
 		'Exhibitions',
 	]);
+	const [currentSet, setCurrentSet] = useState(1);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentSet((prev) => (prev % 4) + 1);
+		}, 10000);
+		return () => clearInterval(interval);
+	}, []);
 
 	const handleGalleryToggle = (title: string) => {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
@@ -197,28 +219,40 @@ export default function HomePage() {
 							priority
 						/>
 
-						{/* Gallery Cards Grid */}
+						{/* Gallery Cards Grid with Rotating Preview Images */}
 						<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12'>
-							{gallerySections.map((section: GallerySection) => (
+							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => (
 								<button
-									key={section.title}
-									onClick={() => handleGalleryToggle(section.title)}
-									className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
-										activeGallerySection === section.title
+									key={title}
+									onClick={() => handleGalleryToggle(title)}
+									className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col ${
+										activeGallerySection === title
 											? 'ring-2 ring-black dark:ring-white'
 											: ''
 									}`}
 								>
-									<h2 className='text-2xl font-bold mb-2'>{section.title}</h2>
-									<p className='text-gray-600 dark:text-gray-400'>
-										{section.title === 'Painting'
-											? 'View paintings in various mediums'
-											: section.title === 'Illustration'
-											? 'Explore charcoal, ink, and sketch works'
-											: section.title === 'Collage'
-											? 'Browse mixed media collages'
-											: 'Discover digital artworks'}
-									</p>
+									<div className='relative w-full aspect-square'>
+										<Image
+											src={`/gallery-preview/${currentSet}_${key}.jpg`}
+											alt={`${title} preview`}
+											fill
+											className='object-cover transition-opacity duration-500'
+											sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
+											priority={currentSet === 1}
+										/>
+									</div>
+									<div className='p-6'>
+										<h2 className='text-2xl font-bold mb-2'>{title}</h2>
+										<p className='text-gray-600 dark:text-gray-400'>
+											{title === 'Painting'
+												? 'View paintings in various mediums'
+												: title === 'Illustration'
+												? 'Explore charcoal, ink, and sketch works'
+												: title === 'Collage'
+												? 'Browse mixed media collages'
+												: 'Discover digital artworks'}
+										</p>
+									</div>
 								</button>
 							))}
 						</div>
