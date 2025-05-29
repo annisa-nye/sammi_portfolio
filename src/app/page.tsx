@@ -4,12 +4,7 @@ import { cv } from '@/data/cv';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import CVSection from '@/components/CVSection';
-import type {
-	GallerySection,
-	PaintingsData,
-	PaintingMedium,
-	Painting,
-} from '@/types/gallery';
+import type { GallerySection } from '@/types/gallery';
 import { paintingsData } from '@/data/paintings';
 import Footer from '@/components/Footer';
 import SystemThemeHeading from '@/components/SystemThemeHeading';
@@ -139,13 +134,28 @@ export default function HomePage() {
 		year?: number;
 		medium?: string;
 	} | null>(null);
+	const [imageLoadError, setImageLoadError] = useState<Record<string, boolean>>(
+		{}
+	);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
+			setIsLoading(true);
 			setCurrentSet((prev) => (prev % 4) + 1);
+			setImageLoadError({}); // Reset errors when changing sets
 		}, 10000);
 		return () => clearInterval(interval);
 	}, []);
+
+	const handleImageError = (key: string) => {
+		setImageLoadError((prev) => ({ ...prev, [key]: true }));
+		setIsLoading(false);
+	};
+
+	const handleImageLoad = () => {
+		setIsLoading(false);
+	};
 
 	const handleGalleryToggle = (title: string) => {
 		setActiveGallerySection(activeGallerySection === title ? null : title);
@@ -222,40 +232,64 @@ export default function HomePage() {
 
 						{/* Gallery Cards Grid with Rotating Preview Images */}
 						<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12'>
-							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => (
-								<button
-									key={title}
-									onClick={() => handleGalleryToggle(title)}
-									className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col ${
-										activeGallerySection === title
-											? 'ring-2 ring-black dark:ring-white'
-											: ''
-									}`}
-								>
-									<div className='relative w-full aspect-square'>
-										<Image
-											src={`/gallery-preview/${currentSet}_${key}.jpg`}
-											alt={`${title} preview`}
-											fill
-											className='object-cover transition-opacity duration-500'
-											sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
-											priority={currentSet === 1}
-										/>
-									</div>
-									<div className='p-6'>
-										<h2 className='text-2xl font-bold mb-2'>{title}</h2>
-										<p className='text-gray-600 dark:text-gray-400'>
-											{title === 'Painting'
-												? 'View paintings in various mediums'
-												: title === 'Illustration'
-												? 'Explore charcoal, ink, and sketch works'
-												: title === 'Collage'
-												? 'Browse mixed media collages'
-												: 'Discover digital artworks'}
-										</p>
-									</div>
-								</button>
-							))}
+							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => {
+								const imageKey = `${currentSet}_${key}`;
+								const hasError = imageLoadError[imageKey];
+
+								return (
+									<button
+										key={title}
+										onClick={() => handleGalleryToggle(title)}
+										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col ${
+											activeGallerySection === title
+												? 'ring-2 ring-black dark:ring-white'
+												: ''
+										}`}
+									>
+										<div className='relative w-full aspect-square'>
+											{isLoading && !hasError && (
+												<div className='absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800'>
+													<div className='w-8 h-8 border-4 border-gray-300 border-t-black dark:border-t-white rounded-full animate-spin' />
+												</div>
+											)}
+											{!hasError ? (
+												<Image
+													src={`/gallery-preview/${imageKey}.jpg`}
+													alt={`${title} preview`}
+													fill
+													className={`object-cover transition-opacity duration-500 ${
+														isLoading ? 'opacity-0' : 'opacity-100'
+													}`}
+													sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
+													priority={currentSet === 1}
+													onError={() => handleImageError(imageKey)}
+													onLoad={handleImageLoad}
+													loading={currentSet === 1 ? 'eager' : 'lazy'}
+													quality={75}
+												/>
+											) : (
+												<div className='absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800'>
+													<span className='text-gray-500 dark:text-gray-400'>
+														Image unavailable
+													</span>
+												</div>
+											)}
+										</div>
+										<div className='p-6'>
+											<h2 className='text-2xl font-bold mb-2'>{title}</h2>
+											<p className='text-gray-600 dark:text-gray-400'>
+												{title === 'Painting'
+													? 'View paintings in various mediums'
+													: title === 'Illustration'
+													? 'Explore charcoal, ink, and sketch works'
+													: title === 'Collage'
+													? 'Browse mixed media collages'
+													: 'Discover digital artworks'}
+											</p>
+										</div>
+									</button>
+								);
+							})}
 						</div>
 
 						{/* Animation Card - Full Width */}

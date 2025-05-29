@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface SystemThemeLogoProps {
 	className?: string;
@@ -29,12 +30,15 @@ export default function SystemThemeLogo({
 
 	const logoSrc = isDarkMode ? '/logo/logo-invert.gif' : '/logo/logo.gif';
 
-	// eslint-disable-next-line @next/next/no-img-element
 	return (
-		<img
+		<Image
 			src={logoSrc}
 			alt='Sammi Carr Logo Animated'
+			width={800}
+			height={400}
 			className={`mx-auto mb-6 object-contain w-[800px] h-auto ${className}`}
+			priority
+			unoptimized // Required for animated GIFs
 		/>
 	);
 }

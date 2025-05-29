@@ -1,9 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com',
+				port: '',
+				pathname: '/**',
+			},
+		],
 		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
 		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+		minimumCacheTTL: 60,
+		formats: ['image/webp'],
 	},
 };
 
