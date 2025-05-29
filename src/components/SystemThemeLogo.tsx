@@ -29,6 +29,7 @@ export default function SystemThemeLogo({
 
 	const logoSrc = isDarkMode ? '/logo/logo-invert.gif' : '/logo/logo.gif';
 
+	// eslint-disable-next-line @next/next/no-img-element
 	return (
 		<img
 			src={logoSrc}
