@@ -318,8 +318,10 @@ export default function HomePage() {
 																		`${mediumGroup.medium} painting`
 																	}
 																	fill
+																	sizes='(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw'
+																	quality={75}
 																	className='object-cover transition-transform duration-300 group-hover:scale-105'
-																	unoptimized
+																	unoptimized={false}
 																/>
 																<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
 															</button>
@@ -360,8 +362,10 @@ export default function HomePage() {
 																src={`${S3_BASE_URL}/gallery/${activeGallerySection.toLowerCase()}/${image}`}
 																alt={`${activeGallerySection} ${index + 1}`}
 																fill
+																sizes='(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw'
+																quality={75}
 																className='object-cover transition-transform duration-300 group-hover:scale-105'
-																unoptimized
+																unoptimized={false}
 															/>
 															<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
 														</button>

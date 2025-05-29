@@ -42,12 +42,12 @@ export default function ImageModal({
 			onClick={onClose}
 		>
 			<div
-				className='relative max-w-[90vw] max-h-[90vh]'
+				className='relative w-[90vw] h-[90vh] flex items-center justify-center'
 				onClick={(e) => e.stopPropagation()}
 			>
 				<button
 					onClick={onClose}
-					className='absolute -top-12 right-0 text-white hover:text-gray-300'
+					className='absolute -top-12 right-0 text-white hover:text-gray-300 z-10'
 					aria-label='Close modal'
 				>
 					<svg
@@ -65,15 +65,19 @@ export default function ImageModal({
 					</svg>
 				</button>
 
-				<div className='relative w-full h-full'>
-					<Image
-						src={image.src}
-						alt={image.alt}
-						width={1200}
-						height={1200}
-						className='w-auto h-auto max-h-[90vh] object-contain'
-						unoptimized
-					/>
+				<div className='relative w-full h-full flex items-center justify-center'>
+					<div className='relative w-full h-full max-w-[90vw] max-h-[90vh]'>
+						<Image
+							src={image.src}
+							alt={image.alt}
+							fill
+							sizes='90vw'
+							priority
+							quality={90}
+							className='object-contain'
+							unoptimized={false}
+						/>
+					</div>
 				</div>
 
 				{(image.title || image.medium) && (
