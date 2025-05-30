@@ -1,0 +1,81 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+
+// Total number of frames in the animation
+const TOTAL_FRAMES = 38; // Updated to match the actual number of frames
+
+export default function ScrollAnimation() {
+	const [currentFrame, setCurrentFrame] = useState(1);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (!containerRef.current) return;
+
+			const rect = containerRef.current.getBoundingClientRect();
+			const scrollTop = window.scrollY;
+			const containerTop = rect.top + scrollTop;
+			const containerHeight = rect.height;
+			const windowHeight = window.innerHeight;
+
+			// Check if the container is in view
+			const isInView = rect.top < windowHeight && rect.bottom > 0;
+			setIsVisible(isInView);
+
+			if (isInView) {
+				// Calculate how far we've scrolled through the container
+				const scrollProgress =
+					(scrollTop - containerTop + windowHeight) /
+					(containerHeight + windowHeight);
+
+				// Calculate which frame to show based on scroll progress
+				const frameNumber = Math.min(
+					Math.max(Math.floor(scrollProgress * TOTAL_FRAMES) + 1, 1),
+					TOTAL_FRAMES
+				);
+
+				setCurrentFrame(frameNumber);
+			}
+		};
+
+		// Add scroll event listener
+		window.addEventListener('scroll', handleScroll);
+		// Initial check
+		handleScroll();
+
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
+	// Format frame number to 3 digits (e.g., 1 -> "001")
+	const formatFrameNumber = (num: number) => {
+		return num.toString().padStart(3, '0');
+	};
+
+	return (
+		<div
+			ref={containerRef}
+			className='relative w-full h-[200vh] sm:h-[300vh]' // Taller on desktop for smoother scrolling
+		>
+			<div className='sticky top-0 w-full h-screen flex items-center justify-center px-0 sm:px-6'>
+				<div className='relative w-full h-full sm:max-w-7xl mx-auto'>
+					<Image
+						src={`/animation_preview/frame_${formatFrameNumber(
+							currentFrame
+						)}.gif`}
+						alt={`Animation frame ${currentFrame}`}
+						fill
+						className={`object-contain transition-opacity duration-100 ${
+							isVisible ? 'opacity-100' : 'opacity-0'
+						}`}
+						sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1280px'
+						priority
+						unoptimized // Add this to prevent Next.js from trying to optimize GIFs
+					/>
+				</div>
+			</div>
+		</div>
+	);
+}

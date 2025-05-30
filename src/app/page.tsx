@@ -11,6 +11,7 @@ import SystemThemeHeading from '@/components/SystemThemeHeading';
 import SystemThemeLogo from '@/components/SystemThemeLogo';
 import InstagramSection from '@/components/InstagramSection';
 import ImageModal from '@/components/ImageModal';
+import ScrollAnimation from '@/components/ScrollAnimation';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -179,6 +180,9 @@ export default function HomePage() {
 				>
 					<SystemThemeLogo />
 				</section>
+
+				{/* Scroll Animation Section */}
+				<ScrollAnimation />
 
 				{/* About Section */}
 				<section
