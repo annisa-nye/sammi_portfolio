@@ -1,15 +1,28 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 // Total number of frames in the animation
 const TOTAL_FRAMES = 38; // Updated to match the actual number of frames
 
 export default function ScrollAnimation() {
 	const [currentFrame, setCurrentFrame] = useState(1);
+	const [preloadedFrames, setPreloadedFrames] = useState<HTMLImageElement[]>(
+		[]
+	);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
+
+	// Preload all frames on mount
+	useEffect(() => {
+		const frames: HTMLImageElement[] = [];
+		for (let i = 1; i <= TOTAL_FRAMES; i++) {
+			const img = new window.Image();
+			img.src = `/animation_preview/frame_${i.toString().padStart(3, '0')}.gif`;
+			frames.push(img);
+		}
+		setPreloadedFrames(frames);
+	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -60,19 +73,29 @@ export default function ScrollAnimation() {
 			className='relative w-full h-[200vh] sm:h-[300vh]' // Taller on desktop for smoother scrolling
 		>
 			<div className='sticky top-0 w-full h-screen flex items-center justify-center px-0 sm:px-6'>
-				<div className='relative w-full h-full sm:max-w-7xl mx-auto'>
-					<Image
+				<div
+					className='relative w-full h-full sm:max-w-7xl mx-auto flex items-center justify-center'
+					style={{
+						willChange: 'transform',
+					}}
+				>
+					{/* Use <img> for animation, with GPU-accelerated CSS */}
+					<img
 						src={`/animation_preview/frame_${formatFrameNumber(
 							currentFrame
 						)}.gif`}
 						alt={`Animation frame ${currentFrame}`}
-						fill
-						className={`object-contain transition-opacity duration-100 ${
+						style={{
+							width: '100%',
+							height: '100%',
+							objectFit: 'contain',
+							transition: 'opacity 0.15s',
+							willChange: 'opacity, transform',
+						}}
+						className={`select-none pointer-events-none ${
 							isVisible ? 'opacity-100' : 'opacity-0'
 						}`}
-						sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1280px'
-						priority
-						unoptimized // Add this to prevent Next.js from trying to optimize GIFs
+						draggable={false}
 					/>
 				</div>
 			</div>
