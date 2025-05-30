@@ -9,12 +9,24 @@ const navItems = [
 	{ name: 'About', href: '#about' },
 	{ name: 'Gallery', href: '#gallery' },
 	{ name: 'CV', href: '#cv' },
-	{ name: 'Instagram', href: '#instagram' },
+	{ name: 'Instagram', href: '#instagram', hideOnMobile: true },
 	{ name: 'Contact', href: '#contact' },
 ];
 
 export default function Nav() {
 	const [activeSection, setActiveSection] = useState('home');
+	const [isMobile, setIsMobile] = useState(false);
+
+	// Check if we're on mobile
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 640); // sm breakpoint
+		};
+
+		checkMobile();
+		window.addEventListener('resize', checkMobile);
+		return () => window.removeEventListener('resize', checkMobile);
+	}, []);
 
 	// Memoize the scroll handler to prevent unnecessary re-renders
 	const handleScroll = useCallback(() => {
@@ -56,20 +68,33 @@ export default function Nav() {
 					});
 				}
 
-				// If this section is more visible than the current one, update the active section
-				if (
-					visibilityRatio > maxVisibility &&
-					scrollPosition >= offsetTop &&
-					scrollPosition < offsetBottom
-				) {
-					currentSection = section.id;
-					maxVisibility = visibilityRatio;
+				// Special handling for Instagram section on mobile
+				if (isMobile && section.id === 'instagram') {
+					// On mobile, when in Instagram section, highlight Contact instead
+					if (
+						visibilityRatio > maxVisibility &&
+						scrollPosition >= offsetTop &&
+						scrollPosition < offsetBottom
+					) {
+						currentSection = 'contact';
+						maxVisibility = visibilityRatio;
+					}
+				} else {
+					// Normal section handling
+					if (
+						visibilityRatio > maxVisibility &&
+						scrollPosition >= offsetTop &&
+						scrollPosition < offsetBottom
+					) {
+						currentSection = section.id;
+						maxVisibility = visibilityRatio;
+					}
 				}
 			}
 		});
 
 		setActiveSection(currentSection);
-	}, []);
+	}, [isMobile]);
 
 	useEffect(() => {
 		// Set up the Intersection Observer with adjusted margins for better detection
@@ -97,6 +122,9 @@ export default function Nav() {
 							if (inSubsection) {
 								setActiveSection('gallery');
 							}
+						} else if (isMobile && entry.target.id === 'instagram') {
+							// On mobile, when Instagram section is visible, highlight Contact
+							setActiveSection('contact');
 						} else {
 							setActiveSection(entry.target.id);
 						}
@@ -135,7 +163,7 @@ export default function Nav() {
 			observer.disconnect();
 			window.removeEventListener('scroll', scrollListener);
 		};
-	}, [handleScroll]);
+	}, [handleScroll, isMobile]);
 
 	const handleClick = (
 		e: React.MouseEvent<HTMLAnchorElement>,
@@ -152,7 +180,10 @@ export default function Nav() {
 	return (
 		<nav className='fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md sm:top-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto sm:w-auto sm:rounded-full px-4 sm:px-6 py-3 sm:py-2 flex justify-center items-center border-b sm:border-b-0 border-gray-100'>
 			<div className='flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm sm:max-w-none mx-auto w-full justify-between sm:justify-center'>
-				{navItems.map(({ name, href }) => {
+				{navItems.map(({ name, href, hideOnMobile }) => {
+					// Skip Instagram item on mobile
+					if (hideOnMobile && isMobile) return null;
+
 					const sectionId = href.replace('#', '');
 					const isActive = activeSection === sectionId;
 

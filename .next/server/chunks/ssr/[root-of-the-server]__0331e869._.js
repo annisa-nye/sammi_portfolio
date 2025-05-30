@@ -68,7 +68,8 @@ const navItems = [
     },
     {
         name: 'Instagram',
-        href: '#instagram'
+        href: '#instagram',
+        hideOnMobile: true
     },
     {
         name: 'Contact',
@@ -77,6 +78,16 @@ const navItems = [
 ];
 function Nav() {
     const [activeSection, setActiveSection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('home');
+    const [isMobile, setIsMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Check if we're on mobile
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const checkMobile = ()=>{
+            setIsMobile(window.innerWidth < 640); // sm breakpoint
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return ()=>window.removeEventListener('resize', checkMobile);
+    }, []);
     // Memoize the scroll handler to prevent unnecessary re-renders
     const handleScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
         const scrollPosition = window.scrollY + window.innerHeight / 3;
@@ -110,15 +121,26 @@ function Nav() {
                         }
                     });
                 }
-                // If this section is more visible than the current one, update the active section
-                if (visibilityRatio > maxVisibility && scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-                    currentSection = section.id;
-                    maxVisibility = visibilityRatio;
+                // Special handling for Instagram section on mobile
+                if (isMobile && section.id === 'instagram') {
+                    // On mobile, when in Instagram section, highlight Contact instead
+                    if (visibilityRatio > maxVisibility && scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                        currentSection = 'contact';
+                        maxVisibility = visibilityRatio;
+                    }
+                } else {
+                    // Normal section handling
+                    if (visibilityRatio > maxVisibility && scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                        currentSection = section.id;
+                        maxVisibility = visibilityRatio;
+                    }
                 }
             }
         });
         setActiveSection(currentSection);
-    }, []);
+    }, [
+        isMobile
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         // Set up the Intersection Observer with adjusted margins for better detection
         const observer = new IntersectionObserver((entries)=>{
@@ -137,6 +159,9 @@ function Nav() {
                         if (inSubsection) {
                             setActiveSection('gallery');
                         }
+                    } else if (isMobile && entry.target.id === 'instagram') {
+                        // On mobile, when Instagram section is visible, highlight Contact
+                        setActiveSection('contact');
                     } else {
                         setActiveSection(entry.target.id);
                     }
@@ -178,7 +203,8 @@ function Nav() {
             window.removeEventListener('scroll', scrollListener);
         };
     }, [
-        handleScroll
+        handleScroll,
+        isMobile
     ]);
     const handleClick = (e, href)=>{
         e.preventDefault();
@@ -194,7 +220,9 @@ function Nav() {
         className: "fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md sm:top-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto sm:w-auto sm:rounded-full px-4 sm:px-6 py-3 sm:py-2 flex justify-center items-center border-b sm:border-b-0 border-gray-100",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm sm:max-w-none mx-auto w-full justify-between sm:justify-center",
-            children: navItems.map(({ name, href })=>{
+            children: navItems.map(({ name, href, hideOnMobile })=>{
+                // Skip Instagram item on mobile
+                if (hideOnMobile && isMobile) return null;
                 const sectionId = href.replace('#', '');
                 const isActive = activeSection === sectionId;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -204,18 +232,18 @@ function Nav() {
                     children: name
                 }, href, false, {
                     fileName: "[project]/src/components/Nav.tsx",
-                    lineNumber: 160,
+                    lineNumber: 191,
                     columnNumber: 7
                 }, this);
             })
         }, void 0, false, {
             fileName: "[project]/src/components/Nav.tsx",
-            lineNumber: 154,
+            lineNumber: 182,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Nav.tsx",
-        lineNumber: 153,
+        lineNumber: 181,
         columnNumber: 3
     }, this);
 }
