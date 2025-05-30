@@ -7,22 +7,8 @@ const TOTAL_FRAMES = 38; // Updated to match the actual number of frames
 
 export default function ScrollAnimation() {
 	const [currentFrame, setCurrentFrame] = useState(1);
-	const [preloadedFrames, setPreloadedFrames] = useState<HTMLImageElement[]>(
-		[]
-	);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
-
-	// Preload all frames on mount
-	useEffect(() => {
-		const frames: HTMLImageElement[] = [];
-		for (let i = 1; i <= TOTAL_FRAMES; i++) {
-			const img = new window.Image();
-			img.src = `/animation_preview/frame_${i.toString().padStart(3, '0')}.gif`;
-			frames.push(img);
-		}
-		setPreloadedFrames(frames);
-	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -79,7 +65,7 @@ export default function ScrollAnimation() {
 						willChange: 'transform',
 					}}
 				>
-					{/* Use <img> for animation, with GPU-accelerated CSS */}
+					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
 						src={`/animation_preview/frame_${formatFrameNumber(
 							currentFrame
