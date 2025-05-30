@@ -465,6 +465,10 @@
     z-index: 10;
   }
 
+  .z-40 {
+    z-index: 40;
+  }
+
   .z-50 {
     z-index: 50;
   }
@@ -780,6 +784,14 @@
     width: 90vw;
   }
 
+  .w-\[200px\] {
+    width: 200px;
+  }
+
+  .w-\[400px\] {
+    width: 400px;
+  }
+
   .w-\[800px\] {
     width: 800px;
   }
@@ -882,6 +894,16 @@
 
   .translate-y-8 {
     --tw-translate-y: calc(var(--spacing) * 8);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
+  .translate-y-\[52px\] {
+    --tw-translate-y: 52px;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
+  .translate-y-\[80px\] {
+    --tw-translate-y: 80px;
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
 
