@@ -17,6 +17,8 @@ interface InstagramSectionProps {
 
 export default function InstagramSection({ posts }: InstagramSectionProps) {
 	const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
+	// Only show first 4 posts
+	const displayPosts = posts.slice(0, 4);
 
 	return (
 		<section
@@ -33,8 +35,8 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 				/>
 
 				{/* Instagram Grid */}
-				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-					{posts.map((post) => (
+				<div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6'>
+					{displayPosts.map((post) => (
 						<div
 							key={post.id}
 							className='group relative aspect-square bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-[1.02]'
@@ -45,16 +47,20 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 								alt={post.caption || 'Instagram post'}
 								fill
 								className='object-cover'
-								sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+								sizes='(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw'
 							/>
 							{/* Overlay with caption on hover */}
 							<div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end'>
-								<div className='p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+								<div className='p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
 									{post.caption && (
-										<p className='text-sm line-clamp-2'>{post.caption}</p>
+										<p className='text-xs sm:text-sm line-clamp-2'>
+											{post.caption}
+										</p>
 									)}
 									{post.date && (
-										<p className='text-xs mt-1 opacity-75'>{post.date}</p>
+										<p className='text-[10px] sm:text-xs mt-1 opacity-75'>
+											{post.date}
+										</p>
 									)}
 								</div>
 							</div>
@@ -63,15 +69,15 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 				</div>
 
 				{/* Instagram Link */}
-				<div className='text-center mt-8'>
+				<div className='text-center mt-6 sm:mt-8'>
 					<a
 						href='https://www.instagram.com/scarrjam/'
 						target='_blank'
 						rel='noopener noreferrer'
-						className='inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors'
+						className='inline-flex items-center gap-2 text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors'
 					>
 						<svg
-							className='w-5 h-5'
+							className='w-4 h-4 sm:w-5 sm:h-5'
 							fill='currentColor'
 							viewBox='0 0 24 24'
 							aria-hidden='true'
@@ -82,7 +88,7 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 								clipRule='evenodd'
 							/>
 						</svg>
-						<span>Follow @scarrjam on Instagram</span>
+						Follow on Instagram
 					</a>
 				</div>
 

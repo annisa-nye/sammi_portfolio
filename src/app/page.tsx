@@ -231,7 +231,7 @@ export default function HomePage() {
 						/>
 
 						{/* Gallery Cards Grid with Rotating Preview Images */}
-						<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12'>
+						<div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-12'>
 							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => {
 								const imageKey = `${currentSet}_${key}`;
 								const hasError = imageLoadError[imageKey];
@@ -260,7 +260,7 @@ export default function HomePage() {
 													className={`object-cover transition-opacity duration-500 ${
 														isLoading ? 'opacity-0' : 'opacity-100'
 													}`}
-													sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
+													sizes='(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw'
 													priority={currentSet === 1}
 													onError={() => handleImageError(imageKey)}
 													onLoad={handleImageLoad}
@@ -275,9 +275,11 @@ export default function HomePage() {
 												</div>
 											)}
 										</div>
-										<div className='p-6'>
-											<h2 className='text-2xl font-bold mb-2'>{title}</h2>
-											<p className='text-gray-600 dark:text-gray-400'>
+										<div className='p-3 sm:p-6'>
+											<h2 className='text-lg sm:text-2xl font-bold mb-1 sm:mb-2'>
+												{title}
+											</h2>
+											<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400'>
 												{title === 'Painting'
 													? 'View paintings in various mediums'
 													: title === 'Illustration'
@@ -293,17 +295,19 @@ export default function HomePage() {
 						</div>
 
 						{/* Animation Card - Full Width */}
-						<div className='mb-12'>
+						<div className='mb-6 sm:mb-12'>
 							<button
 								onClick={() => handleGalleryToggle('Animation')}
-								className={`w-full p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
+								className={`w-full p-4 sm:p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
 									activeGallerySection === 'Animation'
 										? 'ring-2 ring-black dark:ring-white'
 										: ''
 								}`}
 							>
-								<h2 className='text-2xl font-bold mb-2'>Animation</h2>
-								<p className='text-gray-600 dark:text-gray-400'>
+								<h2 className='text-lg sm:text-2xl font-bold mb-1 sm:mb-2'>
+									Animation
+								</h2>
+								<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400'>
 									Watch animated works and motion pieces
 								</p>
 							</button>
