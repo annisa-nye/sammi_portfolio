@@ -846,6 +846,14 @@ var _s = __turbopack_context__.k.signature();
 function InstagramSection({ posts }) {
     _s();
     const [selectedPost, setSelectedPost] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    // For mobile devices (iPhones and small screens), show specific posts: 1, 2, 5, 7
+    const mobilePostIds = [
+        '1',
+        '2',
+        '5',
+        '7'
+    ];
+    const mobileDisplayPosts = posts.filter((post)=>mobilePostIds.includes(post.id));
     // Show 8 posts for large devices (4x2 grid), first 4 will be visible on small devices (2x2 grid)
     const displayPosts = posts.slice(0, 8);
     const handlePostClick = (post)=>{
@@ -869,78 +877,158 @@ function InstagramSection({ posts }) {
                     priority: true
                 }, void 0, false, {
                     fileName: "[project]/src/components/InstagramSection.tsx",
-                    lineNumber: 38,
+                    lineNumber: 45,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6",
-                    children: displayPosts.map((post, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: `relative cursor-pointer ${index >= 4 ? 'hidden lg:block' : ''}`,
-                            onClick: ()=>handlePostClick(post),
-                            style: {
-                                width: '100%',
-                                aspectRatio: '1/1',
-                                backgroundColor: 'white',
-                                borderRadius: '8px',
-                                overflow: 'hidden',
-                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                                transition: 'transform 0.3s ease'
-                            },
-                            onMouseEnter: (e)=>e.currentTarget.style.transform = 'scale(1.02)',
-                            onMouseLeave: (e)=>e.currentTarget.style.transform = 'scale(1)',
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: post.imageUrl,
-                                    alt: post.caption || 'Instagram post',
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "lg:hidden contents",
+                            children: mobileDisplayPosts.map((post)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "relative cursor-pointer",
+                                    onClick: ()=>handlePostClick(post),
                                     style: {
                                         width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover',
-                                        display: 'block'
-                                    }
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/InstagramSection.tsx",
-                                    lineNumber: 72,
-                                    columnNumber: 8
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute inset-0 flex items-end",
-                                    style: {
-                                        background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
-                                        opacity: 0,
-                                        transition: 'opacity 0.3s ease'
+                                        aspectRatio: '1/1',
+                                        backgroundColor: 'white',
+                                        borderRadius: '8px',
+                                        overflow: 'hidden',
+                                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                                        transition: 'transform 0.3s ease'
                                     },
-                                    onMouseEnter: (e)=>e.currentTarget.style.opacity = '1',
-                                    onMouseLeave: (e)=>e.currentTarget.style.opacity = '0',
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-3 sm:p-4 text-white",
-                                        children: post.caption && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-xs sm:text-sm line-clamp-2",
-                                            children: post.caption
+                                    onMouseEnter: (e)=>e.currentTarget.style.transform = 'scale(1.02)',
+                                    onMouseLeave: (e)=>e.currentTarget.style.transform = 'scale(1)',
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                            src: post.imageUrl,
+                                            alt: post.caption || 'Instagram post',
+                                            style: {
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                display: 'block'
+                                            }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/InstagramSection.tsx",
-                                            lineNumber: 97,
-                                            columnNumber: 11
+                                            lineNumber: 79,
+                                            columnNumber: 9
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "absolute inset-0 flex items-end",
+                                            style: {
+                                                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
+                                                opacity: 0,
+                                                transition: 'opacity 0.3s ease'
+                                            },
+                                            onMouseEnter: (e)=>e.currentTarget.style.opacity = '1',
+                                            onMouseLeave: (e)=>e.currentTarget.style.opacity = '0',
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "p-3 sm:p-4 text-white",
+                                                children: post.caption && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs sm:text-sm line-clamp-2",
+                                                    children: post.caption
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/InstagramSection.tsx",
+                                                    lineNumber: 104,
+                                                    columnNumber: 12
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/InstagramSection.tsx",
+                                                lineNumber: 102,
+                                                columnNumber: 10
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/InstagramSection.tsx",
+                                            lineNumber: 91,
+                                            columnNumber: 9
                                         }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/InstagramSection.tsx",
-                                        lineNumber: 95,
-                                        columnNumber: 9
-                                    }, this)
-                                }, void 0, false, {
+                                    ]
+                                }, post.id, true, {
                                     fileName: "[project]/src/components/InstagramSection.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 58,
                                     columnNumber: 8
-                                }, this)
-                            ]
-                        }, post.id, true, {
+                                }, this))
+                        }, void 0, false, {
                             fileName: "[project]/src/components/InstagramSection.tsx",
-                            lineNumber: 49,
-                            columnNumber: 7
-                        }, this))
-                }, void 0, false, {
+                            lineNumber: 56,
+                            columnNumber: 6
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "hidden lg:contents",
+                            children: displayPosts.map((post, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "relative cursor-pointer",
+                                    onClick: ()=>handlePostClick(post),
+                                    style: {
+                                        width: '100%',
+                                        aspectRatio: '1/1',
+                                        backgroundColor: 'white',
+                                        borderRadius: '8px',
+                                        overflow: 'hidden',
+                                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                                        transition: 'transform 0.3s ease'
+                                    },
+                                    onMouseEnter: (e)=>e.currentTarget.style.transform = 'scale(1.02)',
+                                    onMouseLeave: (e)=>e.currentTarget.style.transform = 'scale(1)',
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                            src: post.imageUrl,
+                                            alt: post.caption || 'Instagram post',
+                                            style: {
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                display: 'block'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/InstagramSection.tsx",
+                                            lineNumber: 138,
+                                            columnNumber: 9
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "absolute inset-0 flex items-end",
+                                            style: {
+                                                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
+                                                opacity: 0,
+                                                transition: 'opacity 0.3s ease'
+                                            },
+                                            onMouseEnter: (e)=>e.currentTarget.style.opacity = '1',
+                                            onMouseLeave: (e)=>e.currentTarget.style.opacity = '0',
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "p-3 sm:p-4 text-white",
+                                                children: post.caption && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs sm:text-sm line-clamp-2",
+                                                    children: post.caption
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/InstagramSection.tsx",
+                                                    lineNumber: 163,
+                                                    columnNumber: 12
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/InstagramSection.tsx",
+                                                lineNumber: 161,
+                                                columnNumber: 10
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/InstagramSection.tsx",
+                                            lineNumber: 150,
+                                            columnNumber: 9
+                                        }, this)
+                                    ]
+                                }, post.id, true, {
+                                    fileName: "[project]/src/components/InstagramSection.tsx",
+                                    lineNumber: 117,
+                                    columnNumber: 8
+                                }, this))
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/InstagramSection.tsx",
+                            lineNumber: 115,
+                            columnNumber: 6
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "[project]/src/components/InstagramSection.tsx",
-                    lineNumber: 47,
+                    lineNumber: 54,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -962,24 +1050,24 @@ function InstagramSection({ posts }) {
                                     clipRule: "evenodd"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/InstagramSection.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 188,
                                     columnNumber: 8
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/InstagramSection.tsx",
-                                lineNumber: 115,
+                                lineNumber: 182,
                                 columnNumber: 7
                             }, this),
                             "Follow on Instagram"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/InstagramSection.tsx",
-                        lineNumber: 109,
+                        lineNumber: 176,
                         columnNumber: 6
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/InstagramSection.tsx",
-                    lineNumber: 108,
+                    lineNumber: 175,
                     columnNumber: 5
                 }, this),
                 selectedPost && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1003,17 +1091,17 @@ function InstagramSection({ posts }) {
                                         d: "M6 18L18 6M6 6l12 12"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/InstagramSection.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 215,
                                         columnNumber: 10
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/InstagramSection.tsx",
-                                    lineNumber: 142,
+                                    lineNumber: 209,
                                     columnNumber: 9
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/InstagramSection.tsx",
-                                lineNumber: 138,
+                                lineNumber: 205,
                                 columnNumber: 8
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1026,12 +1114,12 @@ function InstagramSection({ posts }) {
                                     unoptimized: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/InstagramSection.tsx",
-                                    lineNumber: 157,
+                                    lineNumber: 224,
                                     columnNumber: 9
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/InstagramSection.tsx",
-                                lineNumber: 156,
+                                lineNumber: 223,
                                 columnNumber: 8
                             }, this),
                             selectedPost.caption && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1042,7 +1130,7 @@ function InstagramSection({ posts }) {
                                         children: selectedPost.caption
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/InstagramSection.tsx",
-                                        lineNumber: 167,
+                                        lineNumber: 234,
                                         columnNumber: 10
                                     }, this),
                                     selectedPost.date && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1050,35 +1138,35 @@ function InstagramSection({ posts }) {
                                         children: selectedPost.date
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/InstagramSection.tsx",
-                                        lineNumber: 169,
+                                        lineNumber: 236,
                                         columnNumber: 11
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/InstagramSection.tsx",
-                                lineNumber: 166,
+                                lineNumber: 233,
                                 columnNumber: 9
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/InstagramSection.tsx",
-                        lineNumber: 137,
+                        lineNumber: 204,
                         columnNumber: 7
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/InstagramSection.tsx",
-                    lineNumber: 133,
+                    lineNumber: 200,
                     columnNumber: 6
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/InstagramSection.tsx",
-            lineNumber: 37,
+            lineNumber: 44,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/InstagramSection.tsx",
-        lineNumber: 33,
+        lineNumber: 40,
         columnNumber: 3
     }, this);
 }

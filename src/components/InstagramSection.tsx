@@ -18,6 +18,13 @@ interface InstagramSectionProps {
 
 export default function InstagramSection({ posts }: InstagramSectionProps) {
 	const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
+
+	// For mobile devices (iPhones and small screens), show specific posts: 1, 2, 5, 7
+	const mobilePostIds = ['1', '2', '5', '7'];
+	const mobileDisplayPosts = posts.filter((post) =>
+		mobilePostIds.includes(post.id)
+	);
+
 	// Show 8 posts for large devices (4x2 grid), first 4 will be visible on small devices (2x2 grid)
 	const displayPosts = posts.slice(0, 8);
 
@@ -43,65 +50,125 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 					priority
 				/>
 
-				{/* Instagram Grid - 2x2 on phones (4 posts), 4x2 on large devices (8 posts) */}
+				{/* Instagram Grid - Mobile shows specific 4 posts (1,2,5,7), Large devices show first 8 posts */}
 				<div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6'>
-					{displayPosts.map((post, index) => (
-						<div
-							key={post.id}
-							className={`relative cursor-pointer ${
-								index >= 4 ? 'hidden lg:block' : ''
-							}`}
-							onClick={() => handlePostClick(post)}
-							style={{
-								width: '100%',
-								aspectRatio: '1/1',
-								backgroundColor: 'white',
-								borderRadius: '8px',
-								overflow: 'hidden',
-								boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-								transition: 'transform 0.3s ease',
-							}}
-							onMouseEnter={(e) =>
-								(e.currentTarget.style.transform = 'scale(1.02)')
-							}
-							onMouseLeave={(e) =>
-								(e.currentTarget.style.transform = 'scale(1)')
-							}
-						>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src={post.imageUrl}
-								alt={post.caption || 'Instagram post'}
+					{/* Mobile View - Show specific posts (1, 2, 5, 7) */}
+					<div className='lg:hidden contents'>
+						{mobileDisplayPosts.map((post) => (
+							<div
+								key={post.id}
+								className='relative cursor-pointer'
+								onClick={() => handlePostClick(post)}
 								style={{
 									width: '100%',
-									height: '100%',
-									objectFit: 'cover',
-									display: 'block',
+									aspectRatio: '1/1',
+									backgroundColor: 'white',
+									borderRadius: '8px',
+									overflow: 'hidden',
+									boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+									transition: 'transform 0.3s ease',
 								}}
-							/>
-
-							{/* Overlay with caption on hover */}
-							<div
-								className='absolute inset-0 flex items-end'
-								style={{
-									background:
-										'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
-									opacity: 0,
-									transition: 'opacity 0.3s ease',
-								}}
-								onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-								onMouseLeave={(e) => (e.currentTarget.style.opacity = '0')}
+								onMouseEnter={(e) =>
+									(e.currentTarget.style.transform = 'scale(1.02)')
+								}
+								onMouseLeave={(e) =>
+									(e.currentTarget.style.transform = 'scale(1)')
+								}
 							>
-								<div className='p-3 sm:p-4 text-white'>
-									{post.caption && (
-										<p className='text-xs sm:text-sm line-clamp-2'>
-											{post.caption}
-										</p>
-									)}
+								{/* eslint-disable-next-line @next/next/no-img-element */}
+								<img
+									src={post.imageUrl}
+									alt={post.caption || 'Instagram post'}
+									style={{
+										width: '100%',
+										height: '100%',
+										objectFit: 'cover',
+										display: 'block',
+									}}
+								/>
+
+								{/* Overlay with caption on hover */}
+								<div
+									className='absolute inset-0 flex items-end'
+									style={{
+										background:
+											'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
+										opacity: 0,
+										transition: 'opacity 0.3s ease',
+									}}
+									onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+									onMouseLeave={(e) => (e.currentTarget.style.opacity = '0')}
+								>
+									<div className='p-3 sm:p-4 text-white'>
+										{post.caption && (
+											<p className='text-xs sm:text-sm line-clamp-2'>
+												{post.caption}
+											</p>
+										)}
+									</div>
 								</div>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
+
+					{/* Desktop View - Show first 8 posts */}
+					<div className='hidden lg:contents'>
+						{displayPosts.map((post, index) => (
+							<div
+								key={post.id}
+								className='relative cursor-pointer'
+								onClick={() => handlePostClick(post)}
+								style={{
+									width: '100%',
+									aspectRatio: '1/1',
+									backgroundColor: 'white',
+									borderRadius: '8px',
+									overflow: 'hidden',
+									boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+									transition: 'transform 0.3s ease',
+								}}
+								onMouseEnter={(e) =>
+									(e.currentTarget.style.transform = 'scale(1.02)')
+								}
+								onMouseLeave={(e) =>
+									(e.currentTarget.style.transform = 'scale(1)')
+								}
+							>
+								{/* eslint-disable-next-line @next/next/no-img-element */}
+								<img
+									src={post.imageUrl}
+									alt={post.caption || 'Instagram post'}
+									style={{
+										width: '100%',
+										height: '100%',
+										objectFit: 'cover',
+										display: 'block',
+									}}
+								/>
+
+								{/* Overlay with caption on hover */}
+								<div
+									className='absolute inset-0 flex items-end'
+									style={{
+										background:
+											'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
+										opacity: 0,
+										transition: 'opacity 0.3s ease',
+									}}
+									onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+									onMouseLeave={(e) => (e.currentTarget.style.opacity = '0')}
+								>
+									<div className='p-3 sm:p-4 text-white'>
+										{post.caption && (
+											<p className='text-xs sm:text-sm line-clamp-2'>
+												{post.caption}
+											</p>
+										)}
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
 				</div>
 
 				{/* Instagram Link */}

@@ -2149,6 +2149,18 @@
   }
 
   @media (width >= 64rem) {
+    .lg\:contents {
+      display: contents;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:hidden {
+      display: none;
+    }
+  }
+
+  @media (width >= 64rem) {
     .lg\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -2319,99 +2331,10 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -khtml-user-select: none;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-p, h1, h2, h3, h4, h5, h6, a, span, div[class*="text"], li {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-img, video, canvas {
-  will-change: transform, opacity;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-img[src$=".gif"], img[src*=".gif"] {
-  will-change: transform, opacity;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: optimizeQuality;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-a[href^="#"], button[onclick*="scroll"] {
-  scroll-behavior: smooth;
-}
-
-section {
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-* {
-  -webkit-perspective: 1000px;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-}
-
-@supports (-webkit-overflow-scrolling: touch) {
-  body {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  html, body {
-    height: 100%;
-    overflow-x: hidden;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *, :before, :after {
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-  }
-}
-
-@media (-webkit-device-pixel-ratio >= 2), (resolution >= 192dpi) {
-  img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
 }
 
 @property --tw-translate-x {
