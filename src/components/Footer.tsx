@@ -2,10 +2,31 @@
 
 import Image from 'next/image';
 import SystemThemeHeading from './SystemThemeHeading';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
+	const [isDarkMode, setIsDarkMode] = useState(false);
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		setIsDarkMode(mediaQuery.matches);
+
+		const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+		mediaQuery.addEventListener('change', handler);
+
+		return () => mediaQuery.removeEventListener('change', handler);
+	}, []);
+
+	if (!mounted) {
+		return null; // Prevent hydration mismatch
+	}
+
+	const logoSrc = isDarkMode ? '/logo/logo-invert.png' : '/logo/logo.png';
+
 	return (
-		<section id='contact' className='bg-white dark:bg-zinc-900 py-12'>
+		<section id='contact' className='bg-white dark:bg-black py-12'>
 			<footer className='max-w-3xl mx-auto px-6'>
 				{/* Contact Heading */}
 				<SystemThemeHeading
@@ -17,12 +38,12 @@ export default function Footer() {
 				/>
 
 				{/* Business Card */}
-				<div className='bg-white rounded-lg shadow-lg p-6 md:p-8 mb-8'>
+				<div className='bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 md:p-8 mb-8'>
 					<div className='flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-8'>
 						{/* Logo Image */}
 						<div className='relative w-64 h-64 rounded-full overflow-hidden'>
 							<Image
-								src='/logo/logo.png'
+								src={logoSrc}
 								alt='Sammi Carr Logo'
 								fill
 								className='object-contain'
@@ -32,14 +53,14 @@ export default function Footer() {
 
 						{/* Contact Info */}
 						<div className='flex-1 text-center md:text-left'>
-							<h2 className='text-2xl font-bold mb-2 text-gray-900'>
+							<h2 className='text-2xl font-bold mb-2 text-gray-900 dark:text-white'>
 								Sammi Carr
 							</h2>
-							<p className='text-gray-600 mb-4 italic'>
+							<p className='text-gray-600 dark:text-gray-300 mb-4 italic'>
 								Multimedia visual artist
 							</p>
 							<div className='space-y-2 mt-4'>
-								<p className='flex items-center justify-center md:justify-start gap-2 text-gray-700'>
+								<p className='flex items-center justify-center md:justify-start gap-2 text-gray-700 dark:text-gray-300'>
 									<svg
 										className='w-5 h-5'
 										fill='none'
@@ -60,7 +81,7 @@ export default function Footer() {
 										scarrjam@gmail.com
 									</a>
 								</p>
-								<p className='flex items-center justify-center md:justify-start gap-2 text-gray-700'>
+								<p className='flex items-center justify-center md:justify-start gap-2 text-gray-700 dark:text-gray-300'>
 									<svg
 										className='w-5 h-5'
 										fill='none'
@@ -83,7 +104,7 @@ export default function Footer() {
 										@scarrjam
 									</a>
 								</p>
-								<p className='flex items-center justify-center md:justify-start gap-2 text-gray-700'>
+								<p className='flex items-center justify-center md:justify-start gap-2 text-gray-700 dark:text-gray-300'>
 									<svg
 										className='w-5 h-5'
 										fill='none'
