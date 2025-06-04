@@ -39,7 +39,7 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 	return (
 		<section
 			id='instagram'
-			className='flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12'
+			className='bg-white dark:bg-[#0a0a0a] flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12'
 		>
 			<div className='max-w-6xl mx-auto w-full'>
 				<SystemThemeHeading

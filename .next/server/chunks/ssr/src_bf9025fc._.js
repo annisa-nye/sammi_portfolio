@@ -369,7 +369,7 @@ function Footer() {
     const logoSrc = isDarkMode ? '/logo/logo-invert.png' : '/logo/logo.png';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "contact",
-        className: "bg-white dark:bg-black py-12",
+        className: "bg-white dark:bg-[#0a0a0a] py-12",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
             className: "max-w-3xl mx-auto px-6",
             children: [
@@ -831,7 +831,7 @@ function InstagramSection({ posts }) {
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "instagram",
-        className: "flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12",
+        className: "bg-white dark:bg-[#0a0a0a] flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "max-w-6xl mx-auto w-full",
             children: [
@@ -1293,15 +1293,25 @@ function ScrollAnimation() {
     const [currentFrame, setCurrentFrame] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(1);
     const [isDarkMode, setIsDarkMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isMobile, setIsMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         setMounted(true);
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         setIsDarkMode(mediaQuery.matches);
+        // Check if it's a mobile device (including iPhone)
+        const checkMobile = ()=>{
+            setIsMobile(window.innerWidth <= 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
         const handler = (e)=>setIsDarkMode(e.matches);
         mediaQuery.addEventListener('change', handler);
-        return ()=>mediaQuery.removeEventListener('change', handler);
+        return ()=>{
+            mediaQuery.removeEventListener('change', handler);
+            window.removeEventListener('resize', checkMobile);
+        };
     }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const handleScroll = ()=>{
@@ -1337,14 +1347,16 @@ function ScrollAnimation() {
     }
     // Use dark mode animation preview when in dark mode
     const animationFolder = isDarkMode ? 'animation_preview-dark' : 'animation_preview';
+    // Check if we should use fullscreen mode (dark mode + mobile)
+    const shouldUseFullscreen = isDarkMode && isMobile;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: containerRef,
         className: "relative w-full h-[200vh] sm:h-[300vh]" // Taller on desktop for smoother scrolling
         ,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "sticky top-0 w-full h-screen flex items-center justify-center px-0 sm:px-6",
+            className: `sticky top-0 w-full h-screen flex items-center justify-center ${shouldUseFullscreen ? 'px-0' : 'px-0 sm:px-6'}`,
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative w-full h-full sm:max-w-7xl mx-auto flex items-center justify-center",
+                className: `relative flex items-center justify-center ${shouldUseFullscreen ? 'w-full h-full' : 'w-full h-full sm:max-w-7xl mx-auto'}`,
                 style: {
                     willChange: 'transform'
                 },
@@ -1352,9 +1364,9 @@ function ScrollAnimation() {
                     src: `/${animationFolder}/frame_${formatFrameNumber(currentFrame)}.gif`,
                     alt: `Animation frame ${currentFrame}`,
                     style: {
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
+                        width: shouldUseFullscreen ? '100vw' : '100%',
+                        height: shouldUseFullscreen ? '100vh' : '100%',
+                        objectFit: shouldUseFullscreen ? 'cover' : 'contain',
                         transition: 'opacity 0.15s',
                         willChange: 'opacity, transform'
                     },
@@ -1362,22 +1374,22 @@ function ScrollAnimation() {
                     draggable: false
                 }, void 0, false, {
                     fileName: "[project]/src/components/ScrollAnimation.tsx",
-                    lineNumber: 91,
+                    lineNumber: 114,
                     columnNumber: 6
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ScrollAnimation.tsx",
-                lineNumber: 84,
+                lineNumber: 103,
                 columnNumber: 5
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ScrollAnimation.tsx",
-            lineNumber: 83,
+            lineNumber: 98,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ScrollAnimation.tsx",
-        lineNumber: 79,
+        lineNumber: 94,
         columnNumber: 3
     }, this);
 }
@@ -1576,7 +1588,7 @@ function HomePage() {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                     id: "home",
-                    className: "min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24",
+                    className: "bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SystemThemeLogo$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
                         lineNumber: 195,
@@ -1594,7 +1606,7 @@ function HomePage() {
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                     id: "about",
-                    className: "min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24",
+                    className: "bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "max-w-2xl mx-auto w-full text-center",
                         children: [
@@ -1649,7 +1661,7 @@ function HomePage() {
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                     id: "gallery",
-                    className: "min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24",
+                    className: "bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "max-w-7xl mx-auto w-full",
                         children: [
@@ -1946,7 +1958,7 @@ function HomePage() {
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                     id: "cv",
-                    className: "flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12",
+                    className: "bg-white dark:bg-[#0a0a0a] flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "max-w-3xl mx-auto w-full",
                         children: [

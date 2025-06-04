@@ -9,6 +9,7 @@ export default function ScrollAnimation() {
 	const [currentFrame, setCurrentFrame] = useState(1);
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	const [mounted, setMounted] = useState(false);
+	const [isMobile, setIsMobile] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -17,10 +18,21 @@ export default function ScrollAnimation() {
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 		setIsDarkMode(mediaQuery.matches);
 
+		// Check if it's a mobile device (including iPhone)
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth <= 768);
+		};
+
+		checkMobile();
+		window.addEventListener('resize', checkMobile);
+
 		const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
 		mediaQuery.addEventListener('change', handler);
 
-		return () => mediaQuery.removeEventListener('change', handler);
+		return () => {
+			mediaQuery.removeEventListener('change', handler);
+			window.removeEventListener('resize', checkMobile);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -75,14 +87,25 @@ export default function ScrollAnimation() {
 		? 'animation_preview-dark'
 		: 'animation_preview';
 
+	// Check if we should use fullscreen mode (dark mode + mobile)
+	const shouldUseFullscreen = isDarkMode && isMobile;
+
 	return (
 		<div
 			ref={containerRef}
 			className='relative w-full h-[200vh] sm:h-[300vh]' // Taller on desktop for smoother scrolling
 		>
-			<div className='sticky top-0 w-full h-screen flex items-center justify-center px-0 sm:px-6'>
+			<div
+				className={`sticky top-0 w-full h-screen flex items-center justify-center ${
+					shouldUseFullscreen ? 'px-0' : 'px-0 sm:px-6'
+				}`}
+			>
 				<div
-					className='relative w-full h-full sm:max-w-7xl mx-auto flex items-center justify-center'
+					className={`relative flex items-center justify-center ${
+						shouldUseFullscreen
+							? 'w-full h-full'
+							: 'w-full h-full sm:max-w-7xl mx-auto'
+					}`}
 					style={{
 						willChange: 'transform',
 					}}
@@ -94,9 +117,9 @@ export default function ScrollAnimation() {
 						)}.gif`}
 						alt={`Animation frame ${currentFrame}`}
 						style={{
-							width: '100%',
-							height: '100%',
-							objectFit: 'contain',
+							width: shouldUseFullscreen ? '100vw' : '100%',
+							height: shouldUseFullscreen ? '100vh' : '100%',
+							objectFit: shouldUseFullscreen ? 'cover' : 'contain',
 							transition: 'opacity 0.15s',
 							willChange: 'opacity, transform',
 						}}

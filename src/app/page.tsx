@@ -190,7 +190,7 @@ export default function HomePage() {
 				{/* Home Section */}
 				<section
 					id='home'
-					className='min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24'
+					className='bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<SystemThemeLogo />
 				</section>
@@ -201,7 +201,7 @@ export default function HomePage() {
 				{/* About Section */}
 				<section
 					id='about'
-					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
+					className='bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-2xl mx-auto w-full text-center'>
 						<SystemThemeHeading
@@ -237,7 +237,7 @@ export default function HomePage() {
 				{/* Gallery Section */}
 				<section
 					id='gallery'
-					className='min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
+					className='bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24'
 				>
 					<div className='max-w-7xl mx-auto w-full'>
 						<SystemThemeHeading
@@ -459,7 +459,7 @@ export default function HomePage() {
 				{/* CV Section */}
 				<section
 					id='cv'
-					className='flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12'
+					className='bg-white dark:bg-[#0a0a0a] flex flex-col items-center px-4 sm:px-6 pt-16 sm:pt-24 pb-12'
 				>
 					<div className='max-w-3xl mx-auto w-full'>
 						<SystemThemeHeading

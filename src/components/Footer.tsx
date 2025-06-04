@@ -26,7 +26,7 @@ export default function Footer() {
 	const logoSrc = isDarkMode ? '/logo/logo-invert.png' : '/logo/logo.png';
 
 	return (
-		<section id='contact' className='bg-white dark:bg-black py-12'>
+		<section id='contact' className='bg-white dark:bg-[#0a0a0a] py-12'>
 			<footer className='max-w-3xl mx-auto px-6'>
 				{/* Contact Heading */}
 				<SystemThemeHeading
