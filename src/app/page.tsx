@@ -76,39 +76,53 @@ const initialGallerySections: GallerySection[] = [
 const instagramPosts = [
 	{
 		id: '1',
-		imageUrl: '/instagram/01.jpg',
-		caption: 'Recent work in progress 🎨',
-		date: 'March 2024',
+		imageUrl: '/instagram/1_instagram.jpg',
+		caption: "and that's a hot girl's prerogative and pleasure",
+		link: 'https://www.instagram.com/p/DIIorcNhrb2/?img_index=1',
 	},
 	{
 		id: '2',
-		imageUrl: '/instagram/02.jpg',
-		caption: 'New exhibition opening at @gallery_name',
-		date: 'February 2024',
+		imageUrl: '/instagram/2_instagram.jpg',
+		caption: 'PLEASE I NEED A STUDIO I CANT SLEEP IN HERE ANYMORE',
+		link: 'https://www.instagram.com/p/DGfXUz9hW7H/',
 	},
 	{
 		id: '3',
-		imageUrl: '/instagram/03.jpg',
-		caption: 'Studio day ✨',
-		date: 'February 2024',
+		imageUrl: '/instagram/3_instagram.jpg',
+		caption:
+			"HEY SO I'm EXCITED for upcoming showcase at @prisma.lx where i have been BLESSED with a 2 month residency in this !!!! epic !!! lego!!! city !!!",
+		link: 'https://www.instagram.com/p/C35lP49tHol/?img_index=1',
 	},
 	{
 		id: '4',
-		imageUrl: '/instagram/04.jpg',
-		caption: 'Detail from my latest series',
-		date: 'January 2024',
+		imageUrl: '/instagram/4_instagram.jpg',
+		caption: 'primary colours make me go so feral',
+		link: 'https://www.instagram.com/p/CvuoR-ytbfB/?img_index=1',
 	},
 	{
 		id: '5',
-		imageUrl: '/instagram/05.jpg',
-		caption: 'Behind the scenes of my creative process',
-		date: 'January 2024',
+		imageUrl: '/instagram/5_instagram.jpg',
+		caption:
+			'discarded surf board pix for unofficial headshot biz purposes. thanks 2 my day dot sista gorl @_sarahbirch 🤝🤝',
+		link: 'https://www.instagram.com/p/CudS9itv2wd/?img_index=1',
 	},
 	{
 		id: '6',
-		imageUrl: '/instagram/06.jpg',
-		caption: 'Opening night at @exhibition_space',
-		date: 'December 2023',
+		imageUrl: '/instagram/6_instagram.jpg',
+		caption: '"throat handkerchief"',
+		link: 'https://www.instagram.com/p/CtI5hYyrorF/?img_index=5',
+	},
+	{
+		id: '7',
+		imageUrl: '/instagram/7_instagram.jpg',
+		caption: 'Bratz detachable foot behaviour',
+		link: 'https://www.instagram.com/p/CpOJKC4hLJT/?img_index=1',
+	},
+	{
+		id: '8',
+		imageUrl: '/instagram/8_instagram.jpg',
+		caption: 'i come to you with my hands 👉👈 and my face 🥹',
+		link: 'https://www.instagram.com/p/CkLJc28NHWi/',
 	},
 ];
 

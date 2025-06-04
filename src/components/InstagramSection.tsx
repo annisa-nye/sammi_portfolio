@@ -1,14 +1,15 @@
 'use client';
 
-import Image from 'next/image';
 import SystemThemeHeading from './SystemThemeHeading';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface InstagramPost {
 	id: string;
 	imageUrl: string;
 	caption?: string;
 	date?: string;
+	link?: string;
 }
 
 interface InstagramSectionProps {
@@ -17,8 +18,16 @@ interface InstagramSectionProps {
 
 export default function InstagramSection({ posts }: InstagramSectionProps) {
 	const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
-	// Only show first 4 posts
-	const displayPosts = posts.slice(0, 4);
+	// Show 8 posts for large devices (4x2 grid), first 4 will be visible on small devices (2x2 grid)
+	const displayPosts = posts.slice(0, 8);
+
+	const handlePostClick = (post: InstagramPost) => {
+		if (post.link) {
+			window.open(post.link, '_blank', 'noopener,noreferrer');
+		} else {
+			setSelectedPost(post);
+		}
+	};
 
 	return (
 		<section
@@ -34,32 +43,59 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 					priority
 				/>
 
-				{/* Instagram Grid */}
+				{/* Instagram Grid - 2x2 on phones (4 posts), 4x2 on large devices (8 posts) */}
 				<div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6'>
-					{displayPosts.map((post) => (
+					{displayPosts.map((post, index) => (
 						<div
 							key={post.id}
-							className='group relative aspect-square bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-[1.02]'
-							onClick={() => setSelectedPost(post)}
+							className={`relative cursor-pointer ${
+								index >= 4 ? 'hidden lg:block' : ''
+							}`}
+							onClick={() => handlePostClick(post)}
+							style={{
+								width: '100%',
+								aspectRatio: '1/1',
+								backgroundColor: 'white',
+								borderRadius: '8px',
+								overflow: 'hidden',
+								boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+								transition: 'transform 0.3s ease',
+							}}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.transform = 'scale(1.02)')
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.transform = 'scale(1)')
+							}
 						>
-							<Image
+							{/* eslint-disable-next-line @next/next/no-img-element */}
+							<img
 								src={post.imageUrl}
 								alt={post.caption || 'Instagram post'}
-								fill
-								className='object-cover'
-								sizes='(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw'
+								style={{
+									width: '100%',
+									height: '100%',
+									objectFit: 'cover',
+									display: 'block',
+								}}
 							/>
+
 							{/* Overlay with caption on hover */}
-							<div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end'>
-								<div className='p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+							<div
+								className='absolute inset-0 flex items-end'
+								style={{
+									background:
+										'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)',
+									opacity: 0,
+									transition: 'opacity 0.3s ease',
+								}}
+								onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+								onMouseLeave={(e) => (e.currentTarget.style.opacity = '0')}
+							>
+								<div className='p-3 sm:p-4 text-white'>
 									{post.caption && (
 										<p className='text-xs sm:text-sm line-clamp-2'>
 											{post.caption}
-										</p>
-									)}
-									{post.date && (
-										<p className='text-[10px] sm:text-xs mt-1 opacity-75'>
-											{post.date}
 										</p>
 									)}
 								</div>
@@ -123,7 +159,7 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 									alt={selectedPost.caption || 'Instagram post'}
 									fill
 									className='object-contain'
-									sizes='(max-width: 1024px) 90vw, 1024px'
+									unoptimized
 								/>
 							</div>
 							{selectedPost.caption && (
