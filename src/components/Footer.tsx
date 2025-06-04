@@ -138,7 +138,12 @@ export default function Footer() {
 
 				{/* Credits */}
 				<div className='mt-6'>
-					<div className='bg-gradient-to-br from-gray-50 to-white dark:from-zinc-800 dark:to-zinc-900 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-4 mb-6 max-w-xs mx-auto border border-gray-100 dark:border-zinc-700'>
+					<div
+						className='bg-gradient-to-br from-gray-50 to-white dark:from-zinc-800 dark:to-zinc-900 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-4 mb-6 max-w-xs mx-auto border border-blue-200 dark:border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)] dark:shadow-[0_0_15px_rgba(96,165,250,0.4)]'
+						style={{
+							animation: 'breatheGlow 3s ease-in-out infinite',
+						}}
+					>
 						<p className='text-center text-sm font-light text-gray-700 dark:text-gray-200 mb-2 tracking-wide'>
 							Designed and built by{' '}
 							<span className='text-blue-600 dark:text-blue-400 font-medium italic'>
@@ -207,6 +212,32 @@ export default function Footer() {
 							</a>
 						</div>
 					</div>
+					<style jsx>{`
+						@keyframes breatheGlow {
+							0%,
+							100% {
+								box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+								border-color: rgba(147, 197, 253, 1);
+							}
+							50% {
+								box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+								border-color: rgba(59, 130, 246, 1);
+							}
+						}
+						@media (prefers-color-scheme: dark) {
+							@keyframes breatheGlow {
+								0%,
+								100% {
+									box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+									border-color: rgba(96, 165, 250, 1);
+								}
+								50% {
+									box-shadow: 0 0 25px rgba(96, 165, 250, 0.6);
+									border-color: rgba(147, 197, 253, 1);
+								}
+							}
+						}
+					`}</style>
 				</div>
 			</footer>
 		</section>
