@@ -113,7 +113,7 @@ export default function InstagramSection({ posts }: InstagramSectionProps) {
 
 					{/* Desktop View - Show first 8 posts */}
 					<div className='hidden lg:contents'>
-						{displayPosts.map((post, index) => (
+						{displayPosts.map((post) => (
 							<div
 								key={post.id}
 								className='relative cursor-pointer'
