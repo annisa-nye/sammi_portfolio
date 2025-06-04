@@ -1349,8 +1349,24 @@ const TOTAL_FRAMES = 38; // Updated to match the actual number of frames
 function ScrollAnimation() {
     _s();
     const [currentFrame, setCurrentFrame] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
+    const [isDarkMode, setIsDarkMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ScrollAnimation.useEffect": ()=>{
+            setMounted(true);
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            setIsDarkMode(mediaQuery.matches);
+            const handler = {
+                "ScrollAnimation.useEffect.handler": (e)=>setIsDarkMode(e.matches)
+            }["ScrollAnimation.useEffect.handler"];
+            mediaQuery.addEventListener('change', handler);
+            return ({
+                "ScrollAnimation.useEffect": ()=>mediaQuery.removeEventListener('change', handler)
+            })["ScrollAnimation.useEffect"];
+        }
+    }["ScrollAnimation.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ScrollAnimation.useEffect": ()=>{
             const handleScroll = {
@@ -1386,6 +1402,11 @@ function ScrollAnimation() {
     const formatFrameNumber = (num)=>{
         return num.toString().padStart(3, '0');
     };
+    if (!mounted) {
+        return null; // Prevent hydration mismatch
+    }
+    // Use dark mode animation preview when in dark mode
+    const animationFolder = isDarkMode ? 'animation_preview-dark' : 'animation_preview';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: containerRef,
         className: "relative w-full h-[200vh] sm:h-[300vh]" // Taller on desktop for smoother scrolling
@@ -1398,7 +1419,7 @@ function ScrollAnimation() {
                     willChange: 'transform'
                 },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    src: `/animation_preview/frame_${formatFrameNumber(currentFrame)}.gif`,
+                    src: `/${animationFolder}/frame_${formatFrameNumber(currentFrame)}.gif`,
                     alt: `Animation frame ${currentFrame}`,
                     style: {
                         width: '100%',
@@ -1411,26 +1432,26 @@ function ScrollAnimation() {
                     draggable: false
                 }, void 0, false, {
                     fileName: "[project]/src/components/ScrollAnimation.tsx",
-                    lineNumber: 69,
+                    lineNumber: 91,
                     columnNumber: 6
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ScrollAnimation.tsx",
-                lineNumber: 62,
+                lineNumber: 84,
                 columnNumber: 5
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ScrollAnimation.tsx",
-            lineNumber: 61,
+            lineNumber: 83,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ScrollAnimation.tsx",
-        lineNumber: 57,
+        lineNumber: 79,
         columnNumber: 3
     }, this);
 }
-_s(ScrollAnimation, "1U8wHikXV5MAWksciTxnwb0hjaY=");
+_s(ScrollAnimation, "T8Hk49OegzIYdXBD9BBF+zqWrkg=");
 _c = ScrollAnimation;
 var _c;
 __turbopack_context__.k.register(_c, "ScrollAnimation");

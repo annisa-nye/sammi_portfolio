@@ -7,8 +7,21 @@ const TOTAL_FRAMES = 38; // Updated to match the actual number of frames
 
 export default function ScrollAnimation() {
 	const [currentFrame, setCurrentFrame] = useState(1);
+	const [isDarkMode, setIsDarkMode] = useState(false);
+	const [mounted, setMounted] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		setIsDarkMode(mediaQuery.matches);
+
+		const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+		mediaQuery.addEventListener('change', handler);
+
+		return () => mediaQuery.removeEventListener('change', handler);
+	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -53,6 +66,15 @@ export default function ScrollAnimation() {
 		return num.toString().padStart(3, '0');
 	};
 
+	if (!mounted) {
+		return null; // Prevent hydration mismatch
+	}
+
+	// Use dark mode animation preview when in dark mode
+	const animationFolder = isDarkMode
+		? 'animation_preview-dark'
+		: 'animation_preview';
+
 	return (
 		<div
 			ref={containerRef}
@@ -67,7 +89,7 @@ export default function ScrollAnimation() {
 				>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
-						src={`/animation_preview/frame_${formatFrameNumber(
+						src={`/${animationFolder}/frame_${formatFrameNumber(
 							currentFrame
 						)}.gif`}
 						alt={`Animation frame ${currentFrame}`}
