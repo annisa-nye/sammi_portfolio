@@ -136,12 +136,13 @@ const GALLERY_PREVIEW_CATEGORIES = [
 export default function HomePage() {
 	const [activeGallerySection, setActiveGallerySection] = useState<
 		string | null
-	>(null);
+	>('Animation');
 	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
 	const [expandedCVSections, setExpandedCVSections] = useState<string[]>([
 		'Exhibitions',
 	]);
 	const [currentSet, setCurrentSet] = useState(1);
+	const [currentAnimation, setCurrentAnimation] = useState(1);
 	const [selectedImage, setSelectedImage] = useState<{
 		src: string;
 		alt: string;
@@ -182,6 +183,14 @@ export default function HomePage() {
 				? prev.filter((section) => section !== title)
 				: [...prev, title]
 		);
+	};
+
+	const handlePreviousAnimation = () => {
+		setCurrentAnimation((prev) => (prev === 1 ? 4 : prev - 1));
+	};
+
+	const handleNextAnimation = () => {
+		setCurrentAnimation((prev) => (prev === 4 ? 1 : prev + 1));
 	};
 
 	return (
@@ -314,21 +323,83 @@ export default function HomePage() {
 
 						{/* Animation Card - Full Width */}
 						<div className='mb-6 sm:mb-12'>
-							<button
-								onClick={() => handleGalleryToggle('Animation')}
-								className={`w-full p-4 sm:p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
-									activeGallerySection === 'Animation'
-										? 'ring-2 ring-black dark:ring-white'
-										: ''
-								}`}
-							>
-								<h2 className='text-lg sm:text-2xl font-bold mb-1 sm:mb-2'>
-									Animation
-								</h2>
-								<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400'>
-									Watch animated works and motion pieces
-								</p>
-							</button>
+							<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden'>
+								<div className='p-4 sm:p-6 text-center'>
+									<h2 className='text-lg sm:text-2xl font-bold mb-1 sm:mb-2'>
+										Animation
+									</h2>
+									<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4'>
+										Watch animated works and motion pieces
+									</p>
+								</div>
+								<div className='relative w-full aspect-video'>
+									<Image
+										src={`/animation/${currentAnimation}_animation.gif`}
+										alt={`Animation ${currentAnimation}`}
+										fill
+										className='object-cover'
+										sizes='100vw'
+										quality={75}
+										unoptimized
+									/>
+									{/* Navigation Controls */}
+									<div className='absolute inset-0 flex items-center justify-between p-4'>
+										<button
+											onClick={handlePreviousAnimation}
+											className='bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors duration-200'
+											aria-label='Previous animation'
+										>
+											<svg
+												className='w-6 h-6'
+												fill='none'
+												stroke='currentColor'
+												viewBox='0 0 24 24'
+											>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													strokeWidth={2}
+													d='M15 19l-7-7 7-7'
+												/>
+											</svg>
+										</button>
+										<button
+											onClick={handleNextAnimation}
+											className='bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors duration-200'
+											aria-label='Next animation'
+										>
+											<svg
+												className='w-6 h-6'
+												fill='none'
+												stroke='currentColor'
+												viewBox='0 0 24 24'
+											>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													strokeWidth={2}
+													d='M9 5l7 7-7 7'
+												/>
+											</svg>
+										</button>
+									</div>
+									{/* Animation Indicator */}
+									<div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2'>
+										{[1, 2, 3, 4].map((num) => (
+											<button
+												key={num}
+												onClick={() => setCurrentAnimation(num)}
+												className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+													currentAnimation === num
+														? 'bg-white'
+														: 'bg-white/50 hover:bg-white/75'
+												}`}
+												aria-label={`Go to animation ${num}`}
+											/>
+										))}
+									</div>
+								</div>
+							</div>
 						</div>
 
 						{/* Gallery Content */}
@@ -429,20 +500,6 @@ export default function HomePage() {
 												})}
 										</div>
 									)
-								) : activeGallerySection === 'Animation' ? (
-									<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6'>
-										<div className='w-full aspect-video rounded overflow-hidden shadow'>
-											<video
-												src='https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/gallery/animation/01.MOV'
-												autoPlay
-												loop
-												muted
-												playsInline
-												controls
-												className='w-full h-full object-cover'
-											/>
-										</div>
-									</div>
 								) : null}
 
 								{/* Image Modal */}

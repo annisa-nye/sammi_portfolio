@@ -36,6 +36,11 @@ const navItems = [
         href: '#cv'
     },
     {
+        name: 'Instagram',
+        href: '#instagram',
+        hideOnMobile: true
+    },
+    {
         name: 'Contact',
         href: '#contact'
     }
@@ -43,6 +48,22 @@ const navItems = [
 function Nav() {
     _s();
     const [activeSection, setActiveSection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('home');
+    const [isMobile, setIsMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Check if we're on mobile
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Nav.useEffect": ()=>{
+            const checkMobile = {
+                "Nav.useEffect.checkMobile": ()=>{
+                    setIsMobile(window.innerWidth < 640); // sm breakpoint
+                }
+            }["Nav.useEffect.checkMobile"];
+            checkMobile();
+            window.addEventListener('resize', checkMobile);
+            return ({
+                "Nav.useEffect": ()=>window.removeEventListener('resize', checkMobile)
+            })["Nav.useEffect"];
+        }
+    }["Nav.useEffect"], []);
     // Memoize the scroll handler to prevent unnecessary re-renders
     const handleScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Nav.useCallback[handleScroll]": ()=>{
@@ -80,17 +101,28 @@ function Nav() {
                                 }
                             }["Nav.useCallback[handleScroll]"]);
                         }
-                        // If this section is more visible than the current one, update the active section
-                        if (visibilityRatio > maxVisibility && scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-                            currentSection = section.id;
-                            maxVisibility = visibilityRatio;
+                        // Special handling for Instagram section on mobile
+                        if (isMobile && section.id === 'instagram') {
+                            // On mobile, when in Instagram section, highlight Contact instead
+                            if (visibilityRatio > maxVisibility && scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                                currentSection = 'contact';
+                                maxVisibility = visibilityRatio;
+                            }
+                        } else {
+                            // Normal section handling
+                            if (visibilityRatio > maxVisibility && scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                                currentSection = section.id;
+                                maxVisibility = visibilityRatio;
+                            }
                         }
                     }
                 }
             }["Nav.useCallback[handleScroll]"]);
             setActiveSection(currentSection);
         }
-    }["Nav.useCallback[handleScroll]"], []);
+    }["Nav.useCallback[handleScroll]"], [
+        isMobile
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Nav.useEffect": ()=>{
             // Set up the Intersection Observer with adjusted margins for better detection
@@ -114,6 +146,9 @@ function Nav() {
                                     if (inSubsection) {
                                         setActiveSection('gallery');
                                     }
+                                } else if (isMobile && entry.target.id === 'instagram') {
+                                    // On mobile, when Instagram section is visible, highlight Contact
+                                    setActiveSection('contact');
                                 } else {
                                     setActiveSection(entry.target.id);
                                 }
@@ -166,7 +201,8 @@ function Nav() {
             })["Nav.useEffect"];
         }
     }["Nav.useEffect"], [
-        handleScroll
+        handleScroll,
+        isMobile
     ]);
     const handleClick = (e, href)=>{
         e.preventDefault();
@@ -182,7 +218,9 @@ function Nav() {
         className: "fixed top-0 left-0 right-0 z-50 bg-white text-black shadow-md sm:top-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto sm:w-auto sm:rounded-full px-4 sm:px-6 py-3 sm:py-2 flex justify-center items-center border-b sm:border-b-0 border-gray-100",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex gap-2 sm:gap-6 text-sm font-medium max-w-screen-sm sm:max-w-none mx-auto w-full justify-between sm:justify-center",
-            children: navItems.map(({ name, href })=>{
+            children: navItems.map(({ name, href, hideOnMobile })=>{
+                // Skip Instagram item on mobile
+                if (hideOnMobile && isMobile) return null;
                 const sectionId = href.replace('#', '');
                 const isActive = activeSection === sectionId;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -192,22 +230,22 @@ function Nav() {
                     children: name
                 }, href, false, {
                     fileName: "[project]/src/components/Nav.tsx",
-                    lineNumber: 159,
+                    lineNumber: 191,
                     columnNumber: 7
                 }, this);
             })
         }, void 0, false, {
             fileName: "[project]/src/components/Nav.tsx",
-            lineNumber: 153,
+            lineNumber: 182,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Nav.tsx",
-        lineNumber: 152,
+        lineNumber: 181,
         columnNumber: 3
     }, this);
 }
-_s(Nav, "scFdv6FpveV7qR0YWeuK5wjUXI0=");
+_s(Nav, "jRkPcM7rhcpw4Wfpj+TRQbuMpbg=");
 _c = Nav;
 var _c;
 __turbopack_context__.k.register(_c, "Nav");
@@ -234,41 +272,57 @@ const ThemeContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$projec
 function ThemeProvider({ children }) {
     _s();
     const [theme, setTheme] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('light');
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ThemeProvider.useEffect": ()=>{
+            setMounted(true);
             // Check if user has a theme preference in localStorage
             const savedTheme = localStorage.getItem('theme');
-            // Check if user has a system preference
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            setTheme(savedTheme || systemTheme);
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                // Default to system preference if no saved theme
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                setTheme(systemTheme);
+            }
         }
     }["ThemeProvider.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ThemeProvider.useEffect": ()=>{
-            // Update document class and localStorage when theme changes
-            document.documentElement.classList.remove('light', 'dark');
-            document.documentElement.classList.add(theme);
-            localStorage.setItem('theme', theme);
+            if (mounted) {
+                localStorage.setItem('theme', theme);
+                // Apply theme to document
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }
         }
     }["ThemeProvider.useEffect"], [
-        theme
+        theme,
+        mounted
     ]);
     const toggleTheme = ()=>{
-        setTheme((prev)=>prev === 'light' ? 'dark' : 'light');
+        setTheme((prevTheme)=>prevTheme === 'light' ? 'dark' : 'light');
     };
+    if (!mounted) {
+        return null; // Prevent hydration mismatch
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ThemeContext.Provider, {
         value: {
             theme,
-            toggleTheme
+            toggleTheme,
+            setTheme
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/src/context/ThemeContext.tsx",
-        lineNumber: 41,
+        lineNumber: 56,
         columnNumber: 3
     }, this);
 }
-_s(ThemeProvider, "l0NnHMBAjTNA2m05PT0LPL3eOKc=");
+_s(ThemeProvider, "irO646EbSVqPL90dedilwyEs6oc=");
 _c = ThemeProvider;
 function useTheme() {
     _s1();
@@ -304,23 +358,22 @@ function ThemeToggle() {
     const { theme, toggleTheme } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         onClick: toggleTheme,
-        className: "fixed bottom-4 right-4 p-2 rounded-full bg-white dark:bg-zinc-800 shadow-lg border border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-700 transition-colors z-50",
+        className: "fixed bottom-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-zinc-800 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-zinc-600 hover:scale-110",
         "aria-label": `Switch to ${theme === 'light' ? 'dark' : 'light'} mode`,
         children: theme === 'light' ? // Moon icon for dark mode
         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
+            className: "w-5 h-5 text-gray-700",
             fill: "none",
-            viewBox: "0 0 24 24",
-            strokeWidth: 1.5,
             stroke: "currentColor",
-            className: "w-6 h-6",
+            viewBox: "0 0 24 24",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 strokeLinecap: "round",
                 strokeLinejoin: "round",
-                d: "M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                strokeWidth: 2,
+                d: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
             }, void 0, false, {
                 fileName: "[project]/src/components/ThemeToggle.tsx",
-                lineNumber: 24,
+                lineNumber: 22,
                 columnNumber: 6
             }, this)
         }, void 0, false, {
@@ -329,24 +382,23 @@ function ThemeToggle() {
             columnNumber: 5
         }, this) : // Sun icon for light mode
         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
+            className: "w-5 h-5 text-yellow-500",
             fill: "none",
-            viewBox: "0 0 24 24",
-            strokeWidth: 1.5,
             stroke: "currentColor",
-            className: "w-6 h-6",
+            viewBox: "0 0 24 24",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 strokeLinecap: "round",
                 strokeLinejoin: "round",
-                d: "M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                strokeWidth: 2,
+                d: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
             }, void 0, false, {
                 fileName: "[project]/src/components/ThemeToggle.tsx",
-                lineNumber: 40,
+                lineNumber: 37,
                 columnNumber: 6
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ThemeToggle.tsx",
-            lineNumber: 32,
+            lineNumber: 31,
             columnNumber: 5
         }, this)
     }, void 0, false, {
