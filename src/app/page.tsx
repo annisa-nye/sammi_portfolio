@@ -332,12 +332,16 @@ export default function HomePage() {
 										Watch animated works and motion pieces
 									</p>
 								</div>
-								<div className='relative w-full aspect-video'>
+								<div
+									className={`relative w-full ${
+										currentAnimation === 1 ? 'aspect-video' : 'aspect-[4/3]'
+									}`}
+								>
 									<Image
 										src={`/animation/${currentAnimation}_animation.gif`}
 										alt={`Animation ${currentAnimation}`}
 										fill
-										className='object-cover'
+										className='object-contain'
 										sizes='100vw'
 										quality={75}
 										unoptimized
