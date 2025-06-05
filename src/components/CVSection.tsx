@@ -48,6 +48,21 @@ export default function CVSection({
 											))}
 										</div>
 									)}
+									{item.includes('Prisma Collective') && (
+										<div className='flex overflow-x-auto space-x-4 mt-4'>
+											{[...Array(11)].map((_, index) => (
+												<div key={index} className='w-48 h-48 flex-shrink-0'>
+													<img
+														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/prisma-residency/${
+															index < 9 ? '0' : ''
+														}${index + 1}.jpg`}
+														alt={`Prisma Collective Image ${index + 1}`}
+														className='w-full h-full object-cover'
+													/>
+												</div>
+											))}
+										</div>
+									)}
 								</div>
 							))}
 						</div>
