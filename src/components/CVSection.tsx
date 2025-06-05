@@ -63,6 +63,21 @@ export default function CVSection({
 											))}
 										</div>
 									)}
+									{item.includes('Buinho Creative Hub') && (
+										<div className='flex overflow-x-auto space-x-4 mt-4'>
+											{[...Array(4)].map((_, index) => (
+												<div key={index} className='w-48 h-48 flex-shrink-0'>
+													<img
+														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/messejana-residency/0${
+															index + 1
+														}.jpg`}
+														alt={`Buinho Creative Hub Image ${index + 1}`}
+														className='w-full h-full object-cover'
+													/>
+												</div>
+											))}
+										</div>
+									)}
 								</div>
 							))}
 						</div>
