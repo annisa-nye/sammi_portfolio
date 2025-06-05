@@ -332,11 +332,7 @@ export default function HomePage() {
 										Watch animated works and motion pieces
 									</p>
 								</div>
-								<div
-									className={`relative w-full ${
-										currentAnimation === 1 ? 'aspect-video' : 'aspect-[4/3]'
-									}`}
-								>
+								<div className='relative w-full aspect-video h-[500px]'>
 									<Image
 										src={`/animation/${currentAnimation}_animation.gif`}
 										alt={`Animation ${currentAnimation}`}
