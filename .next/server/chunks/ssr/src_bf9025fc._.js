@@ -143,10 +143,43 @@ function CVSection({ title, data, isExpanded, onToggle }) {
                                 lineNumber: 30,
                                 columnNumber: 8
                             }, this),
-                            items.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-700 dark:text-gray-300",
-                                    children: item
-                                }, i, false, {
+                            items.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-gray-700 dark:text-gray-300",
+                                            children: item
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/CVSection.tsx",
+                                            lineNumber: 35,
+                                            columnNumber: 10
+                                        }, this),
+                                        item.includes('Welcome To The Dinner Party') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex overflow-x-auto space-x-4 mt-4",
+                                            children: [
+                                                ...Array(8)
+                                            ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-48 h-48 flex-shrink-0",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/platform-exhibition/0${index + 1}.jpg`,
+                                                        alt: `Exhibition Image ${index + 1}`,
+                                                        className: "w-full h-full object-cover"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/CVSection.tsx",
+                                                        lineNumber: 40,
+                                                        columnNumber: 14
+                                                    }, this)
+                                                }, index, false, {
+                                                    fileName: "[project]/src/components/CVSection.tsx",
+                                                    lineNumber: 39,
+                                                    columnNumber: 13
+                                                }, this))
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/CVSection.tsx",
+                                            lineNumber: 37,
+                                            columnNumber: 11
+                                        }, this)
+                                    ]
+                                }, i, true, {
                                     fileName: "[project]/src/components/CVSection.tsx",
                                     lineNumber: 34,
                                     columnNumber: 9

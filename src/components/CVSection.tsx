@@ -31,9 +31,24 @@ export default function CVSection({
 								{year}
 							</h3>
 							{items.map((item: string, i: number) => (
-								<p key={i} className='text-gray-700 dark:text-gray-300'>
-									{item}
-								</p>
+								<div key={i}>
+									<p className='text-gray-700 dark:text-gray-300'>{item}</p>
+									{item.includes('Welcome To The Dinner Party') && (
+										<div className='flex overflow-x-auto space-x-4 mt-4'>
+											{[...Array(8)].map((_, index) => (
+												<div key={index} className='w-48 h-48 flex-shrink-0'>
+													<img
+														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/platform-exhibition/0${
+															index + 1
+														}.jpg`}
+														alt={`Exhibition Image ${index + 1}`}
+														className='w-full h-full object-cover'
+													/>
+												</div>
+											))}
+										</div>
+									)}
+								</div>
 							))}
 						</div>
 					))}
