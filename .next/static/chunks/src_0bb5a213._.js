@@ -230,6 +230,31 @@ function CVSection({ title, data, isExpanded, onToggle }) {
                                             fileName: "[project]/src/components/CVSection.tsx",
                                             lineNumber: 67,
                                             columnNumber: 11
+                                        }, this),
+                                        item.includes('GlogAUair') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex overflow-x-auto space-x-4 mt-4",
+                                            children: [
+                                                ...Array(9)
+                                            ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-48 h-48 flex-shrink-0",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/glogauair-residency/0${index + 1}.jpg`,
+                                                        alt: `GlogAUair Image ${index + 1}`,
+                                                        className: "w-full h-full object-cover"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/CVSection.tsx",
+                                                        lineNumber: 85,
+                                                        columnNumber: 14
+                                                    }, this)
+                                                }, index, false, {
+                                                    fileName: "[project]/src/components/CVSection.tsx",
+                                                    lineNumber: 84,
+                                                    columnNumber: 13
+                                                }, this))
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/CVSection.tsx",
+                                            lineNumber: 82,
+                                            columnNumber: 11
                                         }, this)
                                     ]
                                 }, i, true, {
