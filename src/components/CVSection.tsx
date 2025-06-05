@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface CVSectionProps {
 	title: string;
 	data: { year: number; items: string[] }[];
@@ -37,11 +39,13 @@ export default function CVSection({
 										<div className='flex overflow-x-auto space-x-4 mt-4'>
 											{[...Array(8)].map((_, index) => (
 												<div key={index} className='w-48 h-48 flex-shrink-0'>
-													<img
+													<Image
 														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/platform-exhibition/0${
 															index + 1
 														}.jpg`}
 														alt={`Exhibition Image ${index + 1}`}
+														width={192}
+														height={192}
 														className='w-full h-full object-cover'
 													/>
 												</div>
@@ -52,11 +56,13 @@ export default function CVSection({
 										<div className='flex overflow-x-auto space-x-4 mt-4'>
 											{[...Array(11)].map((_, index) => (
 												<div key={index} className='w-48 h-48 flex-shrink-0'>
-													<img
+													<Image
 														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/prisma-residency/${
 															index < 9 ? '0' : ''
 														}${index + 1}.jpg`}
 														alt={`Prisma Collective Image ${index + 1}`}
+														width={192}
+														height={192}
 														className='w-full h-full object-cover'
 													/>
 												</div>
@@ -67,11 +73,13 @@ export default function CVSection({
 										<div className='flex overflow-x-auto space-x-4 mt-4'>
 											{[...Array(4)].map((_, index) => (
 												<div key={index} className='w-48 h-48 flex-shrink-0'>
-													<img
+													<Image
 														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/messejana-residency/0${
 															index + 1
 														}.jpg`}
 														alt={`Buinho Creative Hub Image ${index + 1}`}
+														width={192}
+														height={192}
 														className='w-full h-full object-cover'
 													/>
 												</div>
@@ -82,11 +90,13 @@ export default function CVSection({
 										<div className='flex overflow-x-auto space-x-4 mt-4'>
 											{[...Array(9)].map((_, index) => (
 												<div key={index} className='w-48 h-48 flex-shrink-0'>
-													<img
+													<Image
 														src={`https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/glogauair-residency/0${
 															index + 1
 														}.jpg`}
 														alt={`GlogAUair Image ${index + 1}`}
+														width={192}
+														height={192}
 														className='w-full h-full object-cover'
 													/>
 												</div>

@@ -21,7 +21,7 @@ export default function AnimationGallery() {
 			</div>
 
 			<p className='text-center text-sm text-gray-600 mt-4'>
-				"Untitled" (2025) — looped animation preview
+				&ldquo;Untitled&rdquo; (2025) &mdash; looped animation preview
 			</p>
 		</main>
 	);
