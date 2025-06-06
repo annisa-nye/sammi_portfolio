@@ -138,9 +138,6 @@ const GALLERY_PREVIEW_CATEGORIES = [
 ];
 
 export default function HomePage() {
-	const [activeGallerySection, setActiveGallerySection] = useState<
-		string | null
-	>('Animation');
 	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
 	const [expandedCVSections, setExpandedCVSections] = useState<string[]>([
 		'Exhibitions',
@@ -280,13 +277,7 @@ export default function HomePage() {
 											setSelectedImage(images[0]);
 											setLightboxImages(images);
 										}}
-										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col ${
-											GALLERY_PREVIEW_CATEGORIES.some(
-												({ title }) => title === activeGallerySection
-											) && activeGallerySection !== title
-												? 'blur-sm'
-												: ''
-										}`}
+										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col`}
 									>
 										<div className='relative w-full aspect-square'>
 											{isLoading && !hasError && (
@@ -335,110 +326,6 @@ export default function HomePage() {
 								);
 							})}
 						</div>
-
-						{/* Expanded Gallery Content */}
-						{activeGallerySection && (
-							<div className='animate-fadeIn mt-8'>
-								{gallerySections.find(
-									(section) => section.title === activeGallerySection
-								) ? (
-									activeGallerySection === 'Painting' ? (
-										<div className='flex overflow-x-auto space-x-4'>
-											{gallerySections
-												.find((section) => section.title === 'Painting')
-												?.paintings?.paintings.flatMap((mediumGroup) =>
-													mediumGroup.images.map((painting) => {
-														const uniqueKey = `${mediumGroup.medium}-${painting.filename}`;
-														return (
-															<button
-																key={uniqueKey}
-																onClick={() =>
-																	setSelectedImage({
-																		src: `${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
-																		alt:
-																			painting.title ||
-																			`${mediumGroup.medium} painting`,
-																		title: painting.title,
-																		year: painting.year,
-																		medium: mediumGroup.medium
-																			.split('-')
-																			.map(
-																				(word) =>
-																					word.charAt(0).toUpperCase() +
-																					word.slice(1)
-																			)
-																			.join(' '),
-																	})
-																}
-																className='group aspect-square relative bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden flex-none w-40 h-40'
-															>
-																<Image
-																	src={`${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`}
-																	alt={
-																		painting.title ||
-																		`${mediumGroup.medium} painting`
-																	}
-																	fill
-																	sizes='(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw'
-																	quality={75}
-																	className='object-cover transition-transform duration-300 group-hover:scale-105'
-																	unoptimized={false}
-																/>
-																<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
-															</button>
-														);
-													})
-												)}
-										</div>
-									) : (
-										<div className='flex overflow-x-auto space-x-4'>
-											{gallerySections
-												.find(
-													(section) => section.title === activeGallerySection
-												)
-												?.images.map((image, index) => {
-													const [medium] = image.split('/');
-													const formattedMedium =
-														medium
-															?.split('-')
-															.map(
-																(word) =>
-																	word.charAt(0).toUpperCase() + word.slice(1)
-															)
-															.join(' ') || '';
-
-													return (
-														<button
-															key={index}
-															onClick={() =>
-																setSelectedImage({
-																	src: `${S3_BASE_URL}/gallery/${activeGallerySection.toLowerCase()}/${image}`,
-																	alt: `${activeGallerySection} ${image}`,
-																	medium: formattedMedium,
-																})
-															}
-															className='group aspect-square relative bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden flex-none w-40 h-40'
-														>
-															<Image
-																src={`${S3_BASE_URL}/gallery/${activeGallerySection.toLowerCase()}/${image}`}
-																alt={`${activeGallerySection} ${index + 1}`}
-																fill
-																sizes='(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw'
-																quality={75}
-																className='object-cover transition-transform duration-300 group-hover:scale-105'
-																unoptimized={false}
-															/>
-															<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
-														</button>
-													);
-												})}
-										</div>
-									)
-								) : null}
-
-								{/* Image Modal */}
-							</div>
-						)}
 
 						{/* Animation Card - Full Width */}
 						<div className='mb-6 sm:mb-12'>
