@@ -22,7 +22,7 @@ export default function AnimationGallery() {
 
 			<p className='text-center text-sm text-gray-600 mt-4'>
 				&ldquo;Untitled&rdquo; (2025) &mdash; looped animation preview
-			</p>
-		</main>
+				</p>
+			</main>
 	);
 }

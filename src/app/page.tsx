@@ -10,8 +10,8 @@ import Footer from '@/components/Footer';
 import SystemThemeHeading from '@/components/SystemThemeHeading';
 import SystemThemeLogo from '@/components/SystemThemeLogo';
 import InstagramSection from '@/components/InstagramSection';
-import ImageModal from '@/components/ImageModal';
 import ScrollAnimation from '@/components/ScrollAnimation';
+import LightboxModal from '@/components/LightboxModal';
 
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
@@ -24,7 +24,11 @@ interface CVItem {
 const initialGallerySections: GallerySection[] = [
 	{
 		title: 'Painting',
-		images: [],
+		images: paintingsData.paintings.flatMap((mediumGroup) =>
+			mediumGroup.images.map(
+				(painting) => `${mediumGroup.medium}/${painting.filename}`
+			)
+		),
 		paintings: paintingsData,
 	},
 	{
@@ -154,6 +158,9 @@ export default function HomePage() {
 		{}
 	);
 	const [isLoading, setIsLoading] = useState(true);
+	const [lightboxImages, setLightboxImages] = useState<
+		{ src: string; alt: string }[]
+	>([]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -267,7 +274,17 @@ export default function HomePage() {
 								return (
 									<button
 										key={title}
-										onClick={() => handleGalleryToggle(title)}
+										onClick={() => {
+											const images =
+												gallerySections
+													.find((section) => section.title === title)
+													?.images.map((image) => ({
+														src: `${S3_BASE_URL}/gallery/${title.toLowerCase()}/${image}`,
+														alt: `${title} ${image}`,
+													})) || [];
+											setSelectedImage(images[0]);
+											setLightboxImages(images);
+										}}
 										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col ${
 											GALLERY_PREVIEW_CATEGORIES.some(
 												({ title }) => title === activeGallerySection
@@ -425,11 +442,6 @@ export default function HomePage() {
 								) : null}
 
 								{/* Image Modal */}
-								<ImageModal
-									isOpen={!!selectedImage}
-									onClose={() => setSelectedImage(null)}
-									image={selectedImage || { src: '', alt: '' }}
-								/>
 							</div>
 						)}
 
@@ -563,6 +575,18 @@ export default function HomePage() {
 				{/* Footer with Business Card */}
 				<Footer />
 			</main>
+
+			{/* Lightbox Modal */}
+			{selectedImage && lightboxImages.length > 0 && (
+				<LightboxModal
+					isOpen={!!selectedImage}
+					onClose={() => setSelectedImage(null)}
+					images={lightboxImages}
+					initialIndex={lightboxImages.findIndex(
+						(image) => image.src === selectedImage.src
+					)}
+				/>
+			)}
 		</>
 	);
 }
