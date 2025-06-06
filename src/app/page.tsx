@@ -269,7 +269,9 @@ export default function HomePage() {
 										key={title}
 										onClick={() => handleGalleryToggle(title)}
 										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col ${
-											activeGallerySection && activeGallerySection !== title
+											GALLERY_PREVIEW_CATEGORIES.some(
+												({ title }) => title === activeGallerySection
+											) && activeGallerySection !== title
 												? 'blur-sm'
 												: ''
 										}`}
