@@ -86,7 +86,9 @@ export default function CVSection({
 											))}
 										</div>
 									)}
-									{item.includes('GlogAUair') && (
+									{item.includes(
+										'GlogAUair, curated by Justin Ross and Laura Olea Lopez. Berlin, Germany.'
+									) && (
 										<div className='flex overflow-x-auto space-x-4 mt-4'>
 											{[...Array(9)].map((_, index) => (
 												<div key={index} className='w-48 h-48 flex-shrink-0'>
