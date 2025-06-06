@@ -1,90 +1,97 @@
-# Sammi Carr Portfolio – Horizontally-Scrolling Art Gallery Website
+# 🎨 Sammi Carr — Portfolio Site
 
-This project is a bold, playful, and immersive portfolio for **Sammi Carr**, a multidisciplinary visual artist based on Dharawal land (NSW). The website mimics the experience of walking through a physical art gallery — using horizontal transitions and thoughtful layout spacing to showcase Sammi’s work with elegance and impact.
+**Welcome to the digital home of Sammi Carr**, a multidisciplinary visual artist based on Dharawal land, NSW. This portfolio isn't just another gallery grid — it's a curated experience, a scroll-through museum, and a love letter to art in motion.
 
-It is designed for professional submissions (grants/residencies) while offering a rich, curated alternative to Instagram.
+## 🌐 Live Website
 
----
-
-## 🎯 Goals
-
-- Showcase Sammi’s artwork and animations in a highly visual, immersive layout
-- Mimic the experience of a real-life art gallery through horizontal movement and visual pacing
-- Replace Instagram as the primary point of reference for Sammi’s practice
-- Make the site mobile-responsive, intuitive, and memorable
-- Prepare the site for future features like an online shop, blog, and exhibition archive
+[**Visit Now → sammicarr.com**](https://sammicarr.com)
+Deployed via **Vercel** for staging, hosted via **AWS CloudFront** for production.
+Assets served with love (and lightning speed) from **AWS S3**.
 
 ---
 
-## 🎨 Design Philosophy
+## 💌 About the Project
 
-Inspired by [fbi.radio](https://fbi.radio), the website focuses on:
+This site was designed and developed by [Annisa Nye](https://annisanye.com), who believes that artists deserve websites as thoughtful and beautiful as their work.
+The portfolio mimics the feel of walking through a physical gallery, turning clicks into strolls.
 
-- A **white background** and clean typography
-- **Center-aligned, floating top menu** that shows the current section
-- **Horizontal scroll transitions** between each full-screen section (simulated using Framer Motion)
-- Individual artworks displayed with generous spacing, like walking through a gallery
-- Title cards, subtle animations, and gallery labels under artworks
+> *“A portfolio site should be more than a résumé. It should feel like stepping into the artist’s world — this one does.”*
 
 ---
 
-## 🧭 Navigation Behavior
+## ✨ Features
 
-- Navigation bar sits centered at the top
-- Displays: Home, About, CV, Gallery, Residencies, Contact
-- When the user is on the **Gallery** page, a **secondary sub-menu** appears:
-  - Paintings, Illustrations, Collages, Digital, Animations
-
----
-
-## 🖼 Gallery Behavior
-
-- Sections scroll **left to right**
-- Each artwork is framed, centered, and spaced apart like a museum wall
-- **Animations** are vertical and may be embedded as GIFs or videos
-- Thunderfox video is embedded within the Animations section
+* **Horizontally scrolling gallery rooms** for Paintings, Illustrations, Collage, Digital Work, and Animations.
+* **Fullscreen lightbox image view** with square previews.
+* **Looping animated logo** and section headings that adapt to your system theme.
+* **Clean, minimalist single-page layout** with quick nav tabs that simulate a page-by-page experience.
+* **CV and Residencies** presented without bullet points — just flow and elegance.
+* **Dark/Light mode support**, system-based for now (manual toggle coming soon).
+* **Instagram integration** for real-time connection with the artist’s latest updates.
 
 ---
 
-## 📋 Implementation Plan
+## 📁 Gallery Structure (S3)
 
-### ✅ Phase 1 – Base Layout & Navigation
-- [ ] Create full-screen routes for each section
-- [ ] Implement horizontal transitions using **Framer Motion**
-- [ ] Add top-centered nav bar with active section highlight
+Organized like a digital vault:
 
-### ✅ Phase 2 – Section Styling
-- [ ] Home: Logo, caption, optional GIF
-- [ ] About: Italic bio, centered text, 4x4 headshot
-- [ ] CV: Remove heading and bullet points, center-align
-- [ ] Gallery: Horizontal scroll galleries for Paintings, Illustration, Collage, Digital
-- [ ] Animations: Vertical display with looping GIFs and YouTube embed
-- [ ] Residencies: Scrollable section with residency images
-
-### ✅ Phase 3 – Gallery Aesthetic
-- [ ] Add spacing between artworks like gallery walls
-- [ ] Add title cards under artworks
-- [ ] Optional: modal view for enlarged artworks
-
----
-
-## 🧪 Tech Stack
-
-- **Framework**: Next.js (App Router)
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Hosting**: Vercel
-- **Image Storage**: AWS S3
-- **Forms**: Netlify Forms or Formspree
+```
+/gallery
+  /painting
+    /oil
+    /acrylic
+  /illustration
+  /collage
+  /graphic-design
+  /animation
+/cv
+/logo
+/headings-dark
+/special-collections
+```
 
 ---
 
-## 🔮 Future Enhancements
+## 🔧 Tech Stack
 
-- Online shop with external checkout or Shopify
-- Blog and exhibition archive
-- Dark mode toggle
+| Component          | Tech                    |
+| ------------------ | ----------------------- |
+| Framework          | Next.js + App Router    |
+| Styling            | Tailwind CSS            |
+| Hosting            | AWS CloudFront + S3     |
+| Dev Playground     | Vercel                  |
+| Image Optimization | `next/image`            |
+| Scroll Animations  | Custom + Tailwind Magic |
 
 ---
 
-Created with love for Sammi Carr’s art practice.
+## 🧠 Developer Notes
+
+* Built with Cursor AI for fast prototyping and iteration.
+* Every section and interaction is tailored to Sammi’s aesthetic — no templates here.
+* The favicon? Soon to be a hand-drawn masterpiece. Stay tuned.
+
+---
+
+## 📬 Contact
+
+* **Artist:** [Instagram → @sammicarr](https://instagram.com/sammicarr)
+* **Developer:** [Annisa Nye](mailto:annisanye@outlook.com) — *designer, builder, emoji enthusiast.*
+
+---
+
+## 🖼️ Future Wishlist
+
+* ☑️ Manual theme toggle
+* 🎵 Background ambient soundscapes per section
+* 🖥️ Animated transitions between gallery "rooms"
+* 📦 Shopify integration for print sales
+* 📸 Behind-the-scenes page for studio snapshots
+
+---
+
+## 🪄 Final Word
+
+This isn’t just a portfolio site.
+It’s a curated digital exhibition, a labor of love, and a flex of both artistic and dev skills.
+Pull the repo, take a scroll, and let the art do the talking.

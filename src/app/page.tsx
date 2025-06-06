@@ -180,11 +180,6 @@ export default function HomePage() {
 		setIsLoading(false);
 	};
 
-	const handleGalleryToggle = (title: string) => {
-		console.log('Toggling gallery section:', title);
-		setActiveGallerySection(activeGallerySection === title ? null : title);
-	};
-
 	const handleCVToggle = (title: string) => {
 		setExpandedCVSections((prev) =>
 			prev.includes(title)
