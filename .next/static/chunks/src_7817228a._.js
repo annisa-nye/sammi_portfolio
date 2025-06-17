@@ -1510,46 +1510,46 @@ function LightboxModal({ isOpen, onClose, images, initialIndex = 0 }) {
             className: "relative w-[90vw] h-[90vh] flex items-center justify-center",
             onClick: (e)=>e.stopPropagation(),
             children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                    onClick: onClose,
-                    className: "absolute -top-12 right-0 text-white hover:text-gray-300 z-10",
-                    "aria-label": "Close modal",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                        className: "w-8 h-8",
-                        fill: "none",
-                        stroke: "currentColor",
-                        viewBox: "0 0 24 24",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                            strokeLinecap: "round",
-                            strokeLinejoin: "round",
-                            strokeWidth: 2,
-                            d: "M6 18L18 6M6 6l12 12"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LightboxModal.tsx",
-                            lineNumber: 51,
-                            columnNumber: 7
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/LightboxModal.tsx",
-                        lineNumber: 45,
-                        columnNumber: 6
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/src/components/LightboxModal.tsx",
-                    lineNumber: 40,
-                    columnNumber: 5
-                }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "relative w-full h-full flex items-center justify-center",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "relative w-full h-full max-w-[90vw] max-h-[90vh]",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: onClose,
+                                className: "absolute top-2 right-2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-2 backdrop-blur-sm",
+                                "aria-label": "Close modal",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                    className: "w-6 h-6",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M6 18L18 6M6 6l12 12"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LightboxModal.tsx",
+                                        lineNumber: 53,
+                                        columnNumber: 9
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/LightboxModal.tsx",
+                                    lineNumber: 47,
+                                    columnNumber: 8
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LightboxModal.tsx",
+                                lineNumber: 42,
+                                columnNumber: 7
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: handlePrevious,
-                                className: "absolute left-0 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10",
+                                className: "absolute left-2 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2 backdrop-blur-sm",
                                 "aria-label": "Previous image",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                    className: "w-8 h-8",
+                                    className: "w-6 h-6",
                                     fill: "none",
                                     stroke: "currentColor",
                                     viewBox: "0 0 24 24",
@@ -1575,10 +1575,10 @@ function LightboxModal({ isOpen, onClose, images, initialIndex = 0 }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: handleNext,
-                                className: "absolute right-0 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10",
+                                className: "absolute right-2 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2 backdrop-blur-sm",
                                 "aria-label": "Next image",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                    className: "w-8 h-8",
+                                    className: "w-6 h-6",
                                     fill: "none",
                                     stroke: "currentColor",
                                     viewBox: "0 0 24 24",
@@ -1619,12 +1619,12 @@ function LightboxModal({ isOpen, onClose, images, initialIndex = 0 }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/LightboxModal.tsx",
-                        lineNumber: 61,
+                        lineNumber: 41,
                         columnNumber: 6
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/LightboxModal.tsx",
-                    lineNumber: 60,
+                    lineNumber: 40,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {

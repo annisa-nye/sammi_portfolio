@@ -37,35 +37,35 @@ export default function LightboxModal({
 				className='relative w-[90vw] h-[90vh] flex items-center justify-center'
 				onClick={(e) => e.stopPropagation()}
 			>
-				<button
-					onClick={onClose}
-					className='absolute -top-12 right-0 text-white hover:text-gray-300 z-10'
-					aria-label='Close modal'
-				>
-					<svg
-						className='w-8 h-8'
-						fill='none'
-						stroke='currentColor'
-						viewBox='0 0 24 24'
-					>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							strokeWidth={2}
-							d='M6 18L18 6M6 6l12 12'
-						/>
-					</svg>
-				</button>
-
 				<div className='relative w-full h-full flex items-center justify-center'>
 					<div className='relative w-full h-full max-w-[90vw] max-h-[90vh]'>
 						<button
+							onClick={onClose}
+							className='absolute top-2 right-2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-2 backdrop-blur-sm'
+							aria-label='Close modal'
+						>
+							<svg
+								className='w-6 h-6'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M6 18L18 6M6 6l12 12'
+								/>
+							</svg>
+						</button>
+
+						<button
 							onClick={handlePrevious}
-							className='absolute left-0 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10'
+							className='absolute left-2 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2 backdrop-blur-sm'
 							aria-label='Previous image'
 						>
 							<svg
-								className='w-8 h-8'
+								className='w-6 h-6'
 								fill='none'
 								stroke='currentColor'
 								viewBox='0 0 24 24'
@@ -81,11 +81,11 @@ export default function LightboxModal({
 
 						<button
 							onClick={handleNext}
-							className='absolute right-0 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10'
+							className='absolute right-2 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2 backdrop-blur-sm'
 							aria-label='Next image'
 						>
 							<svg
-								className='w-8 h-8'
+								className='w-6 h-6'
 								fill='none'
 								stroke='currentColor'
 								viewBox='0 0 24 24'
