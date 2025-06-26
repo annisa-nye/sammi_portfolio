@@ -263,15 +263,34 @@ export default function HomePage() {
 									<button
 										key={title}
 										onClick={() => {
-											const images =
-												gallerySections
-													.find((section) => section.title === title)
-													?.images.map((image) => ({
-														src: `${S3_BASE_URL}/gallery/${title.toLowerCase()}/${image}`,
-														alt: `${title} ${image}`,
-													})) || [];
-											setSelectedImage(images[0]);
-											setLightboxImages(images);
+											if (title === 'Painting') {
+												// For paintings, include detailed information
+												const paintingImages = paintingsData.paintings.flatMap(
+													(mediumGroup) =>
+														mediumGroup.images.map((painting) => ({
+															src: `${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
+															alt:
+																painting.title ||
+																`${mediumGroup.medium} painting`,
+															title: painting.title,
+															year: painting.year,
+															medium: mediumGroup.medium,
+														}))
+												);
+												setSelectedImage(paintingImages[0]);
+												setLightboxImages(paintingImages);
+											} else {
+												// For other categories, use the existing logic
+												const images =
+													gallerySections
+														.find((section) => section.title === title)
+														?.images.map((image) => ({
+															src: `${S3_BASE_URL}/gallery/${title.toLowerCase()}/${image}`,
+															alt: `${title} ${image}`,
+														})) || [];
+												setSelectedImage(images[0]);
+												setLightboxImages(images);
+											}
 										}}
 										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col`}
 									>
@@ -305,18 +324,7 @@ export default function HomePage() {
 											)}
 										</div>
 										<div className='p-3 sm:p-6'>
-											<h2 className='text-lg sm:text-2xl font-bold mb-1 sm:mb-2'>
-												{title}
-											</h2>
-											<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400'>
-												{title === 'Painting'
-													? 'View paintings in various mediums'
-													: title === 'Illustration'
-													? 'Explore charcoal, ink, and sketch works'
-													: title === 'Collage'
-													? 'Browse mixed media collages'
-													: 'Discover digital artworks'}
-											</p>
+											<h2 className='text-lg sm:text-2xl font-bold'>{title}</h2>
 										</div>
 									</button>
 								);
@@ -327,12 +335,7 @@ export default function HomePage() {
 						<div className='mb-6 sm:mb-12'>
 							<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden'>
 								<div className='p-4 sm:p-6 text-center'>
-									<h2 className='text-lg sm:text-2xl font-bold mb-1 sm:mb-2'>
-										Animation
-									</h2>
-									<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4'>
-										Watch animated works and motion pieces
-									</p>
+									<h2 className='text-lg sm:text-2xl font-bold'>Animation</h2>
 								</div>
 								<div className='relative w-full aspect-video h-[500px]'>
 									<Image
