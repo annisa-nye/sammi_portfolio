@@ -10,7 +10,6 @@ import Footer from '@/components/Footer';
 import SystemThemeHeading from '@/components/SystemThemeHeading';
 import SystemThemeLogo from '@/components/SystemThemeLogo';
 import InstagramSection from '@/components/InstagramSection';
-import ScrollAnimation from '@/components/ScrollAnimation';
 import LightboxModal from '@/components/LightboxModal';
 
 const S3_BASE_URL =
@@ -203,9 +202,6 @@ export default function HomePage() {
 				>
 					<SystemThemeLogo />
 				</section>
-
-				{/* Scroll Animation Section */}
-				<ScrollAnimation />
 
 				{/* About Section */}
 				<section
