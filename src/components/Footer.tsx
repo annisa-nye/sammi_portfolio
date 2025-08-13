@@ -131,6 +131,32 @@ export default function Footer() {
 					</div>
 				</div>
 
+				{/* Acknowledgement of Country */}
+				<div className='mb-8 p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-300 dark:border-zinc-700'>
+					<div className='max-w-3xl mx-auto text-center px-4'>
+						{/* Australian Aboriginal Flag */}
+						<Image
+							src='/footer/aboriginal_flag.png'
+							alt='Australian Aboriginal Flag'
+							width={160}
+							height={100}
+							className='mx-auto h-auto w-28 md:w-36 object-contain'
+							priority
+						/>
+
+						{/* Acknowledgement Text */}
+						<p className='mt-5 text-sm md:text-[0.95rem] leading-relaxed text-gray-800 dark:text-gray-200'>
+							I live, create and work across the sovereign and unceded lands of
+							the Dharawal, Wodi Wodi, Gadigal, Bidjigal and Wiradjuri. I
+							acknowledge the traditional custodians of these lands and their
+							ongoing connection to Country, practices of sound, knowledge
+							sharing, healing, and storytelling. I pay my respects to Elders
+							past and present. Sovereignty was never ceded in so-called
+							"Australia." Always was, always will be, Aboriginal Land.
+						</p>
+					</div>
+				</div>
+
 				{/* Copyright */}
 				<p className='text-center text-sm text-gray-500 dark:text-gray-400'>
 					© {new Date().getFullYear()} Sammi Carr. All rights reserved.
