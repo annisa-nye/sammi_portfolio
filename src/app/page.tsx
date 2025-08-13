@@ -406,6 +406,30 @@ export default function HomePage() {
 								</div>
 							</div>
 						</div>
+
+						{/* YouTube Video - Sammi's Animation Work */}
+						<div className='mb-6 sm:mb-12'>
+							<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden'>
+								<div className='p-4 sm:p-6 text-center'>
+									<h2 className='text-lg sm:text-2xl font-bold mb-2'>
+										Animation Work
+									</h2>
+									<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400'>
+										Animation created by Sammi Carr
+									</p>
+								</div>
+								<div className='relative w-full aspect-video'>
+									<iframe
+										src='https://www.youtube.com/embed/1SyTzt6LW1A'
+										title='Animation by Sammi Carr'
+										className='w-full h-full'
+										frameBorder='0'
+										allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+										allowFullScreen
+									></iframe>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
 
