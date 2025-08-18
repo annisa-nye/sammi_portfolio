@@ -162,6 +162,7 @@ export default function HomePage() {
 		const interval = setInterval(() => {
 			setIsLoading(true);
 			setCurrentSet((prev) => (prev % 4) + 1);
+			setCurrentAnimation((prev) => (prev % 4) + 1); // Sync animation with gallery rotation
 			setImageLoadError({}); // Reset errors when changing sets
 		}, 10000);
 		return () => clearInterval(interval);
@@ -184,12 +185,12 @@ export default function HomePage() {
 		);
 	};
 
-	const handlePreviousAnimation = () => {
-		setCurrentAnimation((prev) => (prev === 1 ? 4 : prev - 1));
-	};
-
-	const handleNextAnimation = () => {
-		setCurrentAnimation((prev) => (prev === 4 ? 1 : prev + 1));
+	const handleExhibitionImageClick = (
+		images: { src: string; alt: string }[],
+		initialIndex: number
+	) => {
+		setSelectedImage(images[initialIndex]);
+		setLightboxImages(images);
 	};
 
 	return (
@@ -350,9 +351,13 @@ export default function HomePage() {
 									{/* Navigation Controls */}
 									<div className='absolute inset-0 flex items-center justify-between p-4'>
 										<button
-											onClick={handlePreviousAnimation}
+											onClick={() => {
+												const newSet = currentSet === 1 ? 4 : currentSet - 1;
+												setCurrentSet(newSet);
+												setCurrentAnimation(newSet);
+											}}
 											className='bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors duration-200'
-											aria-label='Previous animation'
+											aria-label='Previous set'
 										>
 											<svg
 												className='w-6 h-6'
@@ -369,9 +374,13 @@ export default function HomePage() {
 											</svg>
 										</button>
 										<button
-											onClick={handleNextAnimation}
+											onClick={() => {
+												const newSet = currentSet === 4 ? 1 : currentSet + 1;
+												setCurrentSet(newSet);
+												setCurrentAnimation(newSet);
+											}}
 											className='bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors duration-200'
-											aria-label='Next animation'
+											aria-label='Next set'
 										>
 											<svg
 												className='w-6 h-6'
@@ -393,13 +402,16 @@ export default function HomePage() {
 										{[1, 2, 3, 4].map((num) => (
 											<button
 												key={num}
-												onClick={() => setCurrentAnimation(num)}
+												onClick={() => {
+													setCurrentAnimation(num);
+													setCurrentSet(num); // Sync gallery preview with animation
+												}}
 												className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-													currentAnimation === num
+													currentSet === num
 														? 'bg-white'
 														: 'bg-white/50 hover:bg-white/75'
 												}`}
-												aria-label={`Go to animation ${num}`}
+												aria-label={`Go to set ${num}`}
 											/>
 										))}
 									</div>
