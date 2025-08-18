@@ -152,7 +152,8 @@ export default function Footer() {
 							ongoing connection to Country, practices of sound, knowledge
 							sharing, healing, and storytelling. I pay my respects to Elders
 							past and present. Sovereignty was never ceded in so-called
-							"Australia." Always was, always will be, Aboriginal Land.
+							&quot;Australia.&quot; Always was, always will be, Aboriginal
+							Land.
 						</p>
 					</div>
 				</div>
