@@ -466,6 +466,7 @@ export default function HomePage() {
 							)}
 							isExpanded={expandedCVSections.includes('Exhibitions')}
 							onToggle={() => handleCVToggle('Exhibitions')}
+							onImageClick={handleExhibitionImageClick}
 						/>
 						<CVSection
 							title='Residencies'
@@ -474,6 +475,7 @@ export default function HomePage() {
 							)}
 							isExpanded={expandedCVSections.includes('Residencies')}
 							onToggle={() => handleCVToggle('Residencies')}
+							onImageClick={handleExhibitionImageClick}
 						/>
 						<CVSection
 							title='Collaborations'
@@ -482,6 +484,7 @@ export default function HomePage() {
 							)}
 							isExpanded={expandedCVSections.includes('Collaborations')}
 							onToggle={() => handleCVToggle('Collaborations')}
+							onImageClick={handleExhibitionImageClick}
 						/>
 					</div>
 				</section>

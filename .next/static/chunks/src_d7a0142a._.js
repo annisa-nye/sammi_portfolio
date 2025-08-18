@@ -105,7 +105,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$imag
 'use client';
 ;
 ;
-function CVSection({ title, data, isExpanded, onToggle }) {
+function CVSection({ title, data, isExpanded, onToggle, onImageClick }) {
+    const handleImageClick = (images, initialIndex)=>{
+        if (onImageClick) {
+            onImageClick(images, initialIndex);
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: `${isExpanded ? 'mb-12' : 'mb-4'}`,
         children: [
@@ -118,7 +123,7 @@ function CVSection({ title, data, isExpanded, onToggle }) {
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/components/CVSection.tsx",
-                        lineNumber: 24,
+                        lineNumber: 38,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -126,13 +131,13 @@ function CVSection({ title, data, isExpanded, onToggle }) {
                         children: isExpanded ? '−' : '+'
                     }, void 0, false, {
                         fileName: "[project]/src/components/CVSection.tsx",
-                        lineNumber: 25,
+                        lineNumber: 39,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/CVSection.tsx",
-                lineNumber: 20,
+                lineNumber: 34,
                 columnNumber: 4
             }, this),
             isExpanded && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -145,7 +150,7 @@ function CVSection({ title, data, isExpanded, onToggle }) {
                                 children: year
                             }, void 0, false, {
                                 fileName: "[project]/src/components/CVSection.tsx",
-                                lineNumber: 32,
+                                lineNumber: 46,
                                 columnNumber: 8
                             }, this),
                             items.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -155,138 +160,174 @@ function CVSection({ title, data, isExpanded, onToggle }) {
                                             children: item
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CVSection.tsx",
-                                            lineNumber: 37,
+                                            lineNumber: 51,
                                             columnNumber: 10
                                         }, this),
                                         item.includes('Welcome To The Dinner Party') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex overflow-x-auto space-x-4 mt-4",
                                             children: [
                                                 ...Array(8)
-                                            ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-48 h-48 flex-shrink-0",
+                                            ].map((_, index)=>{
+                                                const images = [
+                                                    ...Array(8)
+                                                ].map((_, imgIndex)=>({
+                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/platform-exhibition/0${imgIndex + 1}.jpg`,
+                                                        alt: `Exhibition Image ${imgIndex + 1}`
+                                                    }));
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    onClick: ()=>handleImageClick(images, index),
+                                                    className: "w-48 h-48 flex-shrink-0 hover:opacity-80 transition-opacity cursor-pointer",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/platform-exhibition/0${index + 1}.jpg`,
-                                                        alt: `Exhibition Image ${index + 1}`,
+                                                        src: images[index].src,
+                                                        alt: images[index].alt,
                                                         width: 192,
                                                         height: 192,
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/CVSection.tsx",
-                                                        lineNumber: 42,
-                                                        columnNumber: 14
+                                                        lineNumber: 67,
+                                                        columnNumber: 15
                                                     }, this)
                                                 }, index, false, {
                                                     fileName: "[project]/src/components/CVSection.tsx",
-                                                    lineNumber: 41,
-                                                    columnNumber: 13
-                                                }, this))
+                                                    lineNumber: 62,
+                                                    columnNumber: 14
+                                                }, this);
+                                            })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CVSection.tsx",
-                                            lineNumber: 39,
+                                            lineNumber: 53,
                                             columnNumber: 11
                                         }, this),
                                         item.includes('Prisma Collective') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex overflow-x-auto space-x-4 mt-4",
                                             children: [
                                                 ...Array(11)
-                                            ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-48 h-48 flex-shrink-0",
+                                            ].map((_, index)=>{
+                                                const images = [
+                                                    ...Array(11)
+                                                ].map((_, imgIndex)=>({
+                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/prisma-residency/${imgIndex < 9 ? '0' : ''}${imgIndex + 1}.jpg`,
+                                                        alt: `Prisma Collective Image ${imgIndex + 1}`
+                                                    }));
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    onClick: ()=>handleImageClick(images, index),
+                                                    className: "w-48 h-48 flex-shrink-0 hover:opacity-80 transition-opacity cursor-pointer",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/prisma-residency/${index < 9 ? '0' : ''}${index + 1}.jpg`,
-                                                        alt: `Prisma Collective Image ${index + 1}`,
+                                                        src: images[index].src,
+                                                        alt: images[index].alt,
                                                         width: 192,
                                                         height: 192,
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/CVSection.tsx",
-                                                        lineNumber: 59,
-                                                        columnNumber: 14
+                                                        lineNumber: 94,
+                                                        columnNumber: 15
                                                     }, this)
                                                 }, index, false, {
                                                     fileName: "[project]/src/components/CVSection.tsx",
-                                                    lineNumber: 58,
-                                                    columnNumber: 13
-                                                }, this))
+                                                    lineNumber: 89,
+                                                    columnNumber: 14
+                                                }, this);
+                                            })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CVSection.tsx",
-                                            lineNumber: 56,
+                                            lineNumber: 80,
                                             columnNumber: 11
                                         }, this),
                                         item.includes('Buinho Creative Hub') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex overflow-x-auto space-x-4 mt-4",
                                             children: [
                                                 ...Array(4)
-                                            ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-48 h-48 flex-shrink-0",
+                                            ].map((_, index)=>{
+                                                const images = [
+                                                    ...Array(4)
+                                                ].map((_, imgIndex)=>({
+                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/messejana-residency/0${imgIndex + 1}.jpg`,
+                                                        alt: `Buinho Creative Hub Image ${imgIndex + 1}`
+                                                    }));
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    onClick: ()=>handleImageClick(images, index),
+                                                    className: "w-48 h-48 flex-shrink-0 hover:opacity-80 transition-opacity cursor-pointer",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/messejana-residency/0${index + 1}.jpg`,
-                                                        alt: `Buinho Creative Hub Image ${index + 1}`,
+                                                        src: images[index].src,
+                                                        alt: images[index].alt,
                                                         width: 192,
                                                         height: 192,
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/CVSection.tsx",
-                                                        lineNumber: 76,
-                                                        columnNumber: 14
+                                                        lineNumber: 121,
+                                                        columnNumber: 15
                                                     }, this)
                                                 }, index, false, {
                                                     fileName: "[project]/src/components/CVSection.tsx",
-                                                    lineNumber: 75,
-                                                    columnNumber: 13
-                                                }, this))
+                                                    lineNumber: 116,
+                                                    columnNumber: 14
+                                                }, this);
+                                            })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CVSection.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 107,
                                             columnNumber: 11
                                         }, this),
                                         item.includes('GlogAUair, curated by Justin Ross and Laura Olea Lopez. Berlin, Germany.') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex overflow-x-auto space-x-4 mt-4",
                                             children: [
                                                 ...Array(9)
-                                            ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-48 h-48 flex-shrink-0",
+                                            ].map((_, index)=>{
+                                                const images = [
+                                                    ...Array(9)
+                                                ].map((_, imgIndex)=>({
+                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/glogauair-residency/0${imgIndex + 1}.jpg`,
+                                                        alt: `GlogAUair Image ${imgIndex + 1}`
+                                                    }));
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    onClick: ()=>handleImageClick(images, index),
+                                                    className: "w-48 h-48 flex-shrink-0 hover:opacity-80 transition-opacity cursor-pointer",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                        src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/glogauair-residency/0${index + 1}.jpg`,
-                                                        alt: `GlogAUair Image ${index + 1}`,
+                                                        src: images[index].src,
+                                                        alt: images[index].alt,
                                                         width: 192,
                                                         height: 192,
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/CVSection.tsx",
-                                                        lineNumber: 95,
-                                                        columnNumber: 14
+                                                        lineNumber: 150,
+                                                        columnNumber: 15
                                                     }, this)
                                                 }, index, false, {
                                                     fileName: "[project]/src/components/CVSection.tsx",
-                                                    lineNumber: 94,
-                                                    columnNumber: 13
-                                                }, this))
+                                                    lineNumber: 145,
+                                                    columnNumber: 14
+                                                }, this);
+                                            })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CVSection.tsx",
-                                            lineNumber: 92,
+                                            lineNumber: 136,
                                             columnNumber: 11
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/src/components/CVSection.tsx",
-                                    lineNumber: 36,
+                                    lineNumber: 50,
                                     columnNumber: 9
                                 }, this))
                         ]
                     }, year, true, {
                         fileName: "[project]/src/components/CVSection.tsx",
-                        lineNumber: 31,
+                        lineNumber: 45,
                         columnNumber: 7
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/CVSection.tsx",
-                lineNumber: 29,
+                lineNumber: 43,
                 columnNumber: 5
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/CVSection.tsx",
-        lineNumber: 19,
+        lineNumber: 33,
         columnNumber: 3
     }, this);
 }
@@ -2267,7 +2308,8 @@ function HomePage() {
                                     title: "Exhibitions",
                                     data: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$cv$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cv"].exhibitions.sort((a, b)=>b.year - a.year),
                                     isExpanded: expandedCVSections.includes('Exhibitions'),
-                                    onToggle: ()=>handleCVToggle('Exhibitions')
+                                    onToggle: ()=>handleCVToggle('Exhibitions'),
+                                    onImageClick: handleExhibitionImageClick
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/page.tsx",
                                     lineNumber: 462,
@@ -2277,20 +2319,22 @@ function HomePage() {
                                     title: "Residencies",
                                     data: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$cv$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cv"].residencies.sort((a, b)=>b.year - a.year),
                                     isExpanded: expandedCVSections.includes('Residencies'),
-                                    onToggle: ()=>handleCVToggle('Residencies')
+                                    onToggle: ()=>handleCVToggle('Residencies'),
+                                    onImageClick: handleExhibitionImageClick
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 470,
+                                    lineNumber: 471,
                                     columnNumber: 7
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CVSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     title: "Collaborations",
                                     data: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$cv$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cv"].collaborations.sort((a, b)=>b.year - a.year),
                                     isExpanded: expandedCVSections.includes('Collaborations'),
-                                    onToggle: ()=>handleCVToggle('Collaborations')
+                                    onToggle: ()=>handleCVToggle('Collaborations'),
+                                    onImageClick: handleExhibitionImageClick
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 478,
+                                    lineNumber: 480,
                                     columnNumber: 7
                                 }, this)
                             ]
@@ -2308,12 +2352,12 @@ function HomePage() {
                         posts: instagramPosts
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 490,
+                        lineNumber: 493,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 493,
+                        lineNumber: 496,
                         columnNumber: 5
                     }, this)
                 ]
@@ -2329,7 +2373,7 @@ function HomePage() {
                 initialIndex: lightboxImages.findIndex((image)=>image.src === selectedImage.src)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 498,
+                lineNumber: 501,
                 columnNumber: 5
             }, this)
         ]
