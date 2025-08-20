@@ -354,7 +354,6 @@ const paintingsData = {
                 },
                 {
                     filename: '03.jpg',
-                    title: 'Acrylic 3',
                     year: 2024
                 },
                 {

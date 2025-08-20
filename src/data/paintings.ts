@@ -7,7 +7,7 @@ export const paintingsData: PaintingsData = {
 			images: [
 				{ filename: '01.jpg', title: 'Here Is A Pear', year: 2024 },
 				{ filename: '02.jpg', title: 'Here Is Another Pear', year: 2024 },
-				{ filename: '03.jpg', title: 'Acrylic 3', year: 2024 },
+				{ filename: '03.jpg', year: 2024 },
 				{ filename: '04.jpg', year: 2024 },
 				{ filename: '05.jpg', year: 2024 },
 				{ filename: '06.jpg', title: 'Freeze', year: 2021 },
