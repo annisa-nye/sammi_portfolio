@@ -38,6 +38,9 @@ export default function LightboxModal({
 	const hasPaintingInfo =
 		currentImage.title || currentImage.year || currentImage.medium;
 
+	// Check if this is the illustration section (has many thumbnails)
+	const isIllustrationSection = images.length > 20;
+
 	return (
 		<div
 			className='fixed inset-0 z-50 flex items-center justify-center bg-black/90'
@@ -152,7 +155,11 @@ export default function LightboxModal({
 
 				{/* Thumbnail Strip - Below Image */}
 				<div className='flex-shrink-0 bg-black/50 text-white p-4'>
-					<div className='flex overflow-x-auto space-x-2 justify-center'>
+					<div
+						className={`flex overflow-x-auto gap-2 ${
+							isIllustrationSection ? 'justify-start px-4' : 'justify-center'
+						}`}
+					>
 						{images.map((image, index) => (
 							<button
 								key={index}
