@@ -11,6 +11,9 @@ interface SystemThemeHeadingProps {
 	priority?: boolean;
 }
 
+const S3_BASE_URL =
+	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
+
 export default function SystemThemeHeading({
 	name,
 	width = 500,
@@ -37,8 +40,8 @@ export default function SystemThemeHeading({
 	}
 
 	const imagePath = isDarkMode
-		? `/headings-dark/${name}-invert.png`
-		: `/headings/${name}.png`;
+		? `${S3_BASE_URL}/headings-dark/${name}-invert.png`
+		: `${S3_BASE_URL}/headings/${name}.png`;
 
 	return (
 		<Image
@@ -48,6 +51,7 @@ export default function SystemThemeHeading({
 			height={height}
 			className={`mx-auto mb-10 ${className}`}
 			priority={priority}
+			unoptimized
 		/>
 	);
 }

@@ -79,51 +79,51 @@ const initialGallerySections: GallerySection[] = [
 const instagramPosts = [
 	{
 		id: '1',
-		imageUrl: '/instagram/1_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/1_instagram.jpg`,
 		caption: "and that's a hot girl's prerogative and pleasure",
 		link: 'https://www.instagram.com/p/DIIorcNhrb2/?img_index=1',
 	},
 	{
 		id: '2',
-		imageUrl: '/instagram/2_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/2_instagram.jpg`,
 		caption: 'PLEASE I NEED A STUDIO I CANT SLEEP IN HERE ANYMORE',
 		link: 'https://www.instagram.com/p/DGfXUz9hW7H/',
 	},
 	{
 		id: '3',
-		imageUrl: '/instagram/3_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/3_instagram.jpg`,
 		caption:
 			"HEY SO I'm EXCITED for upcoming showcase at @prisma.lx where i have been BLESSED with a 2 month residency in this !!!! epic !!! lego!!! city !!!",
 		link: 'https://www.instagram.com/p/C35lP49tHol/?img_index=1',
 	},
 	{
 		id: '4',
-		imageUrl: '/instagram/4_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/4_instagram.jpg`,
 		caption: 'primary colours make me go so feral',
 		link: 'https://www.instagram.com/p/CvuoR-ytbfB/?img_index=1',
 	},
 	{
 		id: '5',
-		imageUrl: '/instagram/5_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/5_instagram.jpg`,
 		caption:
 			'discarded surf board pix for unofficial headshot biz purposes. thanks 2 my day dot sista gorl @_sarahbirch 🤝🤝',
 		link: 'https://www.instagram.com/p/CudS9itv2wd/?img_index=1',
 	},
 	{
 		id: '6',
-		imageUrl: '/instagram/6_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/6_instagram.jpg`,
 		caption: '"throat handkerchief"',
 		link: 'https://www.instagram.com/p/CtI5hYyrorF/?img_index=5',
 	},
 	{
 		id: '7',
-		imageUrl: '/instagram/7_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/7_instagram.jpg`,
 		caption: 'Bratz detachable foot behaviour',
 		link: 'https://www.instagram.com/p/CpOJKC4hLJT/?img_index=1',
 	},
 	{
 		id: '8',
-		imageUrl: '/instagram/8_instagram.jpg',
+		imageUrl: `${S3_BASE_URL}/instagram/8_instagram.jpg`,
 		caption: 'i come to you with my hands 👉👈 and my face 🥹',
 		link: 'https://www.instagram.com/p/CkLJc28NHWi/',
 	},
@@ -219,12 +219,13 @@ export default function HomePage() {
 						/>
 						<div className='mb-8 mx-auto mt-8 w-full max-w-md'>
 							<Image
-								src='/headshot/headshot-1.jpg'
+								src={`${S3_BASE_URL}/headshot/headshot-1.jpg`}
 								alt='Sammi Carr headshot'
 								width={600}
 								height={400}
 								className='w-full h-auto object-cover rounded border border-gray-300 shadow-sm'
 								priority
+								unoptimized
 							/>
 						</div>
 						<p className='italic text-base sm:text-lg text-gray-800 dark:text-gray-200 leading-relaxed text-center'>
@@ -303,7 +304,7 @@ export default function HomePage() {
 											)}
 											{!hasError ? (
 												<Image
-													src={`/gallery-preview/${imageKey}.jpg`}
+													src={`${S3_BASE_URL}/gallery-preview/${imageKey}.jpg`}
 													alt={`${title} preview`}
 													fill
 													className={`object-cover transition-opacity duration-500 ${
@@ -315,6 +316,7 @@ export default function HomePage() {
 													onLoad={handleImageLoad}
 													loading={currentSet === 1 ? 'eager' : 'lazy'}
 													quality={75}
+													unoptimized
 												/>
 											) : (
 												<div className='absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800'>
@@ -340,7 +342,7 @@ export default function HomePage() {
 								</div>
 								<div className='relative w-full aspect-video h-[500px]'>
 									<Image
-										src={`/animation/${currentAnimation}_animation.gif`}
+										src={`${S3_BASE_URL}/animation/${currentAnimation}_animation.gif`}
 										alt={`Animation ${currentAnimation}`}
 										fill
 										className='object-contain'

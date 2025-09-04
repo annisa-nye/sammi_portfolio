@@ -70,6 +70,7 @@ export default function CVSection({
 															width={192}
 															height={192}
 															className='w-full h-full object-cover'
+															unoptimized
 														/>
 													</button>
 												);
@@ -97,6 +98,7 @@ export default function CVSection({
 															width={192}
 															height={192}
 															className='w-full h-full object-cover'
+															unoptimized
 														/>
 													</button>
 												);
@@ -124,6 +126,7 @@ export default function CVSection({
 															width={192}
 															height={192}
 															className='w-full h-full object-cover'
+															unoptimized
 														/>
 													</button>
 												);
@@ -153,6 +156,7 @@ export default function CVSection({
 															width={192}
 															height={192}
 															className='w-full h-full object-cover'
+															unoptimized
 														/>
 													</button>
 												);

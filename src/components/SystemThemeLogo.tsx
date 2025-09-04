@@ -7,6 +7,9 @@ interface SystemThemeLogoProps {
 	className?: string;
 }
 
+const S3_BASE_URL =
+	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
+
 export default function SystemThemeLogo({
 	className = '',
 }: SystemThemeLogoProps) {
@@ -28,7 +31,9 @@ export default function SystemThemeLogo({
 		return null; // Or a loading spinner, or fallback light mode image
 	}
 
-	const logoSrc = isDarkMode ? '/logo/logo-invert.gif' : '/logo/logo.gif';
+	const logoSrc = isDarkMode
+		? `${S3_BASE_URL}/logo/logo-invert.gif`
+		: `${S3_BASE_URL}/logo/logo.gif`;
 
 	return (
 		<Image
@@ -38,7 +43,7 @@ export default function SystemThemeLogo({
 			height={400}
 			className={`mx-auto mb-6 object-contain w-[800px] h-auto ${className}`}
 			priority
-			unoptimized // Required for animated GIFs
+			unoptimized
 		/>
 	);
 }

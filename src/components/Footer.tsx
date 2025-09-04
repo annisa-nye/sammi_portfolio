@@ -4,6 +4,9 @@ import Image from 'next/image';
 import SystemThemeHeading from './SystemThemeHeading';
 import { useState, useEffect } from 'react';
 
+const S3_BASE_URL =
+	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
+
 export default function Footer() {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	const [mounted, setMounted] = useState(false);
@@ -23,7 +26,9 @@ export default function Footer() {
 		return null; // Prevent hydration mismatch
 	}
 
-	const logoSrc = isDarkMode ? '/logo/logo-invert.png' : '/logo/logo.png';
+	const logoSrc = isDarkMode
+		? `${S3_BASE_URL}/logo/logo-invert.png`
+		: `${S3_BASE_URL}/logo/logo.png`;
 
 	return (
 		<section id='contact' className='bg-white dark:bg-[#0a0a0a] py-12'>
@@ -48,6 +53,7 @@ export default function Footer() {
 								fill
 								className='object-contain'
 								priority
+								unoptimized
 							/>
 						</div>
 
@@ -136,12 +142,13 @@ export default function Footer() {
 					<div className='max-w-3xl mx-auto text-center px-4'>
 						{/* Australian Aboriginal Flag */}
 						<Image
-							src='/footer/aboriginal_flag.png'
+							src={`${S3_BASE_URL}/footer/aboriginal_flag.png`}
 							alt='Australian Aboriginal Flag'
 							width={160}
 							height={100}
 							className='mx-auto h-auto w-28 md:w-36 object-contain'
 							priority
+							unoptimized
 						/>
 
 						{/* Acknowledgement Text */}

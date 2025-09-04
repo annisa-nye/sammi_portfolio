@@ -145,7 +145,7 @@ export default function LightboxModal({
 							priority
 							quality={90}
 							className='object-contain'
-							unoptimized={false}
+							unoptimized
 						/>
 					</div>
 				</div>
@@ -167,6 +167,7 @@ export default function LightboxModal({
 									width={64}
 									height={64}
 									className='object-cover'
+									unoptimized
 								/>
 							</button>
 						))}
