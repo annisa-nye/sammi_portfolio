@@ -15,6 +15,36 @@ import LightboxModal from '@/components/LightboxModal';
 const S3_BASE_URL =
 	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
 
+const PREVIEW_TO_ORIGINAL: Record<
+	1 | 2 | 3 | 4,
+	Record<'collage' | 'digital' | 'illustration' | 'painting', string>
+> = {
+	1: {
+		collage: 'gallery/collage/01.jpg',
+		digital: 'gallery/digital/02.jpg',
+		illustration: 'gallery/illustration/ink/02.jpg',
+		painting: 'gallery/painting/gouache/02.jpg',
+	},
+	2: {
+		collage: 'gallery/collage/16.jpg',
+		digital: 'gallery/digital/03.jpg',
+		illustration: 'gallery/illustration/oil-pastel/01.jpg',
+		painting: 'gallery/painting/oil/02.jpg',
+	},
+	3: {
+		collage: 'gallery/collage/08.jpg',
+		digital: 'gallery/digital/05.jpg',
+		illustration: 'gallery/illustration/charcoal/04.jpg',
+		painting: 'gallery/painting/oil/04.jpg',
+	},
+	4: {
+		collage: 'gallery/collage/05.jpg',
+		digital: 'gallery/digital/04.jpg',
+		illustration: 'gallery/illustration/ink/05.jpg',
+		painting: 'gallery/painting/acrylic/02.jpg',
+	},
+};
+
 interface CVItem {
 	year: number;
 	items: string[];
@@ -136,8 +166,32 @@ const GALLERY_PREVIEW_CATEGORIES = [
 	{ title: 'Digital', key: 'digital' },
 ];
 
+type LBImage = { src: string; alt: string; title?: string; year?: number; medium?: string };
+
+function getSectionImages(title: string): LBImage[] {
+	if (title === 'Painting') {
+		// Use paintingsData to include metadata
+		return paintingsData.paintings.flatMap((mediumGroup) =>
+			mediumGroup.images.map((painting) => ({
+				src: `${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
+				alt: painting.title || `${mediumGroup.medium} painting`,
+				title: painting.title,
+				year: painting.year,
+				medium: mediumGroup.medium,
+			}))
+		);
+	}
+
+	// Other sections: Illustration, Collage, Digital (use initialGallerySections entries)
+	const section = initialGallerySections.find((s) => s.title === title);
+	const images = section?.images ?? [];
+	return images.map((image) => ({
+		src: `${S3_BASE_URL}/gallery/${title.toLowerCase()}/${image}`,
+		alt: `${title} ${image}`,
+	}));
+}
+
 export default function HomePage() {
-	const [gallerySections] = useState<GallerySection[]>(initialGallerySections);
 	const [expandedCVSections, setExpandedCVSections] = useState<string[]>([
 		'Exhibitions',
 	]);
@@ -154,9 +208,7 @@ export default function HomePage() {
 		{}
 	);
 	const [isLoading, setIsLoading] = useState(true);
-	const [lightboxImages, setLightboxImages] = useState<
-		{ src: string; alt: string }[]
-	>([]);
+	const [lightboxImages, setLightboxImages] = useState<LBImage[]>([]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -260,39 +312,42 @@ export default function HomePage() {
 							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => {
 								const imageKey = `${currentSet}_${key}`;
 								const hasError = imageLoadError[imageKey];
+								const mappedPath =
+									PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
+										key as 'collage' | 'digital' | 'illustration' | 'painting'
+									];
+								const fullSrc = mappedPath
+									? `${S3_BASE_URL}/${mappedPath}`
+									: `${S3_BASE_URL}/gallery-preview/${imageKey}.jpg`;
 
 								return (
 									<button
 										key={title}
 										onClick={() => {
-											if (title === 'Painting') {
-												// For paintings, include detailed information
-												const paintingImages = paintingsData.paintings.flatMap(
-													(mediumGroup) =>
-														mediumGroup.images.map((painting) => ({
-															src: `${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
-															alt:
-																painting.title ||
-																`${mediumGroup.medium} painting`,
-															title: painting.title,
-															year: painting.year,
-															medium: mediumGroup.medium,
-														}))
+											// Build the full list for this section
+											const imagesForSection = getSectionImages(title);
+
+											// Determine the mapped original (if any) for the current rotation
+											const mappedPath =
+												PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
+													key as 'collage' | 'digital' | 'illustration' | 'painting'
+												];
+											const mappedFullSrc = mappedPath
+												? `${S3_BASE_URL}/${mappedPath}`
+												: null;
+
+											// Initial index: prefer the mapped image; otherwise start at 0
+											let initialIndex = 0;
+											if (mappedFullSrc) {
+												const idx = imagesForSection.findIndex(
+													(img) => img.src === mappedFullSrc
 												);
-												setSelectedImage(paintingImages[0]);
-												setLightboxImages(paintingImages);
-											} else {
-												// For other categories, use the existing logic
-												const images =
-													gallerySections
-														.find((section) => section.title === title)
-														?.images.map((image) => ({
-															src: `${S3_BASE_URL}/gallery/${title.toLowerCase()}/${image}`,
-															alt: `${title} ${image}`,
-														})) || [];
-												setSelectedImage(images[0]);
-												setLightboxImages(images);
+												if (idx >= 0) initialIndex = idx;
 											}
+
+											// Set lightbox to the entire section and open at the mapped image
+											setLightboxImages(imagesForSection);
+											setSelectedImage(imagesForSection[initialIndex]);
 										}}
 										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col`}
 									>
@@ -304,7 +359,7 @@ export default function HomePage() {
 											)}
 											{!hasError ? (
 												<Image
-													src={`${S3_BASE_URL}/gallery-preview/${imageKey}.jpg`}
+													src={fullSrc}
 													alt={`${title} preview`}
 													fill
 													className={`object-cover transition-opacity duration-500 ${
