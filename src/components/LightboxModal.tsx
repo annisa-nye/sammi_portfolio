@@ -173,7 +173,7 @@ export default function LightboxModal({
 									alt={image.alt}
 									width={64}
 									height={64}
-									className='object-cover'
+									className='object-cover w-full h-full'
 									unoptimized
 								/>
 							</button>
