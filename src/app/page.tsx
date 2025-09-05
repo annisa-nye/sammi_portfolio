@@ -12,9 +12,6 @@ import SystemThemeLogo from '@/components/SystemThemeLogo';
 import InstagramSection from '@/components/InstagramSection';
 import LightboxModal from '@/components/LightboxModal';
 
-const S3_BASE_URL =
-	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
-
 const PREVIEW_TO_ORIGINAL: Record<
 	1 | 2 | 3 | 4,
 	Record<'collage' | 'digital' | 'illustration' | 'painting', string>
@@ -109,51 +106,51 @@ const initialGallerySections: GallerySection[] = [
 const instagramPosts = [
 	{
 		id: '1',
-		imageUrl: `${S3_BASE_URL}/instagram/1_instagram.jpg`,
+		imageUrl: `/instagram/1_instagram.jpg`,
 		caption: "and that's a hot girl's prerogative and pleasure",
 		link: 'https://www.instagram.com/p/DIIorcNhrb2/?img_index=1',
 	},
 	{
 		id: '2',
-		imageUrl: `${S3_BASE_URL}/instagram/2_instagram.jpg`,
+		imageUrl: `/instagram/2_instagram.jpg`,
 		caption: 'PLEASE I NEED A STUDIO I CANT SLEEP IN HERE ANYMORE',
 		link: 'https://www.instagram.com/p/DGfXUz9hW7H/',
 	},
 	{
 		id: '3',
-		imageUrl: `${S3_BASE_URL}/instagram/3_instagram.jpg`,
+		imageUrl: `/instagram/3_instagram.jpg`,
 		caption:
 			"HEY SO I'm EXCITED for upcoming showcase at @prisma.lx where i have been BLESSED with a 2 month residency in this !!!! epic !!! lego!!! city !!!",
 		link: 'https://www.instagram.com/p/C35lP49tHol/?img_index=1',
 	},
 	{
 		id: '4',
-		imageUrl: `${S3_BASE_URL}/instagram/4_instagram.jpg`,
+		imageUrl: `/instagram/4_instagram.jpg`,
 		caption: 'primary colours make me go so feral',
 		link: 'https://www.instagram.com/p/CvuoR-ytbfB/?img_index=1',
 	},
 	{
 		id: '5',
-		imageUrl: `${S3_BASE_URL}/instagram/5_instagram.jpg`,
+		imageUrl: `/instagram/5_instagram.jpg`,
 		caption:
 			'discarded surf board pix for unofficial headshot biz purposes. thanks 2 my day dot sista gorl @_sarahbirch 🤝🤝',
 		link: 'https://www.instagram.com/p/CudS9itv2wd/?img_index=1',
 	},
 	{
 		id: '6',
-		imageUrl: `${S3_BASE_URL}/instagram/6_instagram.jpg`,
+		imageUrl: `/instagram/6_instagram.jpg`,
 		caption: '"throat handkerchief"',
 		link: 'https://www.instagram.com/p/CtI5hYyrorF/?img_index=5',
 	},
 	{
 		id: '7',
-		imageUrl: `${S3_BASE_URL}/instagram/7_instagram.jpg`,
+		imageUrl: `/instagram/7_instagram.jpg`,
 		caption: 'Bratz detachable foot behaviour',
 		link: 'https://www.instagram.com/p/CpOJKC4hLJT/?img_index=1',
 	},
 	{
 		id: '8',
-		imageUrl: `${S3_BASE_URL}/instagram/8_instagram.jpg`,
+		imageUrl: `/instagram/8_instagram.jpg`,
 		caption: 'i come to you with my hands 👉👈 and my face 🥹',
 		link: 'https://www.instagram.com/p/CkLJc28NHWi/',
 	},
@@ -179,7 +176,7 @@ function getSectionImages(title: string): LBImage[] {
 		// Use paintingsData to include metadata
 		return paintingsData.paintings.flatMap((mediumGroup) =>
 			mediumGroup.images.map((painting) => ({
-				src: `${S3_BASE_URL}/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
+				src: `/gallery/painting/${mediumGroup.medium}/${painting.filename}`,
 				alt: painting.title || `${mediumGroup.medium} painting`,
 				title: painting.title,
 				year: painting.year,
@@ -192,7 +189,7 @@ function getSectionImages(title: string): LBImage[] {
 	const section = initialGallerySections.find((s) => s.title === title);
 	const images = section?.images ?? [];
 	return images.map((image) => ({
-		src: `${S3_BASE_URL}/gallery/${title.toLowerCase()}/${image}`,
+		src: `/gallery/${title.toLowerCase()}/${image}`,
 		alt: `${title} ${image}`,
 	}));
 }
@@ -277,7 +274,7 @@ export default function HomePage() {
 						/>
 						<div className='mb-8 mx-auto mt-8 w-full max-w-md'>
 							<Image
-								src={`${S3_BASE_URL}/headshot/headshot-1.jpg`}
+								src='/headshot/headshot-1.jpg'
 								alt='Sammi Carr headshot'
 								width={600}
 								height={400}
@@ -323,8 +320,8 @@ export default function HomePage() {
 										key as 'collage' | 'digital' | 'illustration' | 'painting'
 									];
 								const fullSrc = mappedPath
-									? `${S3_BASE_URL}/${mappedPath}`
-									: `${S3_BASE_URL}/gallery-preview/${imageKey}.jpg`;
+									? `/${mappedPath}`
+									: `/gallery-preview/${imageKey}.jpg`;
 
 								return (
 									<button
@@ -343,7 +340,7 @@ export default function HomePage() {
 														| 'painting'
 												];
 											const mappedFullSrc = mappedPath
-												? `${S3_BASE_URL}/${mappedPath}`
+												? `/${mappedPath}`
 												: null;
 
 											// Initial index: prefer the mapped image; otherwise start at 0
@@ -407,7 +404,7 @@ export default function HomePage() {
 								</div>
 								<div className='relative w-full aspect-video h-[500px]'>
 									<Image
-										src={`${S3_BASE_URL}/animation/${currentAnimation}_animation.gif`}
+										src={`/animation/${currentAnimation}_animation.gif`}
 										alt={`Animation ${currentAnimation}`}
 										fill
 										className='object-contain'

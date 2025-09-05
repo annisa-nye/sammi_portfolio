@@ -62,7 +62,7 @@ export default function CVSection({
 												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
 													{[...Array(8)].map((_, index) => {
 														const images = [...Array(8)].map((_, imgIndex) => ({
-															src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/platform-exhibition/0${
+															src: `/cv/platform-exhibition/0${
 																imgIndex + 1
 															}.jpg`,
 															alt: `Exhibition Image ${imgIndex + 1}`,
@@ -103,7 +103,7 @@ export default function CVSection({
 													{[...Array(11)].map((_, index) => {
 														const images = [...Array(11)].map(
 															(_, imgIndex) => ({
-																src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/prisma-residency/${
+																src: `/cv/prisma-residency/${
 																	imgIndex < 9 ? '0' : ''
 																}${imgIndex + 1}.jpg`,
 																alt: `Prisma Collective Image ${imgIndex + 1}`,
@@ -144,7 +144,7 @@ export default function CVSection({
 												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
 													{[...Array(4)].map((_, index) => {
 														const images = [...Array(4)].map((_, imgIndex) => ({
-															src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/messejana-residency/0${
+															src: `/cv/messejana-residency/0${
 																imgIndex + 1
 															}.jpg`,
 															alt: `Buinho Creative Hub Image ${imgIndex + 1}`,
@@ -186,7 +186,7 @@ export default function CVSection({
 												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
 													{[...Array(9)].map((_, index) => {
 														const images = [...Array(9)].map((_, imgIndex) => ({
-															src: `https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com/cv/glogauair-residency/0${
+															src: `/cv/glogauair-residency/0${
 																imgIndex + 1
 															}.jpg`,
 															alt: `GlogAUair Image ${imgIndex + 1}`,

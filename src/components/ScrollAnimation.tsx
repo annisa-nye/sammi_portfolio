@@ -5,9 +5,6 @@ import { useState, useEffect, useRef } from 'react';
 // Total number of frames in the animation
 const TOTAL_FRAMES = 38; // Updated to match the actual number of frames
 
-const S3_BASE_URL =
-	'https://sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com';
-
 export default function ScrollAnimation() {
 	const [currentFrame, setCurrentFrame] = useState(1);
 	const [isDarkMode, setIsDarkMode] = useState(false);
@@ -115,7 +112,7 @@ export default function ScrollAnimation() {
 				>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
-						src={`${S3_BASE_URL}/${animationFolder}/frame_${formatFrameNumber(
+						src={`/${animationFolder}/frame_${formatFrameNumber(
 							currentFrame
 						)}.gif`}
 						alt={`Animation frame ${currentFrame}`}

@@ -5,14 +5,7 @@ const nextConfig = {
 
 	// Image optimization settings
 	images: {
-		remotePatterns: [
-			{
-				protocol: 'https',
-				hostname: 'sammi-portfolio-images.s3.ap-southeast-2.amazonaws.com',
-				port: '',
-				pathname: '/**',
-			},
-		],
+		// No remote patterns needed since all images are local
 	},
 
 	// Security headers
