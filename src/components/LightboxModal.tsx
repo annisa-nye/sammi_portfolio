@@ -38,8 +38,8 @@ export default function LightboxModal({
 	const hasPaintingInfo =
 		currentImage.title || currentImage.year || currentImage.medium;
 
-	// Check if this is the illustration section (has many thumbnails)
-	const isIllustrationSection = images.length > 20;
+	// Check if this is a section with many thumbnails that needs horizontal scrolling
+	const needsHorizontalScroll = images.length > 15;
 
 	return (
 		<div
@@ -156,8 +156,10 @@ export default function LightboxModal({
 				{/* Thumbnail Strip - Below Image */}
 				<div className='flex-shrink-0 bg-black/50 text-white p-4'>
 					<div
-						className={`flex overflow-x-auto gap-2 ${
-							isIllustrationSection ? 'justify-start px-4' : 'justify-center'
+						className={`flex gap-2 ${
+							needsHorizontalScroll
+								? 'overflow-x-auto justify-start px-4'
+								: 'justify-center px-4'
 						}`}
 					>
 						{images.map((image, index) => (
