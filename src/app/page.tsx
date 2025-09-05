@@ -166,7 +166,13 @@ const GALLERY_PREVIEW_CATEGORIES = [
 	{ title: 'Digital', key: 'digital' },
 ];
 
-type LBImage = { src: string; alt: string; title?: string; year?: number; medium?: string };
+type LBImage = {
+	src: string;
+	alt: string;
+	title?: string;
+	year?: number;
+	medium?: string;
+};
 
 function getSectionImages(title: string): LBImage[] {
 	if (title === 'Painting') {
@@ -330,7 +336,11 @@ export default function HomePage() {
 											// Determine the mapped original (if any) for the current rotation
 											const mappedPath =
 												PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
-													key as 'collage' | 'digital' | 'illustration' | 'painting'
+													key as
+														| 'collage'
+														| 'digital'
+														| 'illustration'
+														| 'painting'
 												];
 											const mappedFullSrc = mappedPath
 												? `${S3_BASE_URL}/${mappedPath}`
@@ -481,11 +491,8 @@ export default function HomePage() {
 							<div className='w-full bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden'>
 								<div className='p-4 sm:p-6 text-center'>
 									<h2 className='text-lg sm:text-2xl font-bold mb-2'>
-										Animation Work
+										Music Video
 									</h2>
-									<p className='text-sm sm:text-base text-gray-600 dark:text-gray-400'>
-										Animation created by Sammi Carr
-									</p>
 								</div>
 								<div className='relative w-full aspect-video'>
 									<iframe
