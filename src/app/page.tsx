@@ -315,13 +315,17 @@ export default function HomePage() {
 							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => {
 								const imageKey = `${currentSet}_${key}`;
 								const hasError = imageLoadError[imageKey];
-								const mappedPath =
+								// Always use the cropped preview for the grid card
+								const previewSrc = `/gallery-preview/${imageKey}.jpg`;
+
+								// Keep the mapping ONLY for the lightbox initial index
+								const mappedPathForLightbox =
 									PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
 										key as 'collage' | 'digital' | 'illustration' | 'painting'
 									];
-								const fullSrc = mappedPath
-									? `/${mappedPath}`
-									: `/gallery-preview/${imageKey}.jpg`;
+								const mappedFullSrcForLightbox = mappedPathForLightbox
+									? `/${mappedPathForLightbox}`
+									: null;
 
 								return (
 									<button
@@ -330,24 +334,11 @@ export default function HomePage() {
 											// Build the full list for this section
 											const imagesForSection = getSectionImages(title);
 
-											// Determine the mapped original (if any) for the current rotation
-											const mappedPath =
-												PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
-													key as
-														| 'collage'
-														| 'digital'
-														| 'illustration'
-														| 'painting'
-												];
-											const mappedFullSrc = mappedPath
-												? `/${mappedPath}`
-												: null;
-
-											// Initial index: prefer the mapped image; otherwise start at 0
+											// Use the mapping only to select the initial lightbox image
 											let initialIndex = 0;
-											if (mappedFullSrc) {
+											if (mappedFullSrcForLightbox) {
 												const idx = imagesForSection.findIndex(
-													(img) => img.src === mappedFullSrc
+													(img) => img.src === mappedFullSrcForLightbox
 												);
 												if (idx >= 0) initialIndex = idx;
 											}
@@ -366,7 +357,7 @@ export default function HomePage() {
 											)}
 											{!hasError ? (
 												<Image
-													src={fullSrc}
+													src={previewSrc}
 													alt={`${title} preview`}
 													fill
 													className={`object-cover transition-opacity duration-500 ${
