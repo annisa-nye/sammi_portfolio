@@ -57,6 +57,18 @@ export default function CVSection({
 										<p className='text-gray-700 dark:text-gray-300 text-center font-medium'>
 											{item}
 										</p>
+										{item.includes("Illustrated animation for Thunder Fox E.P. 'The Best.' In collaboration with Jesse Tachibana.") && (
+											<div className="relative w-full aspect-video p-4 sm:p-6">
+												<iframe
+													src="https://www.youtube.com/embed/1SyTzt6LW1A"
+													title="Thunder Fox — The Best (Illustrated animation)"
+													className="w-full h-full rounded"
+													frameBorder="0"
+													allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+													allowFullScreen
+												/>
+											</div>
+										)}
 										{item.includes('Welcome To The Dinner Party') && (
 											<div className='relative'>
 												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
