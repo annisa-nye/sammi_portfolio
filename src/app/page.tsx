@@ -494,11 +494,11 @@ export default function HomePage() {
 										Music Video
 									</h2>
 								</div>
-								<div className='relative w-full aspect-video'>
+								<div className='relative w-full aspect-video p-4 sm:p-6'>
 									<iframe
 										src='https://www.youtube.com/embed/1SyTzt6LW1A'
 										title='Animation by Sammi Carr'
-										className='w-full h-full'
+										className='w-full h-full rounded'
 										frameBorder='0'
 										allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 										allowFullScreen
