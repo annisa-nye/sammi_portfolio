@@ -24,9 +24,7 @@ export default function CVSection({
 		images: { src: string; alt: string }[],
 		initialIndex: number
 	) => {
-		if (onImageClick) {
-			onImageClick(images, initialIndex);
-		}
+		if (onImageClick) onImageClick(images, initialIndex);
 	};
 
 	return (
@@ -51,178 +49,245 @@ export default function CVSection({
 							<h3 className='text-lg font-bold text-gray-800 dark:text-gray-100 text-center mb-4'>
 								{year}
 							</h3>
+
 							<div className='space-y-4'>
-								{items.map((item: string, i: number) => (
-									<div key={i} className='space-y-3'>
+								{items.map((item: string, i: number) => {
+									// ✅ Item text
+									const content = (
 										<p className='text-gray-700 dark:text-gray-300 text-center font-medium'>
 											{item}
 										</p>
-										{item.includes('Welcome To The Dinner Party') && (
-											<div className='relative'>
-												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
-													{[...Array(8)].map((_, index) => {
-														const images = [...Array(8)].map((_, imgIndex) => ({
-															src: `/cv/platform-exhibition/0${
-																imgIndex + 1
-															}.jpg`,
-															alt: `Exhibition Image ${imgIndex + 1}`,
-														}));
-														return (
-															<button
-																key={index}
-																onClick={() => handleImageClick(images, index)}
-																className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
-															>
-																<Image
-																	src={images[index].src}
-																	alt={images[index].alt}
-																	width={160}
-																	height={160}
-																	className='w-full h-full object-cover rounded'
-																	unoptimized
-																/>
-															</button>
-														);
-													})}
-													<div className='shrink-0 w-1' aria-hidden='true' />
+									);
+
+									// ✅ Inject YouTube embed only for the specific collaboration line
+									const isThunderFox =
+										title === 'Collaborations' &&
+										item.includes('Illustrated animation for Thunder Fox E.P.');
+
+									if (isThunderFox) {
+										return (
+											<div key={i} className='space-y-3'>
+												{content}
+												<div className='relative w-full aspect-video rounded-lg overflow-hidden shadow'>
+													<iframe
+														src='https://www.youtube.com/embed/1SyTzt6LW1A'
+														title="Thunder Fox — 'The Best.' (Illustrated animation)"
+														className='absolute inset-0 w-full h-full'
+														frameBorder='0'
+														allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+														allowFullScreen
+													/>
 												</div>
-												{/* Edge fades */}
-												<div
-													className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
-													aria-hidden='true'
-												/>
-												<div
-													className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
-													aria-hidden='true'
-												/>
 											</div>
-										)}
-										{item.includes('Prisma Collective') && (
-											<div className='relative'>
-												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
-													{[...Array(11)].map((_, index) => {
-														const images = [...Array(11)].map(
-															(_, imgIndex) => ({
-																src: `/cv/prisma-residency/${
-																	imgIndex < 9 ? '0' : ''
-																}${imgIndex + 1}.jpg`,
-																alt: `Prisma Collective Image ${imgIndex + 1}`,
-															})
-														);
-														return (
-															<button
-																key={index}
-																onClick={() => handleImageClick(images, index)}
-																className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
-															>
-																<Image
-																	src={images[index].src}
-																	alt={images[index].alt}
-																	width={160}
-																	height={160}
-																	className='w-full h-full object-cover rounded'
-																	unoptimized
-																/>
-															</button>
-														);
-													})}
-													<div className='shrink-0 w-1' aria-hidden='true' />
+										);
+									}
+
+									// 🔽 Existing thumbnail galleries below stay unchanged
+									if (item.includes('Welcome To The Dinner Party')) {
+										const images = [...Array(8)].map((_, imgIndex) => ({
+											src: `/cv/platform-exhibition/0${imgIndex + 1}.jpg`,
+											alt: `Exhibition Image ${imgIndex + 1}`,
+										}));
+										return (
+											<div key={i} className='space-y-3'>
+												{content}
+												<div className='relative'>
+													<div className='w-full overflow-x-auto px-4 scroll-px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+														<div className='flex gap-3 w-max mx-auto snap-x snap-mandatory'>
+															{images.map((img, index) => (
+																<button
+																	key={index}
+																	onClick={() =>
+																		handleImageClick(images, index)
+																	}
+																	className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
+																>
+																	<Image
+																		src={img.src}
+																		alt={img.alt}
+																		width={160}
+																		height={160}
+																		className='w-full h-full object-cover rounded'
+																		unoptimized
+																	/>
+																</button>
+															))}
+															<div
+																className='shrink-0 w-1'
+																aria-hidden='true'
+															/>
+														</div>
+													</div>
+													<div
+														className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
+														aria-hidden='true'
+													/>
+													<div
+														className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
+														aria-hidden='true'
+													/>
 												</div>
-												{/* Edge fades */}
-												<div
-													className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
-													aria-hidden='true'
-												/>
-												<div
-													className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
-													aria-hidden='true'
-												/>
 											</div>
-										)}
-										{item.includes('Buinho Creative Hub') && (
-											<div className='relative'>
-												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
-													{[...Array(4)].map((_, index) => {
-														const images = [...Array(4)].map((_, imgIndex) => ({
-															src: `/cv/messejana-residency/0${
-																imgIndex + 1
-															}.jpg`,
-															alt: `Buinho Creative Hub Image ${imgIndex + 1}`,
-														}));
-														return (
-															<button
-																key={index}
-																onClick={() => handleImageClick(images, index)}
-																className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
-															>
-																<Image
-																	src={images[index].src}
-																	alt={images[index].alt}
-																	width={160}
-																	height={160}
-																	className='w-full h-full object-cover rounded'
-																	unoptimized
-																/>
-															</button>
-														);
-													})}
-													<div className='shrink-0 w-1' aria-hidden='true' />
+										);
+									}
+
+									if (item.includes('Prisma Collective')) {
+										const images = [...Array(11)].map((_, imgIndex) => ({
+											src: `/cv/prisma-residency/${imgIndex < 9 ? '0' : ''}${
+												imgIndex + 1
+											}.jpg`,
+											alt: `Prisma Collective Image ${imgIndex + 1}`,
+										}));
+										return (
+											<div key={i} className='space-y-3'>
+												{content}
+												<div className='relative'>
+													<div className='w-full overflow-x-auto px-4 scroll-px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+														<div className='flex gap-3 w-max mx-auto snap-x snap-mandatory'>
+															{images.map((img, index) => (
+																<button
+																	key={index}
+																	onClick={() =>
+																		handleImageClick(images, index)
+																	}
+																	className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
+																>
+																	<Image
+																		src={img.src}
+																		alt={img.alt}
+																		width={160}
+																		height={160}
+																		className='w-full h-full object-cover rounded'
+																		unoptimized
+																	/>
+																</button>
+															))}
+															<div
+																className='shrink-0 w-1'
+																aria-hidden='true'
+															/>
+														</div>
+													</div>
+													<div
+														className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
+														aria-hidden='true'
+													/>
+													<div
+														className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
+														aria-hidden='true'
+													/>
 												</div>
-												{/* Edge fades */}
-												<div
-													className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
-													aria-hidden='true'
-												/>
-												<div
-													className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
-													aria-hidden='true'
-												/>
 											</div>
-										)}
-										{item.includes(
+										);
+									}
+
+									if (item.includes('Buinho Creative Hub')) {
+										const images = [...Array(4)].map((_, imgIndex) => ({
+											src: `/cv/messejana-residency/0${imgIndex + 1}.jpg`,
+											alt: `Buinho Creative Hub Image ${imgIndex + 1}`,
+										}));
+										return (
+											<div key={i} className='space-y-3'>
+												{content}
+												<div className='relative'>
+													<div className='w-full overflow-x-auto px-4 scroll-px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+														<div className='flex gap-3 w-max mx-auto snap-x snap-mandatory'>
+															{images.map((img, index) => (
+																<button
+																	key={index}
+																	onClick={() =>
+																		handleImageClick(images, index)
+																	}
+																	className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
+																>
+																	<Image
+																		src={img.src}
+																		alt={img.alt}
+																		width={160}
+																		height={160}
+																		className='w-full h-full object-cover rounded'
+																		unoptimized
+																	/>
+																</button>
+															))}
+															<div
+																className='shrink-0 w-1'
+																aria-hidden='true'
+															/>
+														</div>
+													</div>
+													<div
+														className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
+														aria-hidden='true'
+													/>
+													<div
+														className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
+														aria-hidden='true'
+													/>
+												</div>
+											</div>
+										);
+									}
+
+									if (
+										item.includes(
 											'GlogAUair, curated by Justin Ross and Laura Olea Lopez. Berlin, Germany.'
-										) && (
-											<div className='relative'>
-												<div className='flex overflow-x-auto gap-3 px-4 scroll-px-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
-													{[...Array(9)].map((_, index) => {
-														const images = [...Array(9)].map((_, imgIndex) => ({
-															src: `/cv/glogauair-residency/0${
-																imgIndex + 1
-															}.jpg`,
-															alt: `GlogAUair Image ${imgIndex + 1}`,
-														}));
-														return (
-															<button
-																key={index}
-																onClick={() => handleImageClick(images, index)}
-																className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
-															>
-																<Image
-																	src={images[index].src}
-																	alt={images[index].alt}
-																	width={160}
-																	height={160}
-																	className='w-full h-full object-cover rounded'
-																	unoptimized
-																/>
-															</button>
-														);
-													})}
-													<div className='shrink-0 w-1' aria-hidden='true' />
+										)
+									) {
+										const images = [...Array(9)].map((_, imgIndex) => ({
+											src: `/cv/glogauair-residency/0${imgIndex + 1}.jpg`,
+											alt: `GlogAUair Image ${imgIndex + 1}`,
+										}));
+										return (
+											<div key={i} className='space-y-3'>
+												{content}
+												<div className='relative'>
+													<div className='w-full overflow-x-auto px-4 scroll-px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+														<div className='flex gap-3 w-max mx-auto snap-x snap-mandatory'>
+															{images.map((img, index) => (
+																<button
+																	key={index}
+																	onClick={() =>
+																		handleImageClick(images, index)
+																	}
+																	className='w-40 h-40 flex-shrink-0 snap-start hover:opacity-80 transition-opacity cursor-pointer'
+																>
+																	<Image
+																		src={img.src}
+																		alt={img.alt}
+																		width={160}
+																		height={160}
+																		className='w-full h-full object-cover rounded'
+																		unoptimized
+																	/>
+																</button>
+															))}
+															<div
+																className='shrink-0 w-1'
+																aria-hidden='true'
+															/>
+														</div>
+													</div>
+													<div
+														className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
+														aria-hidden='true'
+													/>
+													<div
+														className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
+														aria-hidden='true'
+													/>
 												</div>
-												{/* Edge fades */}
-												<div
-													className='pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-l'
-													aria-hidden='true'
-												/>
-												<div
-													className='pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/90 dark:from-[#0a0a0a]/90 to-transparent rounded-r'
-													aria-hidden='true'
-												/>
 											</div>
-										)}
-									</div>
-								))}
+										);
+									}
+
+									// Default (no thumbnails / no embed)
+									return (
+										<div key={i} className='space-y-3'>
+											{content}
+										</div>
+									);
+								})}
 							</div>
 						</div>
 					))}
