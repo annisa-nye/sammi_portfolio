@@ -310,53 +310,43 @@ export default function HomePage() {
 							priority
 						/>
 
-						{/* Gallery Cards Grid with Rotating Preview Images */}
+						{/* Gallery Cards Grid with Rotating Preview Images (PREVIEW-ONLY in grid) */}
 						<div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-12'>
 							{GALLERY_PREVIEW_CATEGORIES.map(({ title, key }) => {
 								const imageKey = `${currentSet}_${key}`;
 								const hasError = imageLoadError[imageKey];
-								const mappedPath =
+
+								// 1) Always use the cropped preview for the grid
+								const previewSrc = `/gallery-preview/${imageKey}.jpg`;
+
+								// 2) Use the map ONLY to pick the initial lightbox image
+								const mappedPathForLightbox =
 									PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
 										key as 'collage' | 'digital' | 'illustration' | 'painting'
 									];
-								const fullSrc = mappedPath
-									? `/${mappedPath}`
-									: `/gallery-preview/${imageKey}.jpg`;
+								const mappedFullSrcForLightbox = mappedPathForLightbox
+									? `/${mappedPathForLightbox}`
+									: null;
 
 								return (
 									<button
 										key={title}
 										onClick={() => {
-											// Build the full list for this section
 											const imagesForSection = getSectionImages(title);
 
-											// Determine the mapped original (if any) for the current rotation
-											const mappedPath =
-												PREVIEW_TO_ORIGINAL[currentSet as 1 | 2 | 3 | 4]?.[
-													key as
-														| 'collage'
-														| 'digital'
-														| 'illustration'
-														| 'painting'
-												];
-											const mappedFullSrc = mappedPath
-												? `/${mappedPath}`
-												: null;
-
-											// Initial index: prefer the mapped image; otherwise start at 0
+											// Prefer opening the lightbox on the mapped original if available
 											let initialIndex = 0;
-											if (mappedFullSrc) {
+											if (mappedFullSrcForLightbox) {
 												const idx = imagesForSection.findIndex(
-													(img) => img.src === mappedFullSrc
+													(img) => img.src === mappedFullSrcForLightbox
 												);
 												if (idx >= 0) initialIndex = idx;
 											}
 
-											// Set lightbox to the entire section and open at the mapped image
 											setLightboxImages(imagesForSection);
 											setSelectedImage(imagesForSection[initialIndex]);
 										}}
-										className={`w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col`}
+										className='w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col'
 									>
 										<div className='relative w-full aspect-square'>
 											{isLoading && !hasError && (
@@ -364,9 +354,10 @@ export default function HomePage() {
 													<div className='w-8 h-8 border-4 border-gray-300 border-t-black dark:border-t-white rounded-full animate-spin' />
 												</div>
 											)}
+
 											{!hasError ? (
 												<Image
-													src={fullSrc}
+													src={previewSrc}
 													alt={`${title} preview`}
 													fill
 													className={`object-cover transition-opacity duration-500 ${
@@ -388,6 +379,7 @@ export default function HomePage() {
 												</div>
 											)}
 										</div>
+
 										<div className='p-3 sm:p-6'>
 											<h2 className='text-lg sm:text-2xl font-bold'>{title}</h2>
 										</div>
