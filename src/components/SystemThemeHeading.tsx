@@ -26,7 +26,6 @@ export default function SystemThemeHeading({
 				srcSet={`/headings-dark/${name}-invert.png`}
 				media='(prefers-color-scheme: dark)'
 			/>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				src={`/headings/${name}.png`}
 				alt={name}

@@ -24,22 +24,6 @@ export default function LightboxModal({
 }: LightboxModalProps) {
 	const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-	const handleNext = () => {
-		setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-	};
-
-	const handlePrevious = () => {
-		setCurrentIndex(
-			(prevIndex) => (prevIndex - 1 + images.length) % images.length
-		);
-	};
-
-	if (!isOpen) return null;
-
-	const currentImage = images[currentIndex];
-	const hasPaintingInfo =
-		currentImage.title || currentImage.year || currentImage.medium;
-
 	// Identify section (painting | illustration | collage | digital) from first image
 	const sectionKey = useMemo(() => {
 		const firstSrc = images?.[0]?.src ?? '';
@@ -82,6 +66,22 @@ export default function LightboxModal({
 		}
 		return base.join(' ');
 	}, [isCVSet, shouldCenterWhenNoOverflow, needsHorizontalScroll]);
+
+	const handleNext = () => {
+		setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+	};
+
+	const handlePrevious = () => {
+		setCurrentIndex(
+			(prevIndex) => (prevIndex - 1 + images.length) % images.length
+		);
+	};
+
+	if (!isOpen) return null;
+
+	const currentImage = images[currentIndex];
+	const hasPaintingInfo =
+		currentImage.title || currentImage.year || currentImage.medium;
 
 	return (
 		<div
