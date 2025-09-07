@@ -41,7 +41,7 @@ export default function Footer() {
 						{/* Animated Logo */}
 						<div className='relative w-64 h-64 rounded-full overflow-hidden'>
 							<Image
-								src='/logo/logo.gif'
+								src={isDarkMode ? '/logo/logo-invert.gif' : '/logo/logo.gif'}
 								alt='Sammi Carr Animated Logo'
 								fill
 								className='object-contain'
