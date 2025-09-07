@@ -23,8 +23,6 @@ export default function Footer() {
 		return null; // Prevent hydration mismatch
 	}
 
-	const logoSrc = isDarkMode ? `/logo/logo-invert.png` : `/logo/logo.png`;
-
 	return (
 		<section id='contact' className='bg-white dark:bg-[#0a0a0a] py-12'>
 			<footer className='max-w-3xl mx-auto px-6'>
