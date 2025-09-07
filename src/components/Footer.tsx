@@ -40,11 +40,11 @@ export default function Footer() {
 				{/* Business Card */}
 				<div className='bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 md:p-8 mb-8'>
 					<div className='flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-8'>
-						{/* Logo Image */}
+						{/* Animated Logo */}
 						<div className='relative w-64 h-64 rounded-full overflow-hidden'>
 							<Image
-								src={logoSrc}
-								alt='Sammi Carr Logo'
+								src='/logo/logo.gif'
+								alt='Sammi Carr Animated Logo'
 								fill
 								className='object-contain'
 								priority
