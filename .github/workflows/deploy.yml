@@ -35,13 +35,11 @@ jobs:
         run: |
           echo "GITHUB_REPOSITORY=${GITHUB_REPOSITORY}"
           echo "GITHUB_REF=${GITHUB_REF}"
-          echo "GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}"
 
       - name: Show OIDC token claims (sub & aud)
         uses: actions/github-script@v7
         with:
           script: |
-            const core = require('@actions/core')
             const idToken = await core.getIDToken('sts.amazonaws.com')
             const payload = JSON.parse(Buffer.from(idToken.split('.')[1], 'base64').toString())
             console.log('OIDC sub:', payload.sub)
