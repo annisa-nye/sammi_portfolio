@@ -11,6 +11,68 @@ import SystemThemeHeading from '@/components/SystemThemeHeading';
 import SystemThemeLogo from '@/components/SystemThemeLogo';
 import InstagramSection from '@/components/InstagramSection';
 import LightboxModal from '@/components/LightboxModal';
+import clsx from "clsx";
+
+function FadeImage({
+  src,
+  alt,
+  priority = false,
+  sizes = "(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw",
+  className,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  sizes?: string;
+  className?: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="relative w-full h-full">
+      {/* Skeleton / shimmer */}
+      <div
+        className={clsx(
+          "absolute inset-0 rounded-none",
+          "bg-gray-200/70 dark:bg-zinc-800/70",
+          "animate-pulse transition-opacity duration-300",
+          loaded && "opacity-0 pointer-events-none"
+        )}
+        aria-hidden="true"
+      />
+
+      {/* Optional: low-fi blur backdrop to disguise pop-in */}
+      <div
+        className={clsx(
+          "absolute inset-0 blur-md scale-[1.02]",
+          "bg-gradient-to-br from-gray-200 to-gray-300",
+          "dark:from-zinc-800 dark:to-zinc-700",
+          "transition-opacity duration-300",
+          loaded && "opacity-0 pointer-events-none"
+        )}
+        aria-hidden="true"
+      />
+
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className={clsx(
+          "object-cover will-change-opacity transition-opacity duration-500 ease-out",
+          loaded ? "opacity-100" : "opacity-0",
+          className
+        )}
+        sizes={sizes}
+        priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        onLoadingComplete={() => setLoaded(true)}
+        unoptimized
+      />
+    </div>
+  );
+}
+
 
 const PREVIEW_TO_ORIGINAL: Record<
 	1 | 2 | 3 | 4,
@@ -349,27 +411,12 @@ export default function HomePage() {
 										className='w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col'
 									>
 										<div className='relative w-full aspect-square'>
-											{isLoading && !hasError && (
-												<div className='absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800'>
-													<div className='w-8 h-8 border-4 border-gray-300 border-t-black dark:border-t-white rounded-full animate-spin' />
-												</div>
-											)}
-
 											{!hasError ? (
-												<Image
+												<FadeImage
 													src={previewSrc}
 													alt={`${title} preview`}
-													fill
-													className={`object-cover transition-opacity duration-500 ${
-														isLoading ? 'opacity-0' : 'opacity-100'
-													}`}
-													sizes='(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw'
 													priority={currentSet === 1}
 													onError={() => handleImageError(imageKey)}
-													onLoad={handleImageLoad}
-													loading={currentSet === 1 ? 'eager' : 'lazy'}
-													quality={75}
-													unoptimized
 												/>
 											) : (
 												<div className='absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800'>

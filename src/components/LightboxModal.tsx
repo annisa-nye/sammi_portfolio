@@ -16,6 +16,90 @@ interface LightboxModalProps {
 	initialIndex?: number;
 }
 
+/* --- Added: lightweight fade/blur wrappers --- */
+function LightboxMainImage({
+	src,
+	alt,
+	priority = true,
+}: {
+	src: string;
+	alt: string;
+	priority?: boolean;
+}) {
+	const [loaded, setLoaded] = useState(false);
+
+	return (
+		<div className='relative w-full h-full bg-black'>
+			{/* shimmer placeholder */}
+			<div
+				className={`absolute inset-0 animate-pulse bg-zinc-900/40 transition-opacity duration-300 ${
+					loaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+				}`}
+				aria-hidden='true'
+			/>
+			{/* blurred backdrop while loading */}
+			<div
+				className={`absolute inset-0 blur-xl bg-zinc-800/70 transition-opacity duration-500 ${
+					loaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+				}`}
+				aria-hidden='true'
+			/>
+			<Image
+				src={src}
+				alt={alt}
+				fill
+				sizes='90vw'
+				priority={priority}
+				quality={90}
+				className={`object-contain transition duration-700 ease-out will-change-transform will-change-opacity ${
+					loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+				}`}
+				onLoadingComplete={() => setLoaded(true)}
+				decoding='async'
+				unoptimized
+			/>
+		</div>
+	);
+}
+
+function LightboxThumb({
+	src,
+	alt,
+	isActive,
+}: {
+	src: string;
+	alt: string;
+	isActive: boolean;
+}) {
+	const [loaded, setLoaded] = useState(false);
+	return (
+		<div
+			className={`relative w-16 h-16 ${isActive ? 'ring-2 ring-white' : ''}`}
+			aria-current={isActive ? 'true' : 'false'}
+		>
+			{/* shimmer */}
+			<div
+				className={`absolute inset-0 animate-pulse bg-zinc-800/40 transition-opacity duration-200 ${
+					loaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+				}`}
+				aria-hidden='true'
+			/>
+			<Image
+				src={src}
+				alt={alt}
+				fill
+				className={`object-cover transition-opacity duration-300 ${
+					loaded ? 'opacity-100' : 'opacity-0'
+				}`}
+				onLoadingComplete={() => setLoaded(true)}
+				decoding='async'
+				unoptimized
+			/>
+		</div>
+	);
+}
+/* --- /Added --- */
+
 export default function LightboxModal({
 	isOpen,
 	onClose,
@@ -182,15 +266,11 @@ export default function LightboxModal({
 							</svg>
 						</button>
 
-						<Image
+						{/* Replaced: fullscreen Image with fade/blur wrapper */}
+						<LightboxMainImage
 							src={currentImage.src}
 							alt={currentImage.alt}
-							fill
-							sizes='90vw'
 							priority
-							quality={90}
-							className='object-contain'
-							unoptimized
 						/>
 					</div>
 				</div>
@@ -202,17 +282,13 @@ export default function LightboxModal({
 							<button
 								key={index}
 								onClick={() => setCurrentIndex(index)}
-								className={`w-16 h-16 flex-none ${
-									currentIndex === index ? 'border-2 border-white' : ''
-								}`}
+								className='flex-none'
 							>
-								<Image
+								{/* Replaced: thumb Image with fade wrapper */}
+								<LightboxThumb
 									src={image.src}
 									alt={image.alt}
-									width={64}
-									height={64}
-									className='object-cover w-full h-full'
-									unoptimized
+									isActive={currentIndex === index}
 								/>
 							</button>
 						))}
