@@ -19,12 +19,14 @@ function FadeImage({
 	priority = false,
 	sizes = '(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw',
 	className,
+	onError,
 }: {
 	src: string;
 	alt: string;
 	priority?: boolean;
 	sizes?: string;
 	className?: string;
+	onError?: () => void;
 }) {
 	const [loaded, setLoaded] = useState(false);
 
@@ -67,6 +69,7 @@ function FadeImage({
 				loading={priority ? 'eager' : 'lazy'}
 				decoding='async'
 				onLoad={() => setLoaded(true)}
+				onError={onError}
 				unoptimized
 			/>
 		</div>
