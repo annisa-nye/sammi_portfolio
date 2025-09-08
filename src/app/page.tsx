@@ -346,7 +346,7 @@ export default function HomePage() {
 											setLightboxImages(imagesForSection);
 											setSelectedImage(imagesForSection[initialIndex]);
 										}}
-										className='w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center overflow-hidden flex flex-col'
+										className='w-full p-0 bg-white dark:bg-zinc-900 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col'
 									>
 										<div className='relative w-full aspect-square'>
 											{isLoading && !hasError && (
@@ -380,8 +380,8 @@ export default function HomePage() {
 											)}
 										</div>
 
-										<div className='p-3 sm:p-6'>
-											<h2 className='text-lg sm:text-2xl font-bold text-center w-full'>
+										<div className='p-3 sm:p-6 w-full not-prose flex justify-center'>
+											<h2 className='w-fit mx-auto text-center text-lg sm:text-2xl font-bold leading-tight'>
 												{title}
 											</h2>
 										</div>
