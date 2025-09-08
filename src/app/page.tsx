@@ -271,12 +271,10 @@ export default function HomePage() {
 	const [imageLoadError, setImageLoadError] = useState<Record<string, boolean>>(
 		{}
 	);
-	const [isLoading, setIsLoading] = useState(true);
 	const [lightboxImages, setLightboxImages] = useState<LBImage[]>([]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setIsLoading(true);
 			setCurrentSet((prev) => (prev % 4) + 1);
 			setCurrentAnimation((prev) => (prev % 4) + 1); // Sync animation with gallery rotation
 			setImageLoadError({}); // Reset errors when changing sets
@@ -286,11 +284,6 @@ export default function HomePage() {
 
 	const handleImageError = (key: string) => {
 		setImageLoadError((prev) => ({ ...prev, [key]: true }));
-		setIsLoading(false);
-	};
-
-	const handleImageLoad = () => {
-		setIsLoading(false);
 	};
 
 	const handleCVToggle = (title: string) => {
