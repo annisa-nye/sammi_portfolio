@@ -6,30 +6,25 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write   # OIDC
+  id-token: write
   contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Production   # ← ties this job to the “Production” environment
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install
-        run: npm ci
+      - run: npm ci
+      - run: npm run build     # Next 15 + output:export -> writes to ./out
 
-      # Next 15 + next.config output:'export' -> build writes to ./out
-      - name: Build static site
-        run: npm run build
-
+      # OIDC (recommended). If using access keys instead, swap this step per below.
       - name: Configure AWS (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
