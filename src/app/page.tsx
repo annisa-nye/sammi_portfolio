@@ -380,8 +380,8 @@ export default function HomePage() {
 											)}
 										</div>
 
-										<div className='p-3 sm:p-6 text-center'>
-											<h2 className='block w-full text-lg sm:text-2xl font-bold !text-center'>
+										<div className='p-3 sm:p-6'>
+											<h2 className='text-lg sm:text-2xl font-bold text-center w-full'>
 												{title}
 											</h2>
 										</div>
